@@ -66,7 +66,7 @@ public class TeadsAdView extends FrameLayout implements TeadsAdListener {
 
     private void createTeads() {
         TeadsLog.setLogLevel(TeadsLog.LogLevel.verbose);
-        mTeadsAd = new TeadsAd.TeadsAdBuilder(mContext.getApplicationContext(), "54934")
+        mTeadsAd = new TeadsAd.TeadsAdBuilder(mContext.getApplicationContext(), "84242")
                 .viewGroup(this)
                 .containerType(TeadsContainerType.inRead)
                 .eventListener(this)
