@@ -2,7 +2,7 @@
 
 This is a sample with the basic implementation of Teads ads within a React Native application. Teads does not provide an offical React Native component. 
 
-[Teads SDK Documentation for Android & iOS](https://mobile.teads.tv/sdk/documentation/)
+[Teads SDK Documentation for Android & iOS](https://support.teads.tv/support/solutions/articles/36000165909)
 
 # Setup
 
