@@ -1,54 +1,117 @@
-import React from "react";
-import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 
 const ListCreatives = () => {
+  const [SelectedCreative, setSelectedCreative] = useState("Landscape");
   return (
     <View>
       <Text style={styles.listText}>Creatives</Text>
       <View style={styles.containerRow}>
         <View>
           <Pressable
-            style={styles.button}
-            onPress={() => Alert.alert("Afficher pub Native sur nouvelle vue")}
+            style={
+              SelectedCreative == "Landscape"
+                ? styles.button
+                : styles.buttonUnpressed
+            }
+            onPress={() => setSelectedCreative("Landscape")}
           >
-            <Text style={styles.text}>Landscape</Text>
+            <Text
+              style={
+                SelectedCreative == "Landscape"
+                  ? styles.text
+                  : styles.textUnpressed
+              }
+            >
+              Landscape
+            </Text>
+          </Pressable>
+        </View>
+
+        <View>
+          <Pressable
+            style={
+              SelectedCreative == "Vertical"
+                ? styles.button
+                : styles.buttonUnpressed
+            }
+            onPress={() => setSelectedCreative("Vertical")}
+          >
+            <Text
+              style={
+                SelectedCreative == "Vertical"
+                  ? styles.text
+                  : styles.textUnpressed
+              }
+            >
+              Vertical
+            </Text>
           </Pressable>
         </View>
         <View>
           <Pressable
-            style={styles.button}
-            onPress={() => Alert.alert("Afficher pub Native sur nouvelle vue")}
+            style={
+              SelectedCreative == "Square"
+                ? styles.button
+                : styles.buttonUnpressed
+            }
+            onPress={() => setSelectedCreative("Square")}
           >
-            <Text style={styles.text}>Vertical</Text>
+            <Text
+              style={
+                SelectedCreative == "Square"
+                  ? styles.text
+                  : styles.textUnpressed
+              }
+            >
+              Square
+            </Text>
           </Pressable>
         </View>
         <View>
           <Pressable
-            style={styles.button}
-            onPress={() => Alert.alert("Afficher pub Native sur nouvelle vue")}
+            style={
+              SelectedCreative == "Caroussel"
+                ? styles.button
+                : styles.buttonUnpressed
+            }
+            onPress={() => setSelectedCreative("Caroussel")}
           >
-            <Text style={styles.text}>Square</Text>
-          </Pressable>
-        </View>
-        <View>
-          <Pressable
-            style={styles.button}
-            onPress={() => Alert.alert("Afficher pub Native sur nouvelle vue")}
-          >
-            <Text style={styles.text}>Caroussel</Text>
+            <Text
+              style={
+                SelectedCreative == "Caroussel"
+                  ? styles.text
+                  : styles.textUnpressed
+              }
+            >
+              Caroussel
+            </Text>
           </Pressable>
         </View>
       </View>
       <View style={styles.containerRow}>
         <View style={{ flex: 1, justifyContent: "center" }}>
           <Pressable
-            style={styles.button}
-            onPress={() => Alert.alert("Afficher pub Native sur nouvelle vue")}
+            style={
+              SelectedCreative == "Custom"
+                ? styles.button
+                : styles.buttonUnpressed
+            }
+            onPress={() => setSelectedCreative("Custom")}
           >
-            <Text style={styles.text}>Custom</Text>
+            <Text
+              style={
+                SelectedCreative == "Custom"
+                  ? styles.text
+                  : styles.textUnpressed
+              }
+            >
+              Custom
+            </Text>
           </Pressable>
         </View>
       </View>
+      <Text>{SelectedCreative}</Text>
     </View>
   );
 };
@@ -72,7 +135,7 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     justifyContent: "center",
     paddingVertical: 12,
-    paddingHorizontal: 32,
+    paddingHorizontal: 8,
     borderRadius: 18,
     elevation: 3,
     backgroundColor: "white",

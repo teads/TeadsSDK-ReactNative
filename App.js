@@ -1,5 +1,5 @@
 import { StyleSheet, View, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ActionBarImage from "./components/ActionBarImage";
@@ -13,10 +13,6 @@ import { LinearGradient } from "expo-linear-gradient";
 const Stack = createNativeStackNavigator();
 
 function HomeScreen({ navigation }) {
-  const [integration, setIntergation] = useState({
-    value: "LandScape",
-  });
-
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View>
