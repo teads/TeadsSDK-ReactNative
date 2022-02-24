@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 
-const ListIntegrations = (navigation) => {
+const ListIntegrations = (navigation, SelectedCreative) => {
+  const test = SelectedCreative;
   return (
     <View>
       <Text style={styles.listText}>Integrations</Text>
       <View style={styles.containerRow}>
         <View style={styles.integrationsItems}>
-          <TouchableOpacity onPress={() => navigation.navigate("Details")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Demo")}>
             <Image
               source={require("../assets/ScrollViewIcon.png")}
               style={styles.integrationsImages}
@@ -16,7 +17,7 @@ const ListIntegrations = (navigation) => {
         </View>
 
         <View style={styles.integrationsItems}>
-          <TouchableOpacity onPress={() => navigation.navigate("Details")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Demo")}>
             <Image
               source={require("../assets/RecyclerViewIcon.png")}
               style={styles.integrationsImages}
@@ -26,7 +27,7 @@ const ListIntegrations = (navigation) => {
       </View>
       <View style={styles.containerRow}>
         <View style={styles.integrationsItems}>
-          <TouchableOpacity onPress={() => navigation.navigate("Details")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Demo")}>
             <Image
               source={require("../assets/RecyclerViewGridIcon.png")}
               style={styles.integrationsImages}
@@ -35,7 +36,7 @@ const ListIntegrations = (navigation) => {
         </View>
 
         <View style={styles.integrationsItems}>
-          <TouchableOpacity onPress={() => navigation.navigate("Details")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Demo")}>
             <Image
               source={require("../assets/WebviewIcon.png")}
               style={styles.integrationsImages}

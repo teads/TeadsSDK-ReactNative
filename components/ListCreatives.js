@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
+import ModalCustom from "../components/ModalCustom";
 
-const ListCreatives = () => {
-  const [SelectedCreative, setSelectedCreative] = useState("Landscape");
+const ListCreatives = ({
+  pid,
+  onChangePid,
+  modalVisible,
+  setModalVisible,
+  SelectedCreative,
+  setSelectedCreative,
+}) => {
   return (
     <View>
       <Text style={styles.listText}>Creatives</Text>
@@ -97,7 +104,9 @@ const ListCreatives = () => {
                 ? styles.button
                 : styles.buttonUnpressed
             }
-            onPress={() => setSelectedCreative("Custom")}
+            onPress={() => {
+              setSelectedCreative("Custom"), setModalVisible(true);
+            }}
           >
             <Text
               style={
@@ -111,7 +120,12 @@ const ListCreatives = () => {
           </Pressable>
         </View>
       </View>
-      <Text>{SelectedCreative}</Text>
+      <ModalCustom
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        pid={pid}
+        onChangePid={onChangePid}
+      ></ModalCustom>
     </View>
   );
 };

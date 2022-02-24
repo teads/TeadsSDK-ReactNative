@@ -8,7 +8,9 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import * as React from "react";
 
-export default function Article() {
+export default function Article({ route, navigation }) {
+  //const { test } = route.params;
+
   return (
     <ScrollView style={{ flexGrow: 1 }}>
       <View
@@ -31,7 +33,7 @@ export default function Article() {
             end={{ x: 1, y: 1 }}
           />
           <View style={{ width: "100%" }}>
-            <Text style={styles.title}>Article Demo</Text>
+            <Text style={styles.title}>Article Demo </Text>
             <Text style={styles.subtitle}>
               Scroll down to see your creative
             </Text>
