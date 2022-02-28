@@ -24,8 +24,8 @@ function HomeScreen({ navigation }) {
         {/* Component List Of Formats */}
         <ListFormats />
 
-        {/* List Of Providers */}
-        <ListProviders />
+        {/* List Of Providers decomment if you need different providers */}
+        {/*<ListProviders />*/}
 
         {/* List Of choice for Creatives with selector using the State */}
         <ListCreatives
