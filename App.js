@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ActionBarImage from "./components/ActionBarImage";
 import Article from "./components/Article";
 import ListFormats from "./components/ListFormats";
-import ListProviders from "./components/ListProviders";
+
 import ListCreatives from "./components/ListCreatives";
 import ListIntegrations from "./components/ListIntegrations";
 import { LinearGradient } from "expo-linear-gradient";
@@ -23,9 +23,6 @@ function HomeScreen({ navigation }) {
       <View>
         {/* Component List Of Formats */}
         <ListFormats />
-
-        {/* List Of Providers decomment if you need different providers */}
-        {/*<ListProviders />*/}
 
         {/* List Of choice for Creatives with selector using the State */}
         <ListCreatives
