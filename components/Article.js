@@ -54,24 +54,10 @@ export default function Article({ route, navigation }) {
             results for brands.
           </Text>
         </View>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
-        <Text style={styles.fakeArticle}></Text>
+
+        {[...Array(20)].map((e, i) => (
+          <Text key={i} style={styles.fakeArticle}></Text>
+        ))}
       </View>
     </ScrollView>
   );
