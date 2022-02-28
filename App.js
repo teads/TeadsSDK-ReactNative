@@ -1,11 +1,10 @@
-import { StyleSheet, View, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView, Pressable, Text } from "react-native";
 import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ActionBarImage from "./components/ActionBarImage";
 import Article from "./components/Article";
 import ListFormats from "./components/ListFormats";
-
 import ListCreatives from "./components/ListCreatives";
 import ListIntegrations from "./components/ListIntegrations";
 import { LinearGradient } from "expo-linear-gradient";
@@ -16,7 +15,7 @@ function HomeScreen({ navigation }) {
   //state for variables custom Pid, openning of the modal and selection of creative style
   const [pid, onChangePid] = useState("84242");
   const [modalVisible, setModalVisible] = useState(false);
-  const [SelectedCreative, setSelectedCreative] = useState("Landscape");
+  const [selectedCreative, setSelectedCreative] = useState("Landscape");
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -30,12 +29,12 @@ function HomeScreen({ navigation }) {
           onChangePid={onChangePid}
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
-          SelectedCreative={SelectedCreative}
+          selectedCreative={selectedCreative}
           setSelectedCreative={setSelectedCreative}
         />
 
         {/* List Of Intégrations redirecting to the demo pages */}
-        <ListIntegrations {...navigation} SelectedCreative={SelectedCreative} />
+        <ListIntegrations navigation={navigation} />
       </View>
     </ScrollView>
   );

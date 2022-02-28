@@ -1,14 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 
-const ListIntegrations = (navigation, SelectedCreative) => {
-  const test = SelectedCreative;
+const ListIntegrations = ({ navigation }) => {
+  function navigateToDemo(navigation) {
+    return navigation.navigate("Demo");
+  }
+
   return (
     <View>
       <Text style={styles.listText}>Integrations</Text>
       <View style={styles.containerRow}>
         <View style={styles.integrationsItems}>
-          <TouchableOpacity onPress={() => navigation.navigate("Demo")}>
+          <TouchableOpacity onPress={() => navigateToDemo(navigation)}>
             <Image
               source={require("../assets/ScrollViewIcon.png")}
               style={styles.integrationsImages}
@@ -17,7 +20,7 @@ const ListIntegrations = (navigation, SelectedCreative) => {
         </View>
 
         <View style={styles.integrationsItems}>
-          <TouchableOpacity onPress={() => navigation.navigate("Demo")}>
+          <TouchableOpacity onPress={() => navigateToDemo(navigation)}>
             <Image
               source={require("../assets/RecyclerViewIcon.png")}
               style={styles.integrationsImages}
@@ -27,7 +30,7 @@ const ListIntegrations = (navigation, SelectedCreative) => {
       </View>
       <View style={styles.containerRow}>
         <View style={styles.integrationsItems}>
-          <TouchableOpacity onPress={() => navigation.navigate("Demo")}>
+          <TouchableOpacity onPress={() => navigateToDemo(navigation)}>
             <Image
               source={require("../assets/RecyclerViewGridIcon.png")}
               style={styles.integrationsImages}
@@ -36,7 +39,7 @@ const ListIntegrations = (navigation, SelectedCreative) => {
         </View>
 
         <View style={styles.integrationsItems}>
-          <TouchableOpacity onPress={() => navigation.navigate("Demo")}>
+          <TouchableOpacity onPress={() => navigateToDemo(navigation)}>
             <Image
               source={require("../assets/WebviewIcon.png")}
               style={styles.integrationsImages}

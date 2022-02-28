@@ -7,7 +7,7 @@ const ListCreatives = ({
   onChangePid,
   modalVisible,
   setModalVisible,
-  SelectedCreative,
+  selectedCreative,
   setSelectedCreative,
 }) => {
   return (
@@ -17,7 +17,7 @@ const ListCreatives = ({
         <View>
           <Pressable
             style={
-              SelectedCreative == "Landscape"
+              selectedCreative == "Landscape"
                 ? styles.button
                 : styles.buttonUnpressed
             }
@@ -25,7 +25,7 @@ const ListCreatives = ({
           >
             <Text
               style={
-                SelectedCreative == "Landscape"
+                selectedCreative == "Landscape"
                   ? styles.text
                   : styles.textUnpressed
               }
@@ -38,7 +38,7 @@ const ListCreatives = ({
         <View>
           <Pressable
             style={
-              SelectedCreative == "Vertical"
+              selectedCreative == "Vertical"
                 ? styles.button
                 : styles.buttonUnpressed
             }
@@ -46,7 +46,7 @@ const ListCreatives = ({
           >
             <Text
               style={
-                SelectedCreative == "Vertical"
+                selectedCreative == "Vertical"
                   ? styles.text
                   : styles.textUnpressed
               }
@@ -58,7 +58,7 @@ const ListCreatives = ({
         <View>
           <Pressable
             style={
-              SelectedCreative == "Square"
+              selectedCreative == "Square"
                 ? styles.button
                 : styles.buttonUnpressed
             }
@@ -66,7 +66,7 @@ const ListCreatives = ({
           >
             <Text
               style={
-                SelectedCreative == "Square"
+                selectedCreative == "Square"
                   ? styles.text
                   : styles.textUnpressed
               }
@@ -78,7 +78,7 @@ const ListCreatives = ({
         <View>
           <Pressable
             style={
-              SelectedCreative == "Caroussel"
+              selectedCreative == "Caroussel"
                 ? styles.button
                 : styles.buttonUnpressed
             }
@@ -86,7 +86,7 @@ const ListCreatives = ({
           >
             <Text
               style={
-                SelectedCreative == "Caroussel"
+                selectedCreative == "Caroussel"
                   ? styles.text
                   : styles.textUnpressed
               }
@@ -100,7 +100,7 @@ const ListCreatives = ({
         <View style={{ flex: 1, justifyContent: "center" }}>
           <Pressable
             style={
-              SelectedCreative == "Custom"
+              selectedCreative == "Custom"
                 ? styles.button
                 : styles.buttonUnpressed
             }
@@ -110,7 +110,7 @@ const ListCreatives = ({
           >
             <Text
               style={
-                SelectedCreative == "Custom"
+                selectedCreative == "Custom"
                   ? styles.text
                   : styles.textUnpressed
               }
