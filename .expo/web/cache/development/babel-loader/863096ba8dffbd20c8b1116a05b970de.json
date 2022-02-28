@@ -1,0 +1,25 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nimport View from \"react-native-web/dist/exports/View\";\nimport Image from \"react-native-web/dist/exports/Image\";\nimport { jsx as _jsx } from \"react/jsx-runtime\";\n\nvar ActionBarImage = function ActionBarImage() {\n  return _jsx(View, {\n    style: {\n      flexDirection: \"row\"\n    },\n    children: _jsx(Image, {\n      style: {\n        width: 70,\n        height: 30,\n        resizeMode: \"cover\"\n      },\n      source: require(\"../assets/logo.png\")\n    })\n  });\n};\n\nexport default ActionBarImage;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/numa.maurin/Documents/TeadsSDK-ReactNative/pages/ActionBarImage.js"
+    ],
+    "names": [
+      "React",
+      "ActionBarImage",
+      "flexDirection",
+      "width",
+      "height",
+      "resizeMode",
+      "require"
+    ],
+    "mappings": "AAAA,OAAOA,KAAP,MAAkB,OAAlB;;;;;AAIA,IAAMC,cAAc,GAAG,SAAjBA,cAAiB,GAAM;AAC3B,SACE,KAAC,IAAD;AAAM,IAAA,KAAK,EAAE;AAAEC,MAAAA,aAAa,EAAE;AAAjB,KAAb;AAAA,cACE,KAAC,KAAD;AACE,MAAA,KAAK,EAAE;AAAEC,QAAAA,KAAK,EAAE,EAAT;AAAaC,QAAAA,MAAM,EAAE,EAArB;AAAyBC,QAAAA,UAAU,EAAE;AAArC,OADT;AAEE,MAAA,MAAM,EAAEC,OAAO;AAFjB;AADF,IADF;AAQD,CATD;;AAWA,eAAeL,cAAf",
+    "sourcesContent": [
+      "import React from \"react\";\n\nimport { View, Image } from \"react-native\";\n\nconst ActionBarImage = () => {\n  return (\n    <View style={{ flexDirection: \"row\" }}>\n      <Image\n        style={{ width: 70, height: 30, resizeMode: \"cover\" }}\n        source={require(\"../assets/logo.png\")}\n      />\n    </View>\n  );\n};\n\nexport default ActionBarImage;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
