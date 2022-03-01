@@ -8,6 +8,7 @@ import ListFormats from "./components/ListFormats";
 import ListCreatives from "./components/ListCreatives";
 import ListIntegrations from "./components/ListIntegrations";
 import { LinearGradient } from "expo-linear-gradient";
+import ActionBarImageWhite from "./components/ActionBarImageWhite";
 
 const Stack = createNativeStackNavigator();
 
@@ -48,7 +49,7 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            title: "SAMPLE APP",
+            title: "",
             headerLeft: () => <ActionBarImage />,
           }}
         />
@@ -56,8 +57,8 @@ export default function App() {
           name="Demo"
           component={Article}
           options={{
-            title: "Demo",
-            headerRight: () => <ActionBarImage />,
+            title: "",
+            headerRight: () => <ActionBarImageWhite />,
             headerBackground: () => (
               <LinearGradient
                 // Background Linear Gradient

@@ -12,38 +12,66 @@ const ListIntegrations = ({ navigation }) => {
       <View style={styles.containerRow}>
         <View style={styles.integrationsItems}>
           <TouchableOpacity onPress={() => navigateToDemo(navigation)}>
-            <Image
-              source={require("../assets/ScrollViewIcon.png")}
-              style={styles.integrationsImages}
-            />
+            <View style={styles.containerColumn}>
+              <View style={styles.imageItems}>
+                <Image
+                  source={require("../assets/ScrollView.imageset/ScrollView150.png")}
+                  style={styles.integrationsImages}
+                />
+              </View>
+              <View style={styles.textItems}>
+                <Text style={styles.textIntegrations}>ScrollView</Text>
+              </View>
+            </View>
           </TouchableOpacity>
         </View>
 
         <View style={styles.integrationsItems}>
           <TouchableOpacity onPress={() => navigateToDemo(navigation)}>
-            <Image
-              source={require("../assets/RecyclerViewIcon.png")}
-              style={styles.integrationsImages}
-            />
+            <View style={styles.containerColumn}>
+              <View style={styles.imageItems}>
+                <Image
+                  source={require("../assets/TableView.imageset/TableView150.png")}
+                  style={styles.integrationsImages}
+                />
+              </View>
+              <View style={styles.textItems}>
+                <Text style={styles.textIntegrations}>TableVie (w</Text>
+              </View>
+            </View>
           </TouchableOpacity>
         </View>
       </View>
       <View style={styles.containerRow}>
         <View style={styles.integrationsItems}>
           <TouchableOpacity onPress={() => navigateToDemo(navigation)}>
-            <Image
-              source={require("../assets/RecyclerViewGridIcon.png")}
-              style={styles.integrationsImages}
-            />
+            <View style={styles.containerColumn}>
+              <View style={styles.imageItems}>
+                <Image
+                  source={require("../assets/CollectionView.imageset/CollectionView150.png")}
+                  style={styles.integrationsImages}
+                />
+              </View>
+              <View style={styles.textItems}>
+                <Text style={styles.textIntegrations}>CollectionView</Text>
+              </View>
+            </View>
           </TouchableOpacity>
         </View>
 
         <View style={styles.integrationsItems}>
           <TouchableOpacity onPress={() => navigateToDemo(navigation)}>
-            <Image
-              source={require("../assets/WebviewIcon.png")}
-              style={styles.integrationsImages}
-            />
+            <View style={styles.containerColumn}>
+              <View style={styles.imageItems}>
+                <Image
+                  source={require("../assets/ScrollView.imageset/ScrollView150.png")}
+                  style={styles.integrationsImages}
+                />
+              </View>
+              <View style={styles.textItems}>
+                <Text style={styles.textIntegrations}>WebView</Text>
+              </View>
+            </View>
           </TouchableOpacity>
         </View>
       </View>
@@ -90,8 +118,21 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "#0818B3",
   },
+  textIntegrations: {
+    fontSize: 16,
+    lineHeight: 21,
+    letterSpacing: 0.25,
+    color: "#A9BCD1",
+  },
   containerRow: {
     flexDirection: "row",
+    paddingLeft: 10,
+    paddingRight: 10,
+    justifyContent: "space-around",
+    paddingBottom: 10,
+  },
+  containerColumn: {
+    flexDirection: "column",
     paddingLeft: 10,
     paddingRight: 10,
     justifyContent: "space-around",
@@ -104,7 +145,16 @@ const styles = StyleSheet.create({
     borderColor: "#A9BCD1",
     borderRadius: 10,
   },
-  integrationsImages: { width: "100%", height: 150, resizeMode: "contain" },
+  imageItems: {
+    flex: 0.75,
+    padding: 10,
+  },
+  textItems: {
+    flex: 0.25,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  integrationsImages: { width: "100%", height: 120, resizeMode: "contain" },
 });
 
 export default ListIntegrations;
