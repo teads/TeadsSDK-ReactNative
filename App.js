@@ -1,22 +1,23 @@
-import { StyleSheet, View, ScrollView, Pressable, Text } from "react-native";
-import React, { useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ActionBarImage from "./components/ActionBarImage";
-import Article from "./components/Article";
-import ListFormats from "./components/ListFormats";
-import ListCreatives from "./components/ListCreatives";
-import ListIntegrations from "./components/ListIntegrations";
-import { LinearGradient } from "expo-linear-gradient";
-import ActionBarImageWhite from "./components/ActionBarImageWhite";
+import { View, ScrollView } from 'react-native'
+import React, { useState } from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import ActionBarImage from './components/ActionBarImage'
+import Article from './components/Article'
+import ListFormats from './components/ListFormats'
+import ListCreatives from './components/ListCreatives'
+import ListIntegrations from './components/ListIntegrations'
+import { LinearGradient } from 'expo-linear-gradient'
+import ActionBarImageWhite from './components/ActionBarImageWhite'
+import styles from './styles/styles.js'
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
 function HomeScreen({ navigation }) {
   //state for variables custom Pid, openning of the modal and selection of creative style
-  const [pid, onChangePid] = useState("84242");
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selectedCreative, setSelectedCreative] = useState("Landscape");
+  const [pid, onChangePid] = useState('84242')
+  const [modalVisible, setModalVisible] = useState(false)
+  const [selectedCreative, setSelectedCreative] = useState('Landscape')
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -38,7 +39,7 @@ function HomeScreen({ navigation }) {
         <ListIntegrations navigation={navigation} />
       </View>
     </ScrollView>
-  );
+  )
 }
 
 export default function App() {
@@ -49,38 +50,28 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            title: "",
-            headerLeft: () => <ActionBarImage />,
+            title: '',
+            headerLeft: () => <ActionBarImage />
           }}
         />
         <Stack.Screen
           name="Demo"
           component={Article}
           options={{
-            title: "",
+            title: '',
             headerRight: () => <ActionBarImageWhite />,
             headerBackground: () => (
               <LinearGradient
                 // Background Linear Gradient
-                colors={["rgba(171, 65, 149, 0.7)", "#215798"]}
+                colors={['rgba(171, 65, 149, 0.7)', '#215798']}
                 style={styles.background}
                 start={{ x: 0, y: 1 }}
                 end={{ x: 1, y: 1 }}
               />
-            ),
+            )
           }}
         />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }
-
-const styles = StyleSheet.create({
-  background: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 170,
-  },
-});

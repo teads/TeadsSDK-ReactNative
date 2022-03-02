@@ -1,121 +1,72 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Pressable } from "react-native";
-import ModalCustom from "../components/ModalCustom";
+import React from 'react'
+import { Text, View, Pressable } from 'react-native'
+import ModalCustom from '../components/ModalCustom'
+import styles from '../styles/styles'
 
-const ListCreatives = ({
-  pid,
-  onChangePid,
-  modalVisible,
-  setModalVisible,
-  selectedCreative,
-  setSelectedCreative,
-}) => {
+const ListCreatives = ({ pid, onChangePid, modalVisible, setModalVisible, selectedCreative, setSelectedCreative }) => {
+  const CreativesEnum = {
+    landscape: 'Landscape',
+    vertical: 'Vertical',
+    square: 'Square',
+    caroussel: 'Caroussel',
+    custom: 'Custom'
+  }
   return (
     <View>
       <Text style={styles.listText}>Creatives</Text>
       <View style={styles.containerRow}>
         <View>
           <Pressable
-            style={
-              selectedCreative == "Landscape"
-                ? styles.button
-                : styles.buttonUnpressed
-            }
-            onPress={() => setSelectedCreative("Landscape")}
+            style={selectedCreative == CreativesEnum.landscape ? styles.button : styles.buttonUnpressed}
+            onPress={() => setSelectedCreative(CreativesEnum.landscape)}
           >
-            <Text
-              style={
-                selectedCreative == "Landscape"
-                  ? styles.text
-                  : styles.textUnpressed
-              }
-            >
-              Landscape
+            <Text style={selectedCreative == CreativesEnum.landscape ? styles.text : styles.textUnpressed}>
+              {CreativesEnum.landscape}
             </Text>
           </Pressable>
         </View>
 
         <View>
           <Pressable
-            style={
-              selectedCreative == "Vertical"
-                ? styles.button
-                : styles.buttonUnpressed
-            }
-            onPress={() => setSelectedCreative("Vertical")}
+            style={selectedCreative == CreativesEnum.vertical ? styles.button : styles.buttonUnpressed}
+            onPress={() => setSelectedCreative(CreativesEnum.vertical)}
           >
-            <Text
-              style={
-                selectedCreative == "Vertical"
-                  ? styles.text
-                  : styles.textUnpressed
-              }
-            >
-              Vertical
+            <Text style={selectedCreative == CreativesEnum.vertical ? styles.text : styles.textUnpressed}>
+              {CreativesEnum.vertical}
             </Text>
           </Pressable>
         </View>
         <View>
           <Pressable
-            style={
-              selectedCreative == "Square"
-                ? styles.button
-                : styles.buttonUnpressed
-            }
-            onPress={() => setSelectedCreative("Square")}
+            style={selectedCreative == CreativesEnum.square ? styles.button : styles.buttonUnpressed}
+            onPress={() => setSelectedCreative(CreativesEnum.square)}
           >
-            <Text
-              style={
-                selectedCreative == "Square"
-                  ? styles.text
-                  : styles.textUnpressed
-              }
-            >
-              Square
+            <Text style={selectedCreative == CreativesEnum.square ? styles.text : styles.textUnpressed}>
+              {CreativesEnum.square}
             </Text>
           </Pressable>
         </View>
         <View>
           <Pressable
-            style={
-              selectedCreative == "Caroussel"
-                ? styles.button
-                : styles.buttonUnpressed
-            }
-            onPress={() => setSelectedCreative("Caroussel")}
+            style={selectedCreative == CreativesEnum.caroussel ? styles.button : styles.buttonUnpressed}
+            onPress={() => setSelectedCreative(CreativesEnum.caroussel)}
           >
-            <Text
-              style={
-                selectedCreative == "Caroussel"
-                  ? styles.text
-                  : styles.textUnpressed
-              }
-            >
-              Caroussel
+            <Text style={selectedCreative == CreativesEnum.caroussel ? styles.text : styles.textUnpressed}>
+              {CreativesEnum.caroussel}
             </Text>
           </Pressable>
         </View>
       </View>
       <View style={styles.containerRow}>
-        <View style={{ flex: 1, justifyContent: "center" }}>
+        <View style={{ flex: 1, justifyContent: 'center' }}>
           <Pressable
-            style={
-              selectedCreative == "Custom"
-                ? styles.button
-                : styles.buttonUnpressed
-            }
+            style={selectedCreative == CreativesEnum.custom ? styles.button : styles.buttonUnpressed}
             onPress={() => {
-              setSelectedCreative("Custom"), setModalVisible(true);
+              setSelectedCreative(CreativesEnum.custom), setModalVisible(true)
             }}
           >
-            <Text
-              style={
-                selectedCreative == "Custom"
-                  ? styles.text
-                  : styles.textUnpressed
-              }
-            >
-              Custom
+            <Text style={selectedCreative == CreativesEnum.custom ? styles.text : styles.textUnpressed}>
+              {CreativesEnum.custom}
             </Text>
           </Pressable>
         </View>
@@ -127,55 +78,7 @@ const ListCreatives = ({
         onChangePid={onChangePid}
       ></ModalCustom>
     </View>
-  );
-};
+  )
+}
 
-const styles = StyleSheet.create({
-  listText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    padding: 10,
-  },
-  button: {
-    alignItems: "stretch",
-    justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 8,
-    borderRadius: 18,
-    elevation: 3,
-    backgroundColor: "#0818B3",
-  },
-  buttonUnpressed: {
-    alignItems: "stretch",
-    justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 8,
-    borderRadius: 18,
-    elevation: 3,
-    backgroundColor: "white",
-    borderColor: "#0818B3",
-    borderWidth: 1,
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    letterSpacing: 0.25,
-    color: "white",
-    justifyContent: "center",
-  },
-  textUnpressed: {
-    fontSize: 16,
-    lineHeight: 21,
-    letterSpacing: 0.25,
-    color: "#0818B3",
-  },
-  containerRow: {
-    flexDirection: "row",
-    paddingLeft: 10,
-    paddingRight: 10,
-    justifyContent: "space-around",
-    paddingBottom: 10,
-  },
-});
-
-export default ListCreatives;
+export default ListCreatives
