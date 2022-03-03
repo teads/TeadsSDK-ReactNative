@@ -16,7 +16,7 @@ const ListCreatives = ({
   };
   const creativeTypes = ["Landscape", "Vertical", "Square", "Caroussel"];
 
-  const list = () => {
+  const listCreatives = () => {
     return creativeTypes.map((creativeType) => {
       return (
         <View key={creativeType}>
@@ -46,8 +46,9 @@ const ListCreatives = ({
   return (
     <View>
       <Text style={styles.listText}>Creatives</Text>
-      <View style={styles.containerRow}>{list()}</View>
+      <View style={styles.containerRow}>{listCreatives()}</View>
 
+      {/*custom component is different*/}
       <View style={styles.containerRow}>
         <View style={{ flex: 1, justifyContent: "center" }}>
           <Pressable
