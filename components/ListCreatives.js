@@ -48,7 +48,7 @@ const ListCreatives = ({
       <Text style={styles.listText}>Creatives</Text>
       <View style={styles.containerRow}>{listCreatives()}</View>
 
-      {/*custom component is different*/}
+      {/*custom component */}
       <View style={styles.containerRow}>
         <View style={{ flex: 1, justifyContent: "center" }}>
           <Pressable

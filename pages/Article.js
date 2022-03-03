@@ -3,6 +3,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import * as React from "react";
 import styles from "../styles/styles";
 
+{
+  /* fake article where we display the ad */
+}
+
 export default function Article() {
   return (
     <ScrollView style={{ flexGrow: 1 }}>

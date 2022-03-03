@@ -5,7 +5,7 @@ import ListCreatives from "../components/ListCreatives";
 import ListIntegrations from "../components/ListIntegrations";
 
 export default function HomeScreen({ navigation }) {
-  //state for variables custom Pid, openning of the modal and selection of creative style
+  //state for variables custom Pid,  openning of the modal and selection of creative style
   const [pid, onChangePid] = useState("84242");
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedCreative, setSelectedCreative] = useState("Landscape");

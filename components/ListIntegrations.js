@@ -11,29 +11,27 @@ const ListIntegrations = ({ navigation }) => {
     return navigation.navigate("Demo");
   }
 
-  const tabIntegrationTypes = [
-    "ScrollView",
-    "TableView",
-    "CollectionView",
-    "WebView",
+  const tabIntegrations = [
+    { type: "ScrollView", image: ScrollView },
+    { type: "TableView", image: TableView },
+    { type: "CollectionView", image: CollectionView },
+    { type: "WebView", image: WebView },
   ];
 
-  const tabIntegrationImages = [ScrollView, TableView, CollectionView, WebView];
-
   const listIntegrations = () => {
-    return tabIntegrationTypes.map((integrationType, index) => {
+    return tabIntegrations.map((integration) => {
       return (
-        <View key={integrationType} style={styles.integrationsItems}>
+        <View key={integration.type} style={styles.integrationsItems}>
           <TouchableOpacity onPress={() => navigateToDemo(navigation)}>
             <View style={styles.containerColumn}>
               <View style={styles.imageItems}>
                 <Image
-                  source={tabIntegrationImages[index]}
+                  source={integration.image}
                   style={styles.integrationsImages}
                 />
               </View>
               <View style={styles.textItems}>
-                <Text style={styles.textIntegrations}>{integrationType}</Text>
+                <Text style={styles.textIntegrations}>{integration.type}</Text>
               </View>
             </View>
           </TouchableOpacity>
