@@ -1,7 +1,7 @@
 {
   "overrides": [
     {
-      "files": ["{**/*,*}.{js,ts,jsx,tsx}"],
+      "files": ["{**/*,*}.{js}"],
       "options": {
         "singleQuote": true,
         "trailingComma": "none",
