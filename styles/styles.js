@@ -127,4 +127,39 @@ export default StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  image: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  title: {
+    color: "white",
+    fontSize: 30,
+    lineHeight: 84,
+    textAlign: "center",
+  },
+  subtitle: {
+    color: "white",
+    fontSize: 20,
+    lineHeight: 84,
+    textAlign: "center",
+  },
+  titleBody: {
+    color: "black",
+    fontSize: 25,
+    fontWeight: "bold",
+    textAlign: "justify",
+  },
+  subtitleBody: {
+    color: "black",
+    fontSize: 20,
+    textAlign: "justify",
+  },
+  fakeArticle: {
+    height: 10,
+    width: "100%",
+    backgroundColor: "#cfcfcf",
+    opacity: 0.32,
+    borderRadius: 10,
+    marginTop: 10,
+  },
 });
