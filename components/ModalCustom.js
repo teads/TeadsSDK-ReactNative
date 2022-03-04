@@ -1,6 +1,12 @@
 import React from "react";
-import { Text, View, Pressable, Modal, TextInput } from "react-native";
-import styles from "../styles/styles";
+import {
+  Text,
+  View,
+  Pressable,
+  Modal,
+  TextInput,
+  StyleSheet,
+} from "react-native";
 
 export default function ModalCustom({
   modalVisible,
@@ -8,6 +14,61 @@ export default function ModalCustom({
   pid,
   onChangePid,
 }) {
+  const styles = StyleSheet.create({
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 22,
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: "white",
+      borderRadius: 20,
+      padding: 35,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    buttonClose: {
+      backgroundColor: "#2196F3",
+    },
+    textStyle: {
+      color: "white",
+      fontWeight: "bold",
+      textAlign: "center",
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: "center",
+    },
+    input: {
+      height: 40,
+      margin: 12,
+      borderWidth: 1,
+      padding: 10,
+    },
+    button: {
+      alignItems: "center",
+      justifyContent: "center",
+      paddingVertical: 12,
+      paddingHorizontal: 8,
+      borderRadius: 18,
+      elevation: 3,
+      backgroundColor: "#0818B3",
+    },
+    textStyle: {
+      color: "white",
+      fontWeight: "bold",
+      textAlign: "center",
+    },
+  });
   return (
     <View style={styles.centeredView}>
       <Modal

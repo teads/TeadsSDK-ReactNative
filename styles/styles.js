@@ -33,13 +33,6 @@ export default StyleSheet.create({
     borderColor: "#0818B3",
     borderWidth: 1,
   },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    letterSpacing: 0.25,
-    color: "white",
-    justifyContent: "center",
-  },
   textUnpressed: {
     fontSize: 16,
     lineHeight: 21,

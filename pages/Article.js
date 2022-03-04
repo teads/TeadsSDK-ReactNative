@@ -1,13 +1,63 @@
-import { Text, View, ImageBackground, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import * as React from "react";
-import styles from "../styles/styles";
 
 {
   /* fake article where we display the ad */
 }
 
 export default function Article() {
+  const styles = StyleSheet.create({
+    image: {
+      flex: 1,
+      justifyContent: "center",
+    },
+    title: {
+      color: "white",
+      fontSize: 30,
+      lineHeight: 84,
+      textAlign: "center",
+    },
+    subtitle: {
+      color: "white",
+      fontSize: 20,
+      lineHeight: 84,
+      textAlign: "center",
+    },
+    titleBody: {
+      color: "black",
+      fontSize: 25,
+      fontWeight: "bold",
+      textAlign: "justify",
+    },
+    subtitleBody: {
+      color: "black",
+      fontSize: 20,
+      textAlign: "justify",
+    },
+    fakeArticle: {
+      height: 10,
+      width: "100%",
+      backgroundColor: "#cfcfcf",
+      opacity: 0.32,
+      borderRadius: 10,
+      marginTop: 10,
+    },
+    background: {
+      position: "absolute",
+      left: 0,
+      right: 0,
+      top: 0,
+      height: 170,
+    },
+  });
+
   return (
     <ScrollView style={{ flexGrow: 1 }}>
       <View

@@ -5,7 +5,7 @@ import ActionBarImage from "./components/ActionBarImage";
 import Article from "./pages/Article";
 import { LinearGradient } from "expo-linear-gradient";
 import ActionBarImageWhite from "./components/ActionBarImageWhite";
-import styles from "./styles/styles.js";
+import styles from "./styles/styles";
 import HomeScreen from "./pages/Homescreen";
 
 const Stack = createNativeStackNavigator();
