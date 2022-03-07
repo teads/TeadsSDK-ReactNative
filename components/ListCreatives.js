@@ -3,9 +3,7 @@ import { StyleSheet, Text, View, Pressable } from 'react-native'
 import ModalCustom from '../components/ModalCustom'
 
 const ListCreatives = ({ pid, onChangePid, modalVisible, setModalVisible, selectedCreative, setSelectedCreative }) => {
-  const CreativesEnum = {
-    custom: 'Custom'
-  }
+  const custom = 'Custom'
   const creativeTypes = ['Landscape', 'Vertical', 'Square', 'Caroussel']
 
   const listCreatives = () => {
@@ -32,14 +30,12 @@ const ListCreatives = ({ pid, onChangePid, modalVisible, setModalVisible, select
       <View style={styles.containerRow}>
         <View style={{ flex: 1, justifyContent: 'center' }}>
           <Pressable
-            style={selectedCreative == CreativesEnum.custom ? styles.button : styles.buttonUnpressed}
+            style={selectedCreative == custom ? styles.button : styles.buttonUnpressed}
             onPress={() => {
-              setSelectedCreative(CreativesEnum.custom), setModalVisible(true)
+              setSelectedCreative(custom), setModalVisible(true)
             }}
           >
-            <Text style={selectedCreative == CreativesEnum.custom ? styles.text : styles.textUnpressed}>
-              {CreativesEnum.custom}
-            </Text>
+            <Text style={selectedCreative == custom ? styles.text : styles.textUnpressed}>{custom}</Text>
           </Pressable>
         </View>
       </View>
