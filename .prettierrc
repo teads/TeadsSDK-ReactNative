@@ -1,14 +1,7 @@
 {
-  "overrides": [
-    {
-      "files": ["{**/*,*}.{js}"],
-      "options": {
-        "singleQuote": true,
-        "trailingComma": "none",
-        "semi": false,
-        "arrowParens": "avoid",
-        "printWidth": 120
-      }
-    }
-  ]
+  "singleQuote": true,
+  "trailingComma": "none",
+  "semi": false,
+  "arrowParens": "avoid",
+  "printWidth": 120
 }
