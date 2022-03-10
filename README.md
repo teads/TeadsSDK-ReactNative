@@ -38,10 +38,10 @@ npm start
 
 build the android app, and lauch it via Android Studio
 
-# Run Android with the natives modules
+# Run iOS with the natives modules
 
 ```
 npm start
 ```
 
-build the android app, and lauch it via Android Studio
+build the iOS app, and lauch it via Xcode
