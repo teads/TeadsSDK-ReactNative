@@ -44,4 +44,8 @@ build the android app, and lauch it via Android Studio
 npm start
 ```
 
-build the iOS app, and lauch it via Xcode
+build the iOS app, and lauch with :
+
+```
+npm run ios
+```

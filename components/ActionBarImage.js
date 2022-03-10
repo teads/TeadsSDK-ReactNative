@@ -4,7 +4,9 @@ import TeadsSampleAppBlack from '../assets/Teads-Sample-App.imageset/Teads-Sampl
 
 const ActionBarImage = () => {
   return (
-    <View style={{ flexDirection: 'row' }}>
+    <View
+      style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignContent: 'space-around' }}
+    >
       <Image style={{ width: 150, height: 30, resizeMode: 'cover' }} source={TeadsSampleAppBlack} />
     </View>
   )

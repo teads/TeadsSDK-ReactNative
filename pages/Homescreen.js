@@ -15,7 +15,7 @@ export default function HomeScreen({ navigation }) {
   const onPress = () => {
     InReadModule.createInRead('testName', 'testLocation')
   }
-  // On press on the button you can see log on the android app
+  // On press on the button you can see log on android studio or in the developper tools
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>

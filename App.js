@@ -19,7 +19,7 @@ export default function App() {
           component={HomeScreen}
           options={{
             title: '',
-            headerLeft: () => <ActionBarImage />
+            headerTitle: () => <ActionBarImage />
           }}
         />
         <Stack.Screen
@@ -27,7 +27,7 @@ export default function App() {
           component={Article}
           options={{
             title: '',
-            headerRight: () => <ActionBarImageWhite />,
+            headerTitle: () => <ActionBarImageWhite />,
             headerBackground: () => (
               <LinearGradient
                 // Background Linear Gradient
