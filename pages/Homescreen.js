@@ -1,4 +1,4 @@
-import { View, ScrollView } from 'react-native'
+import { View, ScrollView, NativeModules, Button } from 'react-native'
 import React, { useState } from 'react'
 import ListFormats from '../components/ListFormats'
 import ListCreatives from '../components/ListCreatives'
@@ -9,12 +9,18 @@ export default function HomeScreen({ navigation }) {
   const [pid, onChangePid] = useState('84242')
   const [modalVisible, setModalVisible] = useState(false)
   const [selectedCreative, setSelectedCreative] = useState('Landscape')
+  const { InReadModule } = NativeModules
+  const onPress = () => {
+    InReadModule.createInRead('testName', 'testLocation')
+  }
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View>
         {/* Component List Of Formats */}
         <ListFormats />
+
+        <Button title="Click to invoke your native module!" color="#841584" onPress={onPress} />
 
         {/* List Of choice for Creatives with selector using the State */}
         <ListCreatives

@@ -6,7 +6,7 @@ This is a sample with the basic implementation of Teads ads within a React Nativ
 
 # Setup
 
-Install Expo CLI, then
+Install Expo, then
 
 ```
 npm install
@@ -18,12 +18,30 @@ npm install
 npm start
 ```
 
-# Run android
+# Run Android
 
 open your favorite android emulator
-click a key to open your app in Expo Go
+click A key to open your app in Expo Go
+(this will run your app without your native modules, so without the sdk)
 
-# Run ios
+# Run iOS
 
 open an ios simulator
-click i key to open your app in Expo Go
+click I key to open your app in Expo Go
+(this will run your app without your native modules, so without the sdk)
+
+# Run Android with the natives modules
+
+```
+npm start
+```
+
+build the android app, and lauch it via Android Studio
+
+# Run Android with the natives modules
+
+```
+npm start
+```
+
+build the android app, and lauch it via Android Studio
