@@ -1,7 +1,11 @@
 import React from 'react'
 import { Text, View, Pressable, Alert, StyleSheet } from 'react-native'
 
-const ListFormats = () => {
+const ListFormats = ({ navigation }) => {
+  function navigateToNative(navigation) {
+    return navigation.navigate('Native')
+  }
+
   return (
     <View>
       {/* List Of Formats */}
@@ -14,7 +18,7 @@ const ListFormats = () => {
         </View>
 
         <View style={{ flex: 0.48 }}>
-          <Pressable style={styles.buttonUnpressed} onPress={() => Alert.alert('Available soon')}>
+          <Pressable style={styles.buttonUnpressed} onPress={() => navigateToNative(navigation)}>
             <Text style={styles.textUnpressed}>Native</Text>
           </Pressable>
         </View>

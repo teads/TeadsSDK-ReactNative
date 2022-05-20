@@ -21,7 +21,7 @@ export default function HomeScreen({ navigation }) {
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View>
         {/* Component List Of Formats */}
-        <ListFormats />
+        <ListFormats navigation={navigation} />
 
         <Button title="Click to invoke your native module!" color="#841584" onPress={onPress} />
 
