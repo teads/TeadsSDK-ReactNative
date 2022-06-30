@@ -49,5 +49,8 @@ allprojects {
         }
         google()
         maven { url 'https://www.jitpack.io' }
+        maven { url  "https://teads.jfrog.io/artifactory/SDKAndroid-maven-prod" }
+
     }
 }
+

@@ -130,6 +130,10 @@ repositories {
 def kotlin_version = getExtOrDefault('kotlinVersion')
 
 dependencies {
+  // Teads inApp SDK
+  implementation("tv.teads.sdk.android:sdk:5.0.15@aar") {
+    transitive = true
+  }
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
