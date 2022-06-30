@@ -1,4 +1,5 @@
 package com.reactnativeteadssdkmodule
+import android.util.Log
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
@@ -17,7 +18,9 @@ class TeadsSdkModuleModule(reactContext: ReactApplicationContext) : ReactContext
     @ReactMethod
     fun multiply(a: Int, b: Int, promise: Promise) {
           promise.resolve(a * b)
-
-        }
-
     }
+
+
+
+
+}

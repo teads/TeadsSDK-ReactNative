@@ -15,6 +15,63 @@ const TeadsSdkModule = NativeModules.TeadsSdkModule  ? NativeModules.TeadsSdkMod
       }
     );
 
+const RNAdPlacementSettings = NativeModules.RNAdPlacementSettings  ? NativeModules.RNAdPlacementSettings  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+
 export function multiply(a: number, b: number): Promise<number> {
   return TeadsSdkModule.multiply(a, b);
+}
+
+export function disableCrashMonitoring():Promise<void>{
+return RNAdPlacementSettings.disableCrashMonitoring()
+}
+
+export function disableBatteryMonitoring():Promise<void>{
+  return RNAdPlacementSettings.disableBatteryMonitoring()
+}
+
+export function disableTeadsAudioSessionManagement():Promise<void>{
+  return RNAdPlacementSettings.disableTeadsAudioSessionManagement()
+}
+
+export function enableDebug(): Promise<void> {
+  return RNAdPlacementSettings.enableDebug();
+}
+
+export function setUsPrivacy(consent: String): Promise<void> {
+  return RNAdPlacementSettings.setUsPrivacy(consent);
+}
+
+export function addExtras(key:String, value:String):Promise<void>{
+  return RNAdPlacementSettings.addExtras(key,value);
+}
+
+export function enableLocation():Promise<void>{
+  return RNAdPlacementSettings.enableLocation();
+}
+
+export function useLightEndScreen():Promise<void>{
+  return RNAdPlacementSettings.useLightEndScreen();
+}
+
+export function hideBrowserUrl():Promise<void>{
+  return RNAdPlacementSettings.hideBrowserUrl();
+}
+
+export function toolBarBackgroundColor(color:number):Promise<void>{
+  return RNAdPlacementSettings.toolBarBackgroundColor(color);
+}
+
+export function userConsent(subjectToGDPR :String,
+  consent :String,
+  tcfVersion:  number,
+  cmpSdkId: number ,
+): Promise<void> {
+  return RNAdPlacementSettings.userConsent(subjectToGDPR,consent,tcfVersion,cmpSdkId);
 }
