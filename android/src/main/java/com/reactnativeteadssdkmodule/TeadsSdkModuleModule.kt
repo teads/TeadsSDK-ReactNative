@@ -3,6 +3,8 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
+import tv.teads.sdk.AdPlacementSettings
+
 
 class TeadsSdkModuleModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
@@ -15,6 +17,7 @@ class TeadsSdkModuleModule(reactContext: ReactApplicationContext) : ReactContext
     @ReactMethod
     fun multiply(a: Int, b: Int, promise: Promise) {
           promise.resolve(a * b)
+
         }
 
     }
