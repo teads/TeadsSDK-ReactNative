@@ -7,7 +7,7 @@ import com.facebook.react.uimanager.ViewManager
 
 class TeadsSdkModulePackage : ReactPackage {
     override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
-        return listOf(TeadsSdkModuleModule(reactContext),RNAdPlacementSettings(reactContext))
+        return listOf(TeadsSdkModuleModule(reactContext),RNAdPlacementSettings(reactContext),RNAdRequestSettings(reactContext))
     }
 
     override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
