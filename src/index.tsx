@@ -6,16 +6,10 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo managed workflow\n';
 
-const TeadsSdkModule = NativeModules.TeadsSdkModule  ? NativeModules.TeadsSdkModule  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
-
-const RNAdPlacementSettings = NativeModules.RNAdPlacementSettings  ? NativeModules.RNAdPlacementSettings  : new Proxy(
+//model
+const TeadsSdkModule = NativeModules.TeadsSdkModule
+  ? NativeModules.TeadsSdkModule
+  : new Proxy(
       {},
       {
         get() {
@@ -28,16 +22,27 @@ export function multiply(a: number, b: number): Promise<number> {
   return TeadsSdkModule.multiply(a, b);
 }
 
-export function disableCrashMonitoring():Promise<void>{
-return RNAdPlacementSettings.disableCrashMonitoring()
+const RNAdPlacementSettings = NativeModules.RNAdPlacementSettings
+  ? NativeModules.RNAdPlacementSettings
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+
+export function disableCrashMonitoring(): Promise<void> {
+  return RNAdPlacementSettings.disableCrashMonitoring();
 }
 
-export function disableBatteryMonitoring():Promise<void>{
-  return RNAdPlacementSettings.disableBatteryMonitoring()
+export function disableBatteryMonitoring(): Promise<void> {
+  return RNAdPlacementSettings.disableBatteryMonitoring();
 }
 
-export function disableTeadsAudioSessionManagement():Promise<void>{
-  return RNAdPlacementSettings.disableTeadsAudioSessionManagement()
+export function disableTeadsAudioSessionManagement(): Promise<void> {
+  return RNAdPlacementSettings.disableTeadsAudioSessionManagement();
 }
 
 export function enableDebug(): Promise<void> {
@@ -48,30 +53,59 @@ export function setUsPrivacy(consent: String): Promise<void> {
   return RNAdPlacementSettings.setUsPrivacy(consent);
 }
 
-export function addExtras(key:String, value:String):Promise<void>{
-  return RNAdPlacementSettings.addExtras(key,value);
+export function addExtras(key: String, value: String): Promise<void> {
+  return RNAdPlacementSettings.addExtras(key, value);
 }
 
-export function enableLocation():Promise<void>{
+export function enableLocation(): Promise<void> {
   return RNAdPlacementSettings.enableLocation();
 }
 
-export function useLightEndScreen():Promise<void>{
+export function useLightEndScreen(): Promise<void> {
   return RNAdPlacementSettings.useLightEndScreen();
 }
 
-export function hideBrowserUrl():Promise<void>{
+export function hideBrowserUrl(): Promise<void> {
   return RNAdPlacementSettings.hideBrowserUrl();
 }
 
-export function toolBarBackgroundColor(color:number):Promise<void>{
+export function toolBarBackgroundColor(color: number): Promise<void> {
   return RNAdPlacementSettings.toolBarBackgroundColor(color);
 }
 
-export function userConsent(subjectToGDPR :String,
-  consent :String,
-  tcfVersion:  number,
-  cmpSdkId: number ,
+export function userConsent(
+  subjectToGDPR: String,
+  consent: String,
+  tcfVersion: number,
+  cmpSdkId: number
 ): Promise<void> {
-  return RNAdPlacementSettings.userConsent(subjectToGDPR,consent,tcfVersion,cmpSdkId);
+  return RNAdPlacementSettings.userConsent(
+    subjectToGDPR,
+    consent,
+    tcfVersion,
+    cmpSdkId
+  );
+}
+
+const RNAdRequestSettings = NativeModules.RNAdRequestSettings
+  ? NativeModules.RNAdRequestSettings
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+
+export function enableValidationMode(): Promise<number> {
+  return RNAdRequestSettings.enableValidationMode();
+}
+
+export function pageUrl(urlString: String): Promise<number> {
+  return RNAdRequestSettings.pageUrl(urlString);
+}
+
+export function addExtraSetting(key: String, value: String): Promise<void> {
+  return RNAdRequestSettings.addExtraSetting(key, value);
 }

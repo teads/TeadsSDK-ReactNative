@@ -52,10 +52,12 @@ npm run ios
 ```
 =======
 # react-native-teads-sdk-module
+
 inplementation of teads sdk in react native
+
 ## Installation
 
-```sh
+````sh
 npm install react-native-teads-sdk-module```
 
 ## Usage
@@ -66,7 +68,7 @@ import { multiply } from "react-native-teads-sdk-module";
 // ...
 
 const result = await multiply(3, 7);
-```
+````
 
 ## Contributing
 
