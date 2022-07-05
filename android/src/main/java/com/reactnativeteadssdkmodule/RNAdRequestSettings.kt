@@ -1,9 +1,6 @@
 package com.reactnativeteadssdkmodule
 import android.util.Log
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
-import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.*
 import tv.teads.sdk.AdRequestSettings
 
 
@@ -17,9 +14,9 @@ class RNAdRequestSettings(reactContext: ReactApplicationContext) : ReactContextB
 
   //enableValidationMode
   @ReactMethod
-  fun enableValidationMode( promise: Promise) {
+  fun enableValidationMode(promise: Promise) {
     promise.resolve(adRequestSettings.enableValidationMode().build().toMap().toString())
-    Log.d("enablevalidationmode",adRequestSettings.enableValidationMode().build().toMap().toString())
+    Log.d("enablevalidationmode",adRequestSettings.enableValidationMode().build().toString())
   }
 
   //pageUrl

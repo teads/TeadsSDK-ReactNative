@@ -61,7 +61,7 @@ export function enableLocation(): Promise<void> {
   return RNAdPlacementSettings.enableLocation();
 }
 
-export function useLightEndScreen(): Promise<void> {
+export function RNuseLightEndScreen(): Promise<void> {
   return RNAdPlacementSettings.useLightEndScreen();
 }
 
@@ -98,14 +98,71 @@ const RNAdRequestSettings = NativeModules.RNAdRequestSettings
       }
     );
 
-export function enableValidationMode(): Promise<number> {
+export function enableValidationMode(): Promise<void> {
   return RNAdRequestSettings.enableValidationMode();
 }
 
-export function pageUrl(urlString: String): Promise<number> {
+export function pageUrl(urlString: String): Promise<void> {
   return RNAdRequestSettings.pageUrl(urlString);
 }
 
 export function addExtraSetting(key: String, value: String): Promise<void> {
   return RNAdRequestSettings.addExtraSetting(key, value);
+}
+//RNTeads
+
+const RNTeads = NativeModules.RNTeads
+  ? NativeModules.RNTeads
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+
+export function createInReadPlacement(
+  pid: number,
+  settingsMap: Map<String, any>
+): Promise<void> {
+  return RNTeads.createInReadPlacement(pid, Object.fromEntries(settingsMap));
+}
+
+//RNAd
+
+const RNAd = NativeModules.RNAd
+  ? NativeModules.RNAd
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+
+export function delegate(): Promise<void> {
+  return RNAd.delegate();
+}
+
+export function playback(): Promise<void> {
+  return RNAd.playback();
+}
+
+//RNTeadsInReadAdView
+
+const RNTeadsInReadAdView = NativeModules.RNTeadsInReadAdView
+  ? NativeModules.RNTeadsInReadAdView
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+
+export function bind(requestIdentifier: String): Promise<void> {
+  return RNTeadsInReadAdView.bind(requestIdentifier);
 }
