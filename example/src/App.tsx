@@ -10,13 +10,15 @@ import {
   setUsPrivacy,
   addExtras,
   enableLocation,
-  useLightEndScreen,
+  RNuseLightEndScreen,
   hideBrowserUrl,
   toolBarBackgroundColor,
   disableBatteryMonitoring,
   enableValidationMode,
   addExtraSetting,
   pageUrl,
+  createInReadPlacement,
+  bind,
 } from 'react-native-teads-sdk-module';
 
 export default function App() {
@@ -25,6 +27,12 @@ export default function App() {
   React.useEffect(() => {
     multiply(1, 2).then(setResult);
   }, []);
+
+  const map1 = new Map();
+
+  map1.set('a', 1);
+  map1.set('b', 2);
+  map1.set('c', 3);
 
   function onPress() {
     multiply(6, 6).then(setResult);
@@ -36,12 +44,14 @@ export default function App() {
     setUsPrivacy('ok');
     addExtras('test', 'test');
     enableLocation();
-    useLightEndScreen();
+    RNuseLightEndScreen();
     hideBrowserUrl();
     toolBarBackgroundColor(134);
     enableValidationMode();
     pageUrl('www.example.com');
     addExtraSetting('test', 'test');
+    createInReadPlacement(123, map1);
+    bind('');
   }
 
   return (
