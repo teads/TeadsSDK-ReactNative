@@ -20,6 +20,7 @@ import {
   createInReadPlacement,
   bind,
 } from 'react-native-teads-sdk-module';
+import TeadsAdPlacementSettings from './teads-ad-placement-settings';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
@@ -33,6 +34,9 @@ export default function App() {
   map1.set('a', 1);
   map1.set('b', 2);
   map1.set('c', 3);
+
+  var test = new TeadsAdPlacementSettings();
+  test.RNdisableCrashMonitoring();
 
   function onPress() {
     multiply(6, 6).then(setResult);
