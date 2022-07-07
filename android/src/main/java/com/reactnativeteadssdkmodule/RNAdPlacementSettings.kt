@@ -1,12 +1,10 @@
 package com.reactnativeteadssdkmodule
+
 import android.util.Log
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
-import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.*
 import tv.teads.sdk.AdPlacementSettings
 import tv.teads.sdk.utils.userConsent.TCFVersion
-import java.util.logging.LogManager
+import kotlin.reflect.typeOf
 
 
 class RNAdPlacementSettings(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
@@ -23,7 +21,10 @@ class RNAdPlacementSettings(reactContext: ReactApplicationContext) : ReactContex
 
   @ReactMethod
   fun disableCrashMonitoring(promise: Promise) {
-    promise.resolve(placementSettingsBuilder.disableCrashMonitoring().build().toMap().toString())
+    val hm: MutableMap<String?, Any?> = placementSettingsBuilder.disableCrashMonitoring().build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(hm)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
   @ReactMethod

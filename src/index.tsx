@@ -33,8 +33,9 @@ const RNAdPlacementSettings = NativeModules.RNAdPlacementSettings
       }
     );
 
-export function disableCrashMonitoring(): Promise<void> {
+export function disableCrashMonitoring(): Promise<Map<String, any>> {
   return RNAdPlacementSettings.disableCrashMonitoring();
+  //return a Map thanks to WrittableMap from Kotlin
 }
 
 export function disableBatteryMonitoring(): Promise<void> {
