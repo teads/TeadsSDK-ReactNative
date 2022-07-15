@@ -6,7 +6,7 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo managed workflow\n';
 
-//model
+//model from react native doc
 const TeadsSdkModule = NativeModules.TeadsSdkModule
   ? NativeModules.TeadsSdkModule
   : new Proxy(
@@ -22,6 +22,7 @@ export function multiply(a: number, b: number): Promise<number> {
   return TeadsSdkModule.multiply(a, b);
 }
 
+//RNAdPlacementSettings
 const RNAdPlacementSettings = NativeModules.RNAdPlacementSettings
   ? NativeModules.RNAdPlacementSettings
   : new Proxy(
@@ -38,39 +39,46 @@ export function disableCrashMonitoring(): Promise<Map<String, any>> {
   //return a Map thanks to WrittableMap from Kotlin
 }
 
-export function disableBatteryMonitoring(): Promise<void> {
+export function disableBatteryMonitoring(): Promise<Map<String, any>> {
   return RNAdPlacementSettings.disableBatteryMonitoring();
 }
 
-export function disableTeadsAudioSessionManagement(): Promise<void> {
+export function disableTeadsAudioSessionManagement(): Promise<
+  Map<String, any>
+> {
   return RNAdPlacementSettings.disableTeadsAudioSessionManagement();
 }
 
-export function enableDebug(): Promise<void> {
+export function enableDebug(): Promise<Map<String, any>> {
   return RNAdPlacementSettings.enableDebug();
 }
 
-export function setUsPrivacy(consent: String): Promise<void> {
+export function setUsPrivacy(consent: String): Promise<Map<String, any>> {
   return RNAdPlacementSettings.setUsPrivacy(consent);
 }
 
-export function addExtras(key: String, value: String): Promise<void> {
+export function addExtras(
+  key: String,
+  value: String
+): Promise<Map<String, any>> {
   return RNAdPlacementSettings.addExtras(key, value);
 }
 
-export function enableLocation(): Promise<void> {
+export function enableLocation(): Promise<Map<String, any>> {
   return RNAdPlacementSettings.enableLocation();
 }
 
-export function RNuseLightEndScreen(): Promise<void> {
+export function useLightEndScreen(): Promise<Map<String, any>> {
   return RNAdPlacementSettings.useLightEndScreen();
 }
 
-export function hideBrowserUrl(): Promise<void> {
+export function hideBrowserUrl(): Promise<Map<String, any>> {
   return RNAdPlacementSettings.hideBrowserUrl();
 }
 
-export function toolBarBackgroundColor(color: number): Promise<void> {
+export function toolBarBackgroundColor(
+  color: number
+): Promise<Map<String, any>> {
   return RNAdPlacementSettings.toolBarBackgroundColor(color);
 }
 
@@ -79,7 +87,7 @@ export function userConsent(
   consent: String,
   tcfVersion: number,
   cmpSdkId: number
-): Promise<void> {
+): Promise<Map<String, any>> {
   return RNAdPlacementSettings.userConsent(
     subjectToGDPR,
     consent,
@@ -88,6 +96,7 @@ export function userConsent(
   );
 }
 
+//RNAdRequestSettings
 const RNAdRequestSettings = NativeModules.RNAdRequestSettings
   ? NativeModules.RNAdRequestSettings
   : new Proxy(
@@ -99,19 +108,22 @@ const RNAdRequestSettings = NativeModules.RNAdRequestSettings
       }
     );
 
-export function enableValidationMode(): Promise<void> {
+export function enableValidationMode(): Promise<Map<String, any>> {
   return RNAdRequestSettings.enableValidationMode();
 }
 
-export function pageUrl(urlString: String): Promise<void> {
+export function pageUrl(urlString: String): Promise<Map<String, any>> {
   return RNAdRequestSettings.pageUrl(urlString);
 }
 
-export function addExtraSetting(key: String, value: String): Promise<void> {
+export function addExtraSetting(
+  key: String,
+  value: String
+): Promise<Map<String, any>> {
   return RNAdRequestSettings.addExtraSetting(key, value);
 }
-//RNTeads
 
+//RNTeads
 const RNTeads = NativeModules.RNTeads
   ? NativeModules.RNTeads
   : new Proxy(
@@ -131,7 +143,6 @@ export function createInReadPlacement(
 }
 
 //RNAd
-
 const RNAd = NativeModules.RNAd
   ? NativeModules.RNAd
   : new Proxy(
@@ -152,7 +163,6 @@ export function playback(): Promise<void> {
 }
 
 //RNTeadsInReadAdView
-
 const RNTeadsInReadAdView = NativeModules.RNTeadsInReadAdView
   ? NativeModules.RNTeadsInReadAdView
   : new Proxy(
@@ -167,3 +177,21 @@ const RNTeadsInReadAdView = NativeModules.RNTeadsInReadAdView
 export function bind(requestIdentifier: String): Promise<void> {
   return RNTeadsInReadAdView.bind(requestIdentifier);
 }
+
+//RNInReadAdPlacement
+const RNInReadAdPlacement = NativeModules.RNInReadAdPlacement
+  ? NativeModules.RNInReadAdPlacement
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+
+export function requestAd(settingsMap: Map<String, any>): Promise<String> {
+  return RNInReadAdPlacement.requestAd(Object.fromEntries(settingsMap));
+}
+
+//RNAdRatio to add when no more problem

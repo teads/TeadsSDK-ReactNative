@@ -21,8 +21,8 @@ class RNAdPlacementSettings(reactContext: ReactApplicationContext) : ReactContex
 
   @ReactMethod
   fun disableCrashMonitoring(promise: Promise) {
-    val hm: MutableMap<String?, Any?> = placementSettingsBuilder.disableCrashMonitoring().build().toMap() as MutableMap<String?, Any?>
-    val result :WritableMap = MapUtil.toWritableMap(hm)
+    val map: MutableMap<String?, Any?> = placementSettingsBuilder.disableCrashMonitoring().build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
     //convert into WritableMap for ReactNative compatibility
     promise.resolve(result)
   }
@@ -30,13 +30,19 @@ class RNAdPlacementSettings(reactContext: ReactApplicationContext) : ReactContex
   @ReactMethod
   fun disableTeadsAudioSessionManagement(promise: Promise) {
     //IOS only
-    promise.resolve(placementSettingsBuilder.build().toMap().toString())
+    val map: MutableMap<String?, Any?> =placementSettingsBuilder.build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
   //enableDebug
   @ReactMethod
   fun enableDebug(promise: Promise) {
-    promise.resolve(placementSettingsBuilder.enableDebug().build().toMap().toString())
+    val map: MutableMap<String?, Any?> =placementSettingsBuilder.enableDebug().build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
   //userConsent
@@ -46,50 +52,74 @@ class RNAdPlacementSettings(reactContext: ReactApplicationContext) : ReactContex
                    tcfVersion: Int,
                    cmpSdkId:Int,
                    promise: Promise) {
-    promise.resolve(placementSettingsBuilder.userConsent(subjectToGDPR, consent, TCFVersion.fromInt(tcfVersion), cmpSdkId).build().toMap().toString())
+    val map: MutableMap<String?, Any?> =placementSettingsBuilder.userConsent(subjectToGDPR, consent, TCFVersion.fromInt(tcfVersion), cmpSdkId).build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
   //setUsPrivacy
   @ReactMethod
   fun setUsPrivacy( consent:String,
                    promise: Promise) {
-    promise.resolve(placementSettingsBuilder.setUsPrivacy(consent).build().toMap().toString())
+    val map: MutableMap<String?, Any?> =placementSettingsBuilder.setUsPrivacy(consent).build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
   //disableBatteryMonitoring
   @ReactMethod
   fun disableBatteryMonitoring( promise: Promise) {
     // iOS Only
-    promise.resolve(placementSettingsBuilder.build().toMap().toString())
+    val map: MutableMap<String?, Any?> =placementSettingsBuilder.build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
   //addExtras
   @ReactMethod
   fun addExtras(key:String, value:String, promise: Promise) {
-    promise.resolve(placementSettingsBuilder.addPlacementExtra(key, value).build().toMap().toString())
+    val map: MutableMap<String?, Any?> =placementSettingsBuilder.addPlacementExtra(key, value).build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
   //enableLocation
   @ReactMethod
   fun enableLocation(promise: Promise) {
-    promise.resolve(placementSettingsBuilder.enableLocation().build().toMap().toString())
+    val map: MutableMap<String?, Any?> =placementSettingsBuilder.enableLocation().build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
   //useLightEndScreen
   @ReactMethod
   fun useLightEndScreen(promise: Promise) {
-    promise.resolve(placementSettingsBuilder.useLightEndScreen().build().toMap().toString())
+    val map: MutableMap<String?, Any?> =placementSettingsBuilder.useLightEndScreen().build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
   //hideBrowserUrl
   @ReactMethod
   fun hideBrowserUrl(promise: Promise) {
-    promise.resolve(placementSettingsBuilder.hideBrowserUrl().build().toMap().toString())
+    val map: MutableMap<String?, Any?> =placementSettingsBuilder.hideBrowserUrl().build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
   //toolBarBackgroundColor
   @ReactMethod
   fun toolBarBackgroundColor(color:Int, promise: Promise) {
-    promise.resolve(placementSettingsBuilder.toolBarBackgroundColor(color).build().toMap().toString())
+    val map: MutableMap<String?, Any?> =placementSettingsBuilder.toolBarBackgroundColor(color).build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 }

@@ -13,10 +13,12 @@ class RNTeads(reactContext: ReactApplicationContext) : ReactContextBaseJavaModul
     return "RNTeads"
   }
 
-  //userConsent
+  //createInReadPlacement
   @ReactMethod
   fun createInReadPlacement( pid :Int, settingsMap :ReadableMap, promise: Promise) {
+    Log.d("test",settingsMap.toString())
     RNAdInstanceManager.shared.placement = TeadsSDK.createInReadPlacement( reactApplicationContext, pid, AdPlacementSettings.fromMap(settingsMap.toHashMap().toMap()))
+    Log.d("ehehi", RNAdInstanceManager.shared.placement.toString())
     promise.resolve("ok")
   }
 

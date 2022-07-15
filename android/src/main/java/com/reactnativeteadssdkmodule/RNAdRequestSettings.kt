@@ -2,7 +2,7 @@ package com.reactnativeteadssdkmodule
 import android.util.Log
 import com.facebook.react.bridge.*
 import tv.teads.sdk.AdRequestSettings
-
+import tv.teads.sdk.utils.userConsent.TCFVersion
 
 
 class RNAdRequestSettings(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
@@ -15,22 +15,28 @@ class RNAdRequestSettings(reactContext: ReactApplicationContext) : ReactContextB
   //enableValidationMode
   @ReactMethod
   fun enableValidationMode(promise: Promise) {
-    promise.resolve(adRequestSettings.enableValidationMode().build().toMap().toString())
-    Log.d("enablevalidationmode",adRequestSettings.enableValidationMode().build().toString())
+    val map: MutableMap<String?, Any?> =adRequestSettings.enableValidationMode().build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
   //pageUrl
   @ReactMethod
   fun pageUrl(urlString:String, promise: Promise) {
-    promise.resolve(adRequestSettings.pageSlotUrl(urlString).build().toMap().toString())
-    Log.d("pageurl", adRequestSettings.pageSlotUrl(urlString).build().toMap().toString())
+    val map: MutableMap<String?, Any?> =adRequestSettings.pageSlotUrl(urlString).build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
   //addExtraSetting
   @ReactMethod
   fun addExtraSetting(key:String, value:String, promise: Promise) {
-    promise.resolve(adRequestSettings.addExtra(key, value).build().toMap().toString())
-    Log.d("addExtras", adRequestSettings.addExtra(key, value).build().toMap().toString())
+    val map: MutableMap<String?, Any?> =adRequestSettings.addExtra(key, value).build().toMap() as MutableMap<String?, Any?>
+    val result :WritableMap = MapUtil.toWritableMap(map)
+    //convert into WritableMap for ReactNative compatibility
+    promise.resolve(result)
   }
 
 
