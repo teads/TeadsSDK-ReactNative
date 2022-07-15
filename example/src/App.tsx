@@ -3,24 +3,12 @@ import * as React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import {
   multiply,
-  enableDebug,
-  userConsent,
-  disableCrashMonitoring,
-  disableTeadsAudioSessionManagement,
-  setUsPrivacy,
-  addExtras,
-  enableLocation,
-  RNuseLightEndScreen,
-  hideBrowserUrl,
-  toolBarBackgroundColor,
-  disableBatteryMonitoring,
-  enableValidationMode,
-  addExtraSetting,
-  pageUrl,
   createInReadPlacement,
   bind,
 } from 'react-native-teads-sdk-module';
 import TeadsAdPlacementSettings from './teads-ad-placement-settings';
+import TeadsAdRequestSettings from './teads-ad-request-settings';
+
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
@@ -35,25 +23,45 @@ export default function App() {
   map1.set('b', 2);
   map1.set('c', 3);
 
-  var test = new TeadsAdPlacementSettings();
-  test.RNdisableCrashMonitoring();
+  React.useEffect(() => {
+    //tests TeadsAdPlacementSettings et ses fonctions
+    var testAdPlacementSetting = new TeadsAdPlacementSettings();
+    testAdPlacementSetting.RNdisableCrashMonitoring();
+    testAdPlacementSetting.RNdisableCrashMonitoring();
+    testAdPlacementSetting.RNdisableTeadsAudioSessionManagement();
+    testAdPlacementSetting.RNenableDebug();
+    testAdPlacementSetting.RNuserConsent(
+      'testAdPlacementSetting',
+      'testAdPlacementSetting',
+      1,
+      11233323
+    );
+    testAdPlacementSetting.RNsetUsPrivacy('ok');
+    testAdPlacementSetting.RNdisableBatteryMonitoring();
+    testAdPlacementSetting.RNaddExtras(
+      'testAdPlacementSetting',
+      'testAdPlacementSetting'
+    );
+    testAdPlacementSetting.RNenableLocation();
+    testAdPlacementSetting.RNuseLightEndScreen();
+    testAdPlacementSetting.RNhideBrowserUrl();
+    testAdPlacementSetting.RNtoolBarBackgroundColor(134);
+    console.log('TeadsAdPlacementSettings', testAdPlacementSetting.mapValue);
+
+    //tests AdRequestSettings et ses fonctions
+    var testAdRequestSettings = new TeadsAdRequestSettings();
+    testAdRequestSettings.RNenableValidationMode();
+    testAdRequestSettings.RNpageUrl('www.example.com');
+    testAdRequestSettings.RNaddExtras('test', 'test');
+    console.log(testAdRequestSettings.mapValue);
+  }, []);
+
+  //test Teads
+
+  //TODO
 
   function onPress() {
     multiply(6, 6).then(setResult);
-    enableDebug();
-    userConsent('test', 'test', 1, 11233323);
-    disableCrashMonitoring();
-    disableTeadsAudioSessionManagement();
-    disableBatteryMonitoring();
-    setUsPrivacy('ok');
-    addExtras('test', 'test');
-    enableLocation();
-    RNuseLightEndScreen();
-    hideBrowserUrl();
-    toolBarBackgroundColor(134);
-    enableValidationMode();
-    pageUrl('www.example.com');
-    addExtraSetting('test', 'test');
     createInReadPlacement(123, map1);
     bind('');
   }
