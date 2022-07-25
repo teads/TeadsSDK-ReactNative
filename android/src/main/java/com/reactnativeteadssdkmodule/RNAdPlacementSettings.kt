@@ -21,10 +21,14 @@ class RNAdPlacementSettings(reactContext: ReactApplicationContext) : ReactContex
 
   @ReactMethod
   fun disableCrashMonitoring(promise: Promise) {
-    val map: MutableMap<String?, Any?> = placementSettingsBuilder.disableCrashMonitoring().build().toMap() as MutableMap<String?, Any?>
-    val result :WritableMap = MapUtil.toWritableMap(map)
-    //convert into WritableMap for ReactNative compatibility
-    promise.resolve(result)
+    try {
+      val map: MutableMap<String?, Any?> = placementSettingsBuilder.disableCrashMonitoring().build().toMap() as MutableMap<String?, Any?>
+      val result :WritableMap = MapUtil.toWritableMap(map)
+      //convert into WritableMap for ReactNative compatibility
+      promise.resolve(result)
+    } catch (e: Throwable) {
+      promise.reject("error on native:", e)
+    }
   }
 
   @ReactMethod
@@ -72,10 +76,12 @@ class RNAdPlacementSettings(reactContext: ReactApplicationContext) : ReactContex
   @ReactMethod
   fun disableBatteryMonitoring( promise: Promise) {
     // iOS Only
-    val map: MutableMap<String?, Any?> =placementSettingsBuilder.build().toMap() as MutableMap<String?, Any?>
-    val result :WritableMap = MapUtil.toWritableMap(map)
-    //convert into WritableMap for ReactNative compatibility
-    promise.resolve(result)
+
+      val map: MutableMap<String?, Any?> =placementSettingsBuilder.build().toMap() as MutableMap<String?, Any?>
+      val result :WritableMap = MapUtil.toWritableMap(map)
+      //convert into WritableMap for ReactNative compatibility
+      promise.resolve(result)
+
   }
 
   //addExtras

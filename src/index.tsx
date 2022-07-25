@@ -18,8 +18,8 @@ const TeadsSdkModule = NativeModules.TeadsSdkModule
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return TeadsSdkModule.multiply(a, b);
+export async function multiply(a: number, b: number): Promise<number> {
+  return await TeadsSdkModule.multiply(a, b);
 }
 
 //RNAdPlacementSettings
@@ -34,61 +34,61 @@ const RNAdPlacementSettings = NativeModules.RNAdPlacementSettings
       }
     );
 
-export function disableCrashMonitoring(): Promise<Map<String, any>> {
-  return RNAdPlacementSettings.disableCrashMonitoring();
+export async function disableCrashMonitoring(): Promise<Map<String, any>> {
+  return await RNAdPlacementSettings.disableCrashMonitoring();
   //return a Map thanks to WrittableMap from Kotlin
 }
 
-export function disableBatteryMonitoring(): Promise<Map<String, any>> {
-  return RNAdPlacementSettings.disableBatteryMonitoring();
+export async function disableBatteryMonitoring(): Promise<Map<String, any>> {
+  return await RNAdPlacementSettings.disableBatteryMonitoring();
 }
 
-export function disableTeadsAudioSessionManagement(): Promise<
+export async function disableTeadsAudioSessionManagement(): Promise<
   Map<String, any>
 > {
-  return RNAdPlacementSettings.disableTeadsAudioSessionManagement();
+  return await RNAdPlacementSettings.disableTeadsAudioSessionManagement();
 }
 
-export function enableDebug(): Promise<Map<String, any>> {
-  return RNAdPlacementSettings.enableDebug();
+export async function enableDebug(): Promise<Map<String, any>> {
+  return await RNAdPlacementSettings.enableDebug();
 }
 
-export function setUsPrivacy(consent: String): Promise<Map<String, any>> {
-  return RNAdPlacementSettings.setUsPrivacy(consent);
+export async function setUsPrivacy(consent: String): Promise<Map<String, any>> {
+  return await RNAdPlacementSettings.setUsPrivacy(consent);
 }
 
-export function addExtras(
+export async function addExtras(
   key: String,
   value: String
 ): Promise<Map<String, any>> {
-  return RNAdPlacementSettings.addExtras(key, value);
+  return await RNAdPlacementSettings.addExtras(key, value);
 }
 
-export function enableLocation(): Promise<Map<String, any>> {
-  return RNAdPlacementSettings.enableLocation();
+export async function enableLocation(): Promise<Map<String, any>> {
+  return await RNAdPlacementSettings.enableLocation();
 }
 
-export function useLightEndScreen(): Promise<Map<String, any>> {
-  return RNAdPlacementSettings.useLightEndScreen();
+export async function useLightEndScreen(): Promise<Map<String, any>> {
+  return await RNAdPlacementSettings.useLightEndScreen();
 }
 
-export function hideBrowserUrl(): Promise<Map<String, any>> {
-  return RNAdPlacementSettings.hideBrowserUrl();
+export async function hideBrowserUrl(): Promise<Map<String, any>> {
+  return await RNAdPlacementSettings.hideBrowserUrl();
 }
 
-export function toolBarBackgroundColor(
+export async function toolBarBackgroundColor(
   color: number
 ): Promise<Map<String, any>> {
-  return RNAdPlacementSettings.toolBarBackgroundColor(color);
+  return await RNAdPlacementSettings.toolBarBackgroundColor(color);
 }
 
-export function userConsent(
+export async function userConsent(
   subjectToGDPR: String,
   consent: String,
   tcfVersion: number,
   cmpSdkId: number
 ): Promise<Map<String, any>> {
-  return RNAdPlacementSettings.userConsent(
+  return await RNAdPlacementSettings.userConsent(
     subjectToGDPR,
     consent,
     tcfVersion,
@@ -108,19 +108,19 @@ const RNAdRequestSettings = NativeModules.RNAdRequestSettings
       }
     );
 
-export function enableValidationMode(): Promise<Map<String, any>> {
-  return RNAdRequestSettings.enableValidationMode();
+export async function enableValidationMode(): Promise<Map<String, any>> {
+  return await RNAdRequestSettings.enableValidationMode();
 }
 
-export function pageUrl(urlString: String): Promise<Map<String, any>> {
-  return RNAdRequestSettings.pageUrl(urlString);
+export async function pageUrl(urlString: String): Promise<Map<String, any>> {
+  return await RNAdRequestSettings.pageUrl(urlString);
 }
 
-export function addExtraSetting(
+export async function addExtraSetting(
   key: String,
   value: String
 ): Promise<Map<String, any>> {
-  return RNAdRequestSettings.addExtraSetting(key, value);
+  return await RNAdRequestSettings.addExtraSetting(key, value);
 }
 
 //RNTeads
@@ -135,11 +135,12 @@ const RNTeads = NativeModules.RNTeads
       }
     );
 
-export function createInReadPlacement(
+export async function createInReadPlacement(
   pid: number,
   settingsMap: Map<String, any>
-): Promise<void> {
-  return RNTeads.createInReadPlacement(pid, Object.fromEntries(settingsMap));
+) {
+  console.log('iterator', settingsMap);
+  await RNTeads.createInReadPlacement(pid, settingsMap);
 }
 
 //RNAd
@@ -154,12 +155,12 @@ const RNAd = NativeModules.RNAd
       }
     );
 
-export function delegate(): Promise<void> {
-  return RNAd.delegate();
+export async function delegate(): Promise<void> {
+  return await RNAd.delegate();
 }
 
-export function playback(): Promise<void> {
-  return RNAd.playback();
+export async function playback(): Promise<void> {
+  return await RNAd.playback();
 }
 
 //RNTeadsInReadAdView
@@ -174,8 +175,8 @@ const RNTeadsInReadAdView = NativeModules.RNTeadsInReadAdView
       }
     );
 
-export function bind(requestIdentifier: String): Promise<void> {
-  return RNTeadsInReadAdView.bind(requestIdentifier);
+export async function bind(requestIdentifier: String): Promise<void> {
+  return await RNTeadsInReadAdView.bind(requestIdentifier);
 }
 
 //RNInReadAdPlacement
@@ -190,8 +191,11 @@ const RNInReadAdPlacement = NativeModules.RNInReadAdPlacement
       }
     );
 
-export function requestAd(settingsMap: Map<String, any>): Promise<String> {
-  return RNInReadAdPlacement.requestAd(Object.fromEntries(settingsMap));
+export async function requestAd(
+  settingsMap: Map<String, any>
+): Promise<String> {
+  console.log('settings', settingsMap);
+  return await RNInReadAdPlacement.requestAd(settingsMap);
 }
 
 //RNAdRatio to add when no more problem

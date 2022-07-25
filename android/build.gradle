@@ -131,7 +131,7 @@ def kotlin_version = getExtOrDefault('kotlinVersion')
 
 dependencies {
   // Teads inApp SDK
-  implementation("tv.teads.sdk.android:sdk:5.0.15@aar") {
+  implementation("tv.teads.sdk.android:sdk:5.0.16@aar") {
     transitive = true
   }
     //noinspection GradleDynamicVersion

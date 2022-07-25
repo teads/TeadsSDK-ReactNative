@@ -6,7 +6,6 @@ import tv.teads.sdk.renderer.InReadAdView
 
 class RNAdInstanceManager {
   class AdInstanceMap constructor(val inReadAdView: InReadAdView, val id: String)
-  //placé ici a voir si c'est ok
 
   var placement: InReadAdPlacement? = null
 

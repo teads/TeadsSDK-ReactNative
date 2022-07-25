@@ -1,6 +1,6 @@
 import { requestAd } from 'react-native-teads-sdk-module';
 import TeadsAdRatio from './teads-ad-ratio';
-import type TeadsAdRequestSettings from './teads-ad-request-settings';
+import TeadsAdRequestSettings from './teads-ad-request-settings';
 import TeadsInReadAd from './teads-inread-ad';
 
 export default class TeadsInReadAdPlacement {
@@ -13,12 +13,12 @@ export default class TeadsInReadAdPlacement {
 
   public RNrequestAd = async (requestSettings: TeadsAdRequestSettings) => {
     try {
+      TeadsAdRequestSettings.toString;
       var id = requestAd(requestSettings.mapValue);
       this.inReadAdAdRatioMap.set(
         new TeadsInReadAd(await id),
         new TeadsAdRatio(await id)
       );
-      console.log('inreadadadrationmap', this.inReadAdAdRatioMap);
       return id;
     } catch (e) {
       console.error(e);

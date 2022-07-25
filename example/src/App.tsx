@@ -1,14 +1,14 @@
 import * as React from 'react';
-
 import { StyleSheet, View, Text, Button } from 'react-native';
 import {
   multiply,
   createInReadPlacement,
   bind,
 } from 'react-native-teads-sdk-module';
+import Teads from './teads';
 import TeadsAdPlacementSettings from './teads-ad-placement-settings';
 import TeadsAdRequestSettings from './teads-ad-request-settings';
-
+import type TeadsInReadAdPlacement from './teads-inread-ad-placement';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
@@ -25,10 +25,16 @@ export default function App() {
 
   React.useEffect(() => {
     //tests TeadsAdPlacementSettings et ses fonctions
-    var testAdPlacementSetting = new TeadsAdPlacementSettings();
-    testAdPlacementSetting.RNdisableCrashMonitoring();
-    testAdPlacementSetting.RNdisableCrashMonitoring();
-    testAdPlacementSetting.RNdisableTeadsAudioSessionManagement();
+  }, []);
+  var testAdPlacementSetting = new TeadsAdPlacementSettings();
+  var testAdRequestSettings = new TeadsAdRequestSettings();
+  var placement: TeadsInReadAdPlacement | undefined;
+
+  //mettre async/await
+  async function onPress() {
+    await testAdPlacementSetting.RNdisableCrashMonitoring();
+    console.log('hello', testAdPlacementSetting.mapValue);
+    /* await testAdPlacementSetting.RNdisableTeadsAudioSessionManagement();
     testAdPlacementSetting.RNenableDebug();
     testAdPlacementSetting.RNuserConsent(
       'testAdPlacementSetting',
@@ -37,7 +43,6 @@ export default function App() {
       11233323
     );
     testAdPlacementSetting.RNsetUsPrivacy('ok');
-    testAdPlacementSetting.RNdisableBatteryMonitoring();
     testAdPlacementSetting.RNaddExtras(
       'testAdPlacementSetting',
       'testAdPlacementSetting'
@@ -45,25 +50,26 @@ export default function App() {
     testAdPlacementSetting.RNenableLocation();
     testAdPlacementSetting.RNuseLightEndScreen();
     testAdPlacementSetting.RNhideBrowserUrl();
-    testAdPlacementSetting.RNtoolBarBackgroundColor(134);
+    testAdPlacementSetting.RNtoolBarBackgroundColor(134);*/
     console.log('TeadsAdPlacementSettings', testAdPlacementSetting.mapValue);
 
     //tests AdRequestSettings et ses fonctions
-    var testAdRequestSettings = new TeadsAdRequestSettings();
-    testAdRequestSettings.RNenableValidationMode();
-    testAdRequestSettings.RNpageUrl('www.example.com');
-    testAdRequestSettings.RNaddExtras('test', 'test');
-    console.log(testAdRequestSettings.mapValue);
-  }, []);
 
-  //test Teads
+    //testAdRequestSettings.RNenableValidationMode();
+    await testAdRequestSettings.RNpageUrl('www.example.com');
+    console.log('TeadsAdRequestSettings', testAdRequestSettings.mapValue);
 
-  //TODO
+    //test Teads
+    placement = await Teads.RNcreateInReadPlacement(
+      84242,
+      testAdPlacementSetting
+    );
+    console.log('TeadsPlacement', placement);
 
-  function onPress() {
-    multiply(6, 6).then(setResult);
-    createInReadPlacement(123, map1);
-    bind('');
+    placement?.RNrequestAd(testAdRequestSettings);
+
+    //TODO implemente
+    multiply(2, 2).then(setResult);
   }
 
   return (
