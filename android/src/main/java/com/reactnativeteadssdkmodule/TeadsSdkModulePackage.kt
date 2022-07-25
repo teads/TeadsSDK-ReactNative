@@ -3,6 +3,8 @@ import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ViewManager
+import com.facebook.react.views.image.ReactImageManager
+import com.mypackage.MyViewManager
 
 
 class TeadsSdkModulePackage : ReactPackage {
@@ -10,7 +12,7 @@ class TeadsSdkModulePackage : ReactPackage {
         return listOf(TeadsSdkModuleModule(reactContext),RNAdPlacementSettings(reactContext),RNAdRequestSettings(reactContext),RNTeads(reactContext),RNTeadsInReadAdView(reactContext),RNInReadAdPlacement(reactContext))
     }
 
-    override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
-        return emptyList()
-    }
+  override fun createViewManagers(
+    reactContext: ReactApplicationContext) = listOf(MyViewManager(reactContext))
 }
+

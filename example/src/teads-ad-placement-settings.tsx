@@ -14,9 +14,11 @@ import {
 
 //add enum as in the flutter adapter
 export default class TeadsAdPlacementSettings {
-  mapValue: Map<String, any>;
+  public mapValue: Map<String, any>;
 
   constructor() {
+    //pas instancier vide, voir si on peux recup du kotlin les val par defaut
+    //faire ticket pour apres
     this.mapValue = new Map<String, any>();
   }
 

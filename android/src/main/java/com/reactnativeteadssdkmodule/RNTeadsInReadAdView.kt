@@ -1,5 +1,6 @@
 package com.reactnativeteadssdkmodule
 import android.util.Log
+import android.view.View
 import com.facebook.react.bridge.*
 import tv.teads.sdk.renderer.InReadAdView
 
@@ -15,8 +16,16 @@ class RNTeadsInReadAdView(reactContext: ReactApplicationContext) : ReactContextB
   @ReactMethod
   fun bind( requestIdentifier :String, promise: Promise) {
     //inReadAdView = RNAdInstanceManager.shared.instance(requestIdentifier).inReadAdView
-    Log.d("test2","not working")
+    //Log.d("test2",inReadAdView.toString())
     promise.resolve("ok")
+  }
+
+   fun getView(): View {
+    return inReadAdView
+  }
+
+   fun dispose() {
+    inReadAdView.clean()
   }
 
 }

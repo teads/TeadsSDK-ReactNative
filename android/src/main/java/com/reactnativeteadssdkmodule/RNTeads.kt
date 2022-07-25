@@ -8,7 +8,6 @@ import tv.teads.sdk.utils.userConsent.TCFVersion
 
 class RNTeads(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
-
   override fun getName(): String {
     return "RNTeads"
   }
@@ -16,9 +15,7 @@ class RNTeads(reactContext: ReactApplicationContext) : ReactContextBaseJavaModul
   //createInReadPlacement
   @ReactMethod
   fun createInReadPlacement( pid :Int, settingsMap :ReadableMap, promise: Promise) {
-    Log.d("test",settingsMap.toString())
     RNAdInstanceManager.shared.placement = TeadsSDK.createInReadPlacement( reactApplicationContext, pid, AdPlacementSettings.fromMap(settingsMap.toHashMap().toMap()))
-    Log.d("ehehi", RNAdInstanceManager.shared.placement.toString())
     promise.resolve("ok")
   }
 

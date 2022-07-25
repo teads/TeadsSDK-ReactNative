@@ -16,16 +16,13 @@ class RNAdRatio(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
   //calculateHeight
   @ReactMethod
   fun calculateHeight(width:Double, requestIdentifier:String, promise: Promise) {
-    promise.resolve("ok")
-    //d'ont work because some value is private
-    //promise.resolve(RNAdInstanceManager.shared.instance(requestIdentifier).inReadAdView.inReadAd.adRatio.calculateHeight(width.toInt()).toDouble())
+    promise.resolve(RNAdInstanceManager.shared.instance(requestIdentifier).inReadAdView.inReadAd.adRatio.calculateHeight(width.toInt()).toDouble())
   }
 
   //value
   @ReactMethod
   fun value(width:Double, requestIdentifier:String, promise: Promise) {
-    promise.resolve("ok")
-    //promise.resolve(RNAdInstanceManager.shared.instance(requestIdentifier).inReadAdView.inReadAd.adRatio.getAdSlotRatio(width.toInt()).toDouble())
+    promise.resolve(RNAdInstanceManager.shared.instance(requestIdentifier).inReadAdView.inReadAd.adRatio.getAdSlotRatio(width.toInt()).toDouble())
   }
 
 }
