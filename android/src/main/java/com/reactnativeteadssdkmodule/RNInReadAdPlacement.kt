@@ -3,10 +3,13 @@ package com.reactnativeteadssdkmodule
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import com.facebook.react.ReactInstanceManager
 import com.facebook.react.bridge.*
+import com.facebook.react.modules.core.DeviceEventManagerModule
 import tv.teads.sdk.*
 import tv.teads.sdk.renderer.InReadAdView
 import java.util.*
+
 
 class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
@@ -14,6 +17,27 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
   override fun getName(): String {
     return "RNInReadAdPlacement"
   }
+
+  private fun sendEvent(reactContext: ReactContext, eventName: String, params: WritableMap?) {
+    reactContext
+      .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
+      .emit(eventName, params)
+  }
+
+  @ReactMethod
+  fun addListener(eventName: String) {
+    // Set up any upstream listeners or background tasks as necessary
+  }
+
+  @ReactMethod
+  fun removeListeners(count: Int) {
+    // Remove upstream listeners, stop unnecessary background tasks
+  }
+
+  val params = Arguments.createMap().apply {
+    putString("eventProperty", "someValue")
+  }
+
 
   //requestAd
   @ReactMethod
@@ -38,6 +62,8 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
           Handler(Looper.getMainLooper()).post {
             Log.d("from ad","didReceiveAd")
           }
+          sendEvent( ReactContext(reactApplicationContext), "EventReminder", params)
+
         }
 
         override fun onAdClicked() {
@@ -55,9 +81,11 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
         }
 
         override fun onAdError(code: Int, description: String) {
+
           Handler(Looper.getMainLooper()).post {
            Log.d("from ad",
               "didCatchError")
+            Log.d("from error",description)
           }
         }
 
@@ -94,6 +122,7 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
           Handler(Looper.getMainLooper()).post {
             Log.d("from Ad",
               "didFailToReceiveAd")
+            Log.d("from fail",failReason)
           }
         }
       },

@@ -1,12 +1,14 @@
 // replace with your package
-package com.mypackage
+package com.reactnativeteadssdkmodule
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.reactnativeteadssdkmodule.CustomView
+import com.mypackage.CustomView
+
 
 class MyFragment : Fragment() {
   private lateinit var customView: CustomView
@@ -19,6 +21,7 @@ class MyFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    Log.d("viewCreated","viewCreated")
     // do any logic that should happen in an `onCreate` method, e.g:
     // customView.onCreate(savedInstanceState);
   }
