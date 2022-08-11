@@ -1,10 +1,8 @@
 package com.reactnativeteadssdkmodule
+import MyViewManager
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.uimanager.ViewManager
-import com.facebook.react.views.image.ReactImageManager
-import com.mypackage.MyViewManager
 
 
 class TeadsSdkModulePackage : ReactPackage {
@@ -13,6 +11,6 @@ class TeadsSdkModulePackage : ReactPackage {
     }
 
   override fun createViewManagers(
-    reactContext: ReactApplicationContext) = listOf(MyViewManager(reactContext))
+    reactContext: ReactApplicationContext) = listOf(MyViewManager())
 }
 

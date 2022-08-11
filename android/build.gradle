@@ -170,13 +170,22 @@ repositories {
 
 def kotlin_version = getExtOrDefault('kotlinVersion')
 
+
+
 dependencies {
   // Teads inApp SDK
   implementation("tv.teads.sdk.android:sdk:5.0.16@aar") {
     transitive = true
   }
+  // Required dependency
+  implementation 'com.google.android.gms:play-services-ads:20.2.0' // or higher
+
+  // Mandatory for Huawei device compatibility
+  implementation 'com.huawei.hms:ads-identifier:3.4.28.313'
+
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
+
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 // From node_modules
 }

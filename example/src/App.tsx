@@ -1,14 +1,18 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
 import {
-  multiply,
-  createInReadPlacement,
-  bind,
-} from 'react-native-teads-sdk-module';
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  NativeEventEmitter,
+  NativeModules,
+} from 'react-native';
+import { multiply } from 'react-native-teads-sdk-module';
+import MyView from './my-view';
 import Teads from './teads';
 import TeadsAdPlacementSettings from './teads-ad-placement-settings';
 import TeadsAdRequestSettings from './teads-ad-request-settings';
-import type TeadsInReadAdPlacement from './teads-inread-ad-placement';
+import TeadsInReadAdPlacement from './teads-inread-ad-placement';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
@@ -29,9 +33,10 @@ export default function App() {
   var testAdPlacementSetting = new TeadsAdPlacementSettings();
   var testAdRequestSettings = new TeadsAdRequestSettings();
   var placement: TeadsInReadAdPlacement | undefined;
+  console.log(TeadsInReadAdPlacement);
 
   //mettre async/await
-  async function onPress() {
+  async function onPress(this: any) {
     await testAdPlacementSetting.RNdisableCrashMonitoring();
     console.log('hello', testAdPlacementSetting.mapValue);
     /* await testAdPlacementSetting.RNdisableTeadsAudioSessionManagement();
@@ -70,6 +75,11 @@ export default function App() {
 
     //TODO implemente
     multiply(2, 2).then(setResult);
+
+    const eventEmitter = new NativeEventEmitter(NativeModules.test);
+    this.eventListener = eventEmitter.addListener('EventReminder', (event) => {
+      console.log('delegate?', event.eventProperty); // "someValue"
+    });
   }
 
   return (
@@ -80,6 +90,14 @@ export default function App() {
         onPress={onPress}
       />
       <Text>Result: {result}</Text>
+      <MyView
+        style={{
+          // converts dpi to px, provide desired height
+          height: 100,
+          // converts dpi to px, provide desired width
+          width: 200,
+        }}
+      ></MyView>
     </View>
   );
 }
