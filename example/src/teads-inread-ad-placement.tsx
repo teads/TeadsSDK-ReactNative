@@ -11,7 +11,9 @@ export default class TeadsInReadAdPlacement {
     this.inReadAdAdRatioMap = new Map<TeadsInReadAd, TeadsAdRatio>();
   }
 
-  public RNrequestAd = async (requestSettings: TeadsAdRequestSettings) => {
+  public RNrequestAd = async (
+    requestSettings: TeadsAdRequestSettings
+  ): Promise<String> => {
     try {
       TeadsAdRequestSettings.toString;
       var id = requestAd(requestSettings.mapValue);
@@ -19,10 +21,11 @@ export default class TeadsInReadAdPlacement {
         new TeadsInReadAd(await id),
         new TeadsAdRatio(await id)
       );
-      return id;
+
+      return await id;
     } catch (e) {
       console.error(e);
-      return e;
+      return 'error:' + e;
     }
   };
 

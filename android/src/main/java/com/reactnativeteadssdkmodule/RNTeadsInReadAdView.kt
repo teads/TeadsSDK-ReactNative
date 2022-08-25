@@ -17,10 +17,11 @@ class RNTeadsInReadAdView(reactContext: ReactApplicationContext) : ReactContextB
   fun bind( requestIdentifier :String, promise: Promise) {
     inReadAdView = RNAdInstanceManager.shared.instance(requestIdentifier).inReadAdView
     //Log.d("test2",inReadAdView.toString())
+
     promise.resolve("ok")
   }
 
-   fun getView(): View {
+   public fun getView(): View {
     return inReadAdView
   }
 
