@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, Button, PanResponder } from 'react-native';
+import { StyleSheet, View, Text, Button } from 'react-native';
 import { multiply } from 'react-native-teads-sdk-module';
 import MyView from './my-view';
 import Teads from './teads';
@@ -67,8 +67,8 @@ export default function App() {
       <MyView
         //add en props l'id
         style={{
-          height: 300,
-          width: 300,
+          height: 400,
+          width: 400,
         }}
         adId={adId}
       ></MyView>
