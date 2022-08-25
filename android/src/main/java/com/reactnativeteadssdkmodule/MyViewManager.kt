@@ -1,5 +1,3 @@
-import android .util.Log
-import android.widget.TextView
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
@@ -21,12 +19,8 @@ class MyViewManager : SimpleViewManager<CustomView>() {
 
   @ReactProp(name = "adId")
   fun setAdId(view: CustomView, newId: String?) {
-    if (newId != null) {
-      Log.d("from ad result react",newId)
-    }
     if (newId == null || newId == adId) return
     adId = newId
-    Log.d("from ad result react2", adId!!)
     adView=RNAdInstanceManager.shared.instance(newId).inReadAdView
 
   }
@@ -35,21 +29,8 @@ class MyViewManager : SimpleViewManager<CustomView>() {
   override fun createViewInstance(reactContext: ThemedReactContext): CustomView {
 
     var customView=CustomView(reactContext)
-    Log.d("fromId", "1return view")
 
     adView?.let { customView.setInReadAdView(it) }
-
-    adId?.let { Log.d("id from react", it) }
-
-    adId?.let { customView.addView(TextView(reactContext).apply {
-      text=it
-    }) }
-
-    if (adView!=null){Log.d("from kot1","adView is null")}
-    adView?.let { Log.d("from kot2","adView is null")}
-
-    //inReadAdView = adId?.let { RNAdInstanceManager.shared.instance(it).inReadAdView }!!
-    Log.d("fromId", "2return view")
 
     adView?.let { customView.addView(adView) }
 
