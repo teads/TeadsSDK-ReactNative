@@ -3,9 +3,8 @@ package com.reactnativeteadssdkmodule
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import com.facebook.react.ReactInstanceManager
 import com.facebook.react.bridge.*
-import com.facebook.react.modules.core.DeviceEventManagerModule
+import com.mypackage.CustomView
 import tv.teads.sdk.*
 import tv.teads.sdk.renderer.InReadAdView
 import java.util.*
@@ -13,31 +12,9 @@ import java.util.*
 
 class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
-
   override fun getName(): String {
     return "RNInReadAdPlacement"
   }
-
-  private fun sendEvent(reactContext: ReactContext, eventName: String, params: WritableMap?) {
-    reactContext
-      .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
-      .emit(eventName, params)
-  }
-
-  @ReactMethod
-  fun addListener(eventName: String) {
-    // Set up any upstream listeners or background tasks as necessary
-  }
-
-  @ReactMethod
-  fun removeListeners(count: Int) {
-    // Remove upstream listeners, stop unnecessary background tasks
-  }
-
-  val params = Arguments.createMap().apply {
-    putString("eventProperty", "someValue")
-  }
-
 
   //requestAd
   @ReactMethod
@@ -59,10 +36,13 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
               instanceIdentifier
             )
           )
+
+
+
           Handler(Looper.getMainLooper()).post {
             Log.d("from ad","didReceiveAd")
           }
-          sendEvent( ReactContext(reactApplicationContext), "EventReminder", params)
+
 
         }
 
@@ -151,6 +131,7 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
         }
 
       })
+    Log.d("placement instanceID", instanceIdentifier)
     promise.resolve(instanceIdentifier)
 
   }

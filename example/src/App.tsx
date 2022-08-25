@@ -1,12 +1,5 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  NativeEventEmitter,
-  NativeModules,
-} from 'react-native';
+import { StyleSheet, View, Text, Button, PanResponder } from 'react-native';
 import { multiply } from 'react-native-teads-sdk-module';
 import MyView from './my-view';
 import Teads from './teads';
@@ -16,9 +9,12 @@ import TeadsInReadAdPlacement from './teads-inread-ad-placement';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
+  const [showAd, setShowAd] = React.useState<boolean | undefined>();
+  const [adId, setAdId] = React.useState<String>('testid');
 
   React.useEffect(() => {
     multiply(1, 2).then(setResult);
+    setShowAd(false);
   }, []);
 
   const map1 = new Map();
@@ -33,53 +29,52 @@ export default function App() {
   var testAdPlacementSetting = new TeadsAdPlacementSettings();
   var testAdRequestSettings = new TeadsAdRequestSettings();
   var placement: TeadsInReadAdPlacement | undefined;
+
   console.log(TeadsInReadAdPlacement);
 
   //mettre async/await
   async function onPress(this: any) {
     await testAdPlacementSetting.RNdisableCrashMonitoring();
-    console.log('hello', testAdPlacementSetting.mapValue);
-    /* await testAdPlacementSetting.RNdisableTeadsAudioSessionManagement();
-    testAdPlacementSetting.RNenableDebug();
-    testAdPlacementSetting.RNuserConsent(
-      'testAdPlacementSetting',
-      'testAdPlacementSetting',
-      1,
-      11233323
-    );
-    testAdPlacementSetting.RNsetUsPrivacy('ok');
-    testAdPlacementSetting.RNaddExtras(
-      'testAdPlacementSetting',
-      'testAdPlacementSetting'
-    );
-    testAdPlacementSetting.RNenableLocation();
-    testAdPlacementSetting.RNuseLightEndScreen();
-    testAdPlacementSetting.RNhideBrowserUrl();
-    testAdPlacementSetting.RNtoolBarBackgroundColor(134);*/
+
     console.log('TeadsAdPlacementSettings', testAdPlacementSetting.mapValue);
 
-    //tests AdRequestSettings et ses fonctions
-
-    //testAdRequestSettings.RNenableValidationMode();
     await testAdRequestSettings.RNpageUrl('www.example.com');
     console.log('TeadsAdRequestSettings', testAdRequestSettings.mapValue);
 
     //test Teads
     placement = await Teads.RNcreateInReadPlacement(
-      84242,
+      128779,
       testAdPlacementSetting
     );
-    console.log('TeadsPlacement', placement);
 
-    placement?.RNrequestAd(testAdRequestSettings);
+    await placement?.RNrequestAd(testAdRequestSettings).then(setAdId);
+    console.log('TeadsPlacement requestAd', adId);
+
+    //link ad avec la custom view
+    //utiliser react prop avec uuid et utiliser fonction dans custom view
+    //plus creer fonction et voir l'ad lol
 
     //TODO implemente
     multiply(2, 2).then(setResult);
+  }
+  async function onPressAd(this: any) {
+    setShowAd(!showAd);
+  }
 
-    const eventEmitter = new NativeEventEmitter(NativeModules.test);
-    this.eventListener = eventEmitter.addListener('EventReminder', (event) => {
-      console.log('delegate?', event.eventProperty); // "someValue"
-    });
+  let ad;
+  if (showAd) {
+    ad = (
+      <MyView
+        //add en props l'id
+        style={{
+          height: 300,
+          width: 300,
+        }}
+        adId={adId}
+      ></MyView>
+    );
+  } else {
+    ad = <></>;
   }
 
   return (
@@ -90,14 +85,8 @@ export default function App() {
         onPress={onPress}
       />
       <Text>Result: {result}</Text>
-      <MyView
-        style={{
-          // converts dpi to px, provide desired height
-          height: 100,
-          // converts dpi to px, provide desired width
-          width: 200,
-        }}
-      ></MyView>
+      <Button title="show ad" color="#841584" onPress={onPressAd} />
+      {ad}
     </View>
   );
 }
