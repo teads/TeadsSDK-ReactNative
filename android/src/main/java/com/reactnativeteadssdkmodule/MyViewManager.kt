@@ -27,7 +27,6 @@ class MyViewManager : SimpleViewManager<CustomView>() {
 
 
   override fun createViewInstance(reactContext: ThemedReactContext): CustomView {
-
     var customView=CustomView(reactContext)
 
     adView?.let { customView.setInReadAdView(it) }

@@ -1,31 +1,21 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import { multiply } from 'react-native-teads-sdk-module';
-import MyView from './my-view';
-import Teads from './teads';
-import TeadsAdPlacementSettings from './teads-ad-placement-settings';
-import TeadsAdRequestSettings from './teads-ad-request-settings';
-import TeadsInReadAdPlacement from './teads-inread-ad-placement';
+import MyView from '../../src/my-view';
+import Teads from '../../src/teads';
+import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
+import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
+import TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
-  const [showAd, setShowAd] = React.useState<boolean | undefined>();
+  const [showAd, setShowAd] = React.useState<boolean>(false);
   const [adId, setAdId] = React.useState<String>('testid');
 
   React.useEffect(() => {
     multiply(1, 2).then(setResult);
-    setShowAd(false);
   }, []);
 
-  const map1 = new Map();
-
-  map1.set('a', 1);
-  map1.set('b', 2);
-  map1.set('c', 3);
-
-  React.useEffect(() => {
-    //tests TeadsAdPlacementSettings et ses fonctions
-  }, []);
   var testAdPlacementSetting = new TeadsAdPlacementSettings();
   var testAdRequestSettings = new TeadsAdRequestSettings();
   var placement: TeadsInReadAdPlacement | undefined;
@@ -50,32 +40,39 @@ export default function App() {
     await placement?.RNrequestAd(testAdRequestSettings).then(setAdId);
     console.log('TeadsPlacement requestAd', adId);
 
-    //link ad avec la custom view
-    //utiliser react prop avec uuid et utiliser fonction dans custom view
-    //plus creer fonction et voir l'ad lol
-
     //TODO implemente
     multiply(2, 2).then(setResult);
   }
-  async function onPressAd(this: any) {
+  function onPressAd(this: any) {
     setShowAd(!showAd);
   }
 
   let ad;
-  if (showAd) {
-    ad = (
-      <MyView
-        //add en props l'id
-        style={{
-          height: 400,
-          width: 400,
-        }}
-        adId={adId}
-      ></MyView>
-    );
-  } else {
-    ad = <></>;
-  }
+  // if (showAd) {
+  //   ad = (
+  //     <MyView
+  //       style={{
+  //         height: 400,
+  //         width: 400,
+  //       }}
+  //       adId={adId}
+  //     ></MyView>
+  //   );
+  // } else {
+  //   ad = <></>;
+  // }
+
+  showAd
+    ? (ad = (
+        <MyView
+          style={{
+            height: 400,
+            width: 400,
+          }}
+          adId={adId}
+        ></MyView>
+      ))
+    : (ad = <></>);
 
   return (
     <View style={styles.container}>
