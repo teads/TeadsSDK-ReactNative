@@ -5,17 +5,23 @@ inplementation of teads sdk in react native
 ## Installation
 
 ````sh
+npm i
 npm install react-native-teads-sdk-module```
 
 ## Usage
 
 ```js
-import { multiply } from "react-native-teads-sdk-module";
+import { teadsExample } from "react-native-teads-sdk-module";
 
 // ...
 
-const result = await multiply(3, 7);
+const result = await teadsExample();
 ````
+
+## launch
+
+yarn example android
+npm ?
 
 ## Contributing
 

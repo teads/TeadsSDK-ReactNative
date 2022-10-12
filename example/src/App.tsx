@@ -22,7 +22,6 @@ export default function App() {
 
   console.log(TeadsInReadAdPlacement);
 
-  //mettre async/await
   async function onPress(this: any) {
     await testAdPlacementSetting.RNdisableCrashMonitoring();
 
@@ -31,7 +30,7 @@ export default function App() {
     await testAdRequestSettings.RNpageUrl('www.example.com');
     console.log('TeadsAdRequestSettings', testAdRequestSettings.mapValue);
 
-    //test Teads
+    //id de test
     placement = await Teads.RNcreateInReadPlacement(
       128779,
       testAdPlacementSetting
@@ -40,28 +39,14 @@ export default function App() {
     await placement?.RNrequestAd(testAdRequestSettings).then(setAdId);
     console.log('TeadsPlacement requestAd', adId);
 
-    //TODO implemente
     multiply(2, 2).then(setResult);
   }
+
   function onPressAd(this: any) {
     setShowAd(!showAd);
   }
 
   let ad;
-  // if (showAd) {
-  //   ad = (
-  //     <MyView
-  //       style={{
-  //         height: 400,
-  //         width: 400,
-  //       }}
-  //       adId={adId}
-  //     ></MyView>
-  //   );
-  // } else {
-  //   ad = <></>;
-  // }
-
   showAd
     ? (ad = (
         <MyView
