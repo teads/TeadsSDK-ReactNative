@@ -1,64 +1,13 @@
-import { Text, View, ImageBackground, ScrollView, StyleSheet, Button, Image } from 'react-native'
-import { Card } from 'react-native-elements'
+import { Text, View, ImageBackground, ScrollView } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import * as React from 'react'
 import InFeedItem from '../components/InFeedItem'
+import styles from '../styles/styles'
 
 export default function InFeed() {
-  const styles = StyleSheet.create({
-    image: {
-      flex: 1,
-      justifyContent: 'center'
-    },
-    title: {
-      color: 'white',
-      fontSize: 30,
-      lineHeight: 84,
-      textAlign: 'center'
-    },
-    subtitle: {
-      color: 'white',
-      fontSize: 20,
-      lineHeight: 84,
-      textAlign: 'center'
-    },
-    titleBody: {
-      color: 'black',
-      fontSize: 25,
-      fontWeight: 'bold',
-      textAlign: 'justify'
-    },
-    subtitleBody: {
-      color: 'black',
-      fontSize: 20,
-      textAlign: 'justify'
-    },
-    fakeArticle: {
-      height: 10,
-      width: '100%',
-      backgroundColor: '#cfcfcf',
-      opacity: 0.32,
-      borderRadius: 10,
-      marginTop: 10
-    },
-    background: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      height: 170
-    }
-  })
-
   return (
-    <ScrollView style={{ flexGrow: 1 }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'stretch'
-        }}
-      >
+    <ScrollView style={styles.mainScrollView}>
+      <View style={styles.mainView}>
         <ImageBackground source={require('../assets/coffee_bg.png')} resizeMode="cover" style={styles.image}>
           <LinearGradient
             // Background Linear Gradient
@@ -67,13 +16,13 @@ export default function InFeed() {
             start={{ x: 0, y: 1 }}
             end={{ x: 1, y: 1 }}
           />
-          <View style={{ width: '100%' }}>
+          <View style={styles.viewFullWidth}>
             <Text style={styles.title}>Native Demo InFeed </Text>
             <Text style={styles.subtitle}>Scroll down to see your creative</Text>
           </View>
         </ImageBackground>
       </View>
-      <View style={{ flex: 1, padding: 10, flexDirection: 'column' }}>
+      <View style={styles.viewCollumn}>
         <InFeedItem
           icon="https://www.theminotvoice.com/wp-content/uploads/sites/2/2016/10/NYT-icon.png"
           text=" In the latest installment of the “Spider-Man” series, Tom Holland faces the past and a very secure franchise

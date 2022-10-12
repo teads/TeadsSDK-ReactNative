@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import ListFormats from '../components/ListFormats'
 import ListCreatives from '../components/ListCreatives'
 import ListIntegrations from '../components/ListIntegrations'
+import styles from '../styles/styles'
 
 export default function HomeScreen({ navigation }) {
   //state for variables custom Pid,  openning of the modal and selection of creative style
@@ -18,7 +19,7 @@ export default function HomeScreen({ navigation }) {
   // On press on the button you can see log on android studio or in the developper tools
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+    <ScrollView contentContainerStyle={styles.mainScrollView}>
       <View>
         {/* Component List Of Formats */}
         <ListFormats navigation={navigation} />

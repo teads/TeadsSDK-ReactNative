@@ -1,51 +1,34 @@
 import { Text, View, Button, Image } from 'react-native'
 import { Card } from 'react-native-elements'
+import styles from '../styles/styles'
 
 import * as React from 'react'
 
 const InFeedItem = ({ icon, text, title, media, time, source, textButton }) => {
   return (
     <Card borderRadius={20}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'flex-end',
-          alignItems: 'stretch',
-          marginBottom: 10
-        }}
-      >
-        <View style={{ width: '20%', marginLeft: 10 }}>
+      <View style={styles.containerNative}>
+        <View style={styles.containerImage}>
           <Image
-            style={{ width: 40, height: 40, borderRadius: 20 }}
+            style={styles.imageLogoItem}
             resizeMode="cover"
             source={{
               uri: icon
             }}
           />
         </View>
-        <View
-          style={{
-            width: '50%',
-            flexDirection: 'column',
-            justifyContent: 'flex-end',
-            alignItems: 'stretch',
-            marginBottom: 10
-          }}
-        >
-          <Text style={{ marginBottom: 1 }}>{source}</Text>
-          <Text style={{ marginBottom: 1 }}>{time}min</Text>
+        <View style={styles.containerDetails}>
+          <Text style={styles.lignDetails}>{source}</Text>
+          <Text style={styles.lignDetails}>{time}min</Text>
         </View>
-        <View style={{ width: '30%' }}>
-          <Button
-            buttonStyle={{ borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
-            title={textButton}
-          />
+        <View style={styles.containerButtonNative}>
+          <Button buttonStyle={styles.buttonNative} title={textButton} />
         </View>
       </View>
       <Card.Title>{title}</Card.Title>
-      <Text style={{ marginBottom: 10 }}>{text}</Text>
+      <Text style={styles.lignDetails}>{text}</Text>
       <Image
-        style={{ width: '100%', height: 150, borderRadius: 20 }}
+        style={styles.mainItemImage}
         resizeMode="cover"
         source={{
           uri: media
