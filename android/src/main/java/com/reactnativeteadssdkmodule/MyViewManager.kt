@@ -19,7 +19,7 @@ class MyViewManager : SimpleViewManager<CustomView>() {
 
   @ReactProp(name = "adId")
   fun setAdId(view: CustomView, newId: String?) {
-    if (newId == null || newId == adId) return
+    if (newId == null ) return
     adId = newId
     adView=RNAdInstanceManager.shared.instance(newId).inReadAdView
 
