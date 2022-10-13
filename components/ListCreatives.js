@@ -2,13 +2,11 @@ import React from 'react'
 import { Text, View, Pressable } from 'react-native'
 import ModalCustom from '../components/ModalCustom'
 import styles from '../styles/styles'
+import { CREATIVETYPES, CUSTOM } from '../constants'
 
 const ListCreatives = ({ pid, onChangePid, modalVisible, setModalVisible, selectedCreative, setSelectedCreative }) => {
-  const custom = 'Custom'
-  const creativeTypes = ['Landscape', 'Vertical', 'Square', 'Caroussel']
-
   const listCreatives = () => {
-    return creativeTypes.map(creativeType => {
+    return CREATIVETYPES.map(creativeType => {
       return (
         <View key={creativeType}>
           <Pressable
@@ -27,16 +25,15 @@ const ListCreatives = ({ pid, onChangePid, modalVisible, setModalVisible, select
       <Text style={styles.listText}>Creatives</Text>
       <View style={styles.containerRow}>{listCreatives()}</View>
 
-      {/*custom component */}
       <View style={styles.containerRow}>
-        <View style={{ flex: 1, justifyContent: 'center' }}>
+        <View style={styles.centered}>
           <Pressable
-            style={selectedCreative == custom ? styles.button : styles.buttonUnpressed}
+            style={selectedCreative == CUSTOM ? styles.button : styles.buttonUnpressed}
             onPress={() => {
-              setSelectedCreative(custom), setModalVisible(true)
+              setSelectedCreative(CUSTOM), setModalVisible(true)
             }}
           >
-            <Text style={selectedCreative == custom ? styles.text : styles.textUnpressed}>{custom}</Text>
+            <Text style={selectedCreative == CUSTOM ? styles.text : styles.textUnpressed}>{CUSTOM}</Text>
           </Pressable>
         </View>
       </View>

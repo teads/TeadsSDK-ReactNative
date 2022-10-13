@@ -4,12 +4,12 @@ import ListFormats from '../components/ListFormats'
 import ListCreatives from '../components/ListCreatives'
 import ListIntegrations from '../components/ListIntegrations'
 import styles from '../styles/styles'
+import { DEFAULT_CREATIVE, DEFAULT_MODAL, TEST_PID } from '../constants'
 
 export default function HomeScreen({ navigation }) {
-  //state for variables custom Pid,  openning of the modal and selection of creative style
-  const [pid, onChangePid] = useState('84242')
-  const [modalVisible, setModalVisible] = useState(false)
-  const [selectedCreative, setSelectedCreative] = useState('Landscape')
+  const [pid, onChangePid] = useState(TEST_PID)
+  const [modalVisible, setModalVisible] = useState(DEFAULT_MODAL)
+  const [selectedCreative, setSelectedCreative] = useState(DEFAULT_CREATIVE)
   const OS = Platform.OS
 
   const { InReadModule } = NativeModules
@@ -24,6 +24,7 @@ export default function HomeScreen({ navigation }) {
         {/* Component List Of Formats */}
         <ListFormats navigation={navigation} />
 
+        {/* Just for testing, not going to stay after merge with native_modules */}
         <Button title="Click to invoke your native module!" color="#841584" onPress={onPress} />
 
         {/* List Of choice for Creatives with selector using the State */}
@@ -36,7 +37,7 @@ export default function HomeScreen({ navigation }) {
           setSelectedCreative={setSelectedCreative}
         />
 
-        {/* List Of Intégrations redirecting to the demo pages */}
+        {/* List Of Integrations redirecting to the demo pages */}
         <ListIntegrations navigation={navigation} />
       </View>
     </ScrollView>

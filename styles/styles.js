@@ -1,4 +1,4 @@
-import React, { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   background: {
@@ -13,6 +13,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     padding: 10
   },
+  centered: { flex: 1, justifyContent: 'center' },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -39,6 +40,7 @@ export default StyleSheet.create({
     letterSpacing: 0.25,
     color: '#0818B3'
   },
+
   containerRow: {
     flexWrap: 'wrap',
     flexDirection: 'row',
@@ -231,7 +233,7 @@ export default StyleSheet.create({
   viewRow: { flexDirection: 'row' },
   logoImage: { width: 30, height: 28, resizeMode: 'cover' },
   logoTeads: { width: 150, height: 30, resizeMode: 'cover' },
-
+  formatContainerRow: { flex: 0.48 },
   //native InFeedItem
   containerNative: {
     flexDirection: 'row',

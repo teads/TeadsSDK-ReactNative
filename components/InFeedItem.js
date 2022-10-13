@@ -1,17 +1,17 @@
 import { Text, View, Button, Image } from 'react-native'
 import { Card } from 'react-native-elements'
 import styles from '../styles/styles'
-
+import { COVER_RESIZING, RADIUS_CARD } from '../constants'
 import * as React from 'react'
 
 const InFeedItem = ({ icon, text, title, media, time, source, textButton }) => {
   return (
-    <Card borderRadius={20}>
+    <Card borderRadius={RADIUS_CARD}>
       <View style={styles.containerNative}>
         <View style={styles.containerImage}>
           <Image
             style={styles.imageLogoItem}
-            resizeMode="cover"
+            resizeMode={COVER_RESIZING}
             source={{
               uri: icon
             }}
@@ -29,7 +29,7 @@ const InFeedItem = ({ icon, text, title, media, time, source, textButton }) => {
       <Text style={styles.lignDetails}>{text}</Text>
       <Image
         style={styles.mainItemImage}
-        resizeMode="cover"
+        resizeMode={COVER_RESIZING}
         source={{
           uri: media
         }}

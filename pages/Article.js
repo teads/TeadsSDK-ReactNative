@@ -2,19 +2,17 @@ import { Text, View, ImageBackground, ScrollView } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import * as React from 'react'
 import styles from '../styles/styles'
-
-{
-  /* fake article where we display the ad */
-}
+import CoffeImage from '../assets/coffee_bg.png'
+import { COVER_RESIZING, TEADSBLUE, TEADSPINK } from '../constants'
 
 export default function Article() {
   return (
     <ScrollView style={styles.mainScrollView}>
       <View style={styles.mainView}>
-        <ImageBackground source={require('../assets/coffee_bg.png')} resizeMode="cover" style={styles.image}>
+        <ImageBackground source={CoffeImage} resizeMode={COVER_RESIZING} style={styles.image}>
           <LinearGradient
             // Background Linear Gradient
-            colors={['rgba(171, 65, 149, 0.7)', '#215798']}
+            colors={[TEADSPINK, TEADSBLUE]}
             style={styles.background}
             start={{ x: 0, y: 1 }}
             end={{ x: 1, y: 1 }}

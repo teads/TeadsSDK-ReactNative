@@ -1,25 +1,15 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, Image } from 'react-native'
-import ScrollView from '../assets/ScrollView.imageset/ScrollView150.png'
-import TableView from '../assets/TableView.imageset/TableView150.png'
-import CollectionView from '../assets/CollectionView.imageset/CollectionView150.png'
-import WebView from '../assets/ScrollView.imageset/ScrollView150.png'
 import styles from '../styles/styles'
+import { DEMOSCREEN, TAB_INTEGRATIONS } from '../constants'
 
 const ListIntegrations = ({ navigation }) => {
   function navigateToDemo(navigation) {
-    return navigation.navigate('Demo')
+    return navigation.navigate(DEMOSCREEN)
   }
 
-  const tabIntegrations = [
-    { type: 'ScrollView', image: ScrollView },
-    { type: 'TableView', image: TableView },
-    { type: 'CollectionView', image: CollectionView },
-    { type: 'WebView', image: WebView }
-  ]
-
   const listIntegrations = () => {
-    return tabIntegrations.map(integration => {
+    return TAB_INTEGRATIONS.map(integration => {
       return (
         <View key={integration.type} style={styles.integrationsItems}>
           <TouchableOpacity onPress={() => navigateToDemo(navigation)}>

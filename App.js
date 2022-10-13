@@ -8,6 +8,7 @@ import ActionBarImageWhite from './components/ActionBarImageWhite'
 import styles from './styles/styles'
 import HomeScreen from './pages/Homescreen'
 import InFeed from './pages/InFeed'
+import { HOMESCREEN, DEMOSCREEN, TEADSPINK, TEADSBLUE, NATIVESCREEN } from './constants'
 
 const Stack = createNativeStackNavigator()
 
@@ -16,15 +17,14 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
+          name={HOMESCREEN}
           component={HomeScreen}
           options={{
-            title: '',
             headerTitle: () => <ActionBarImage />
           }}
         />
         <Stack.Screen
-          name="Demo"
+          name={DEMOSCREEN}
           component={Article}
           options={{
             title: '',
@@ -32,7 +32,7 @@ export default function App() {
             headerBackground: () => (
               <LinearGradient
                 // Background Linear Gradient
-                colors={['rgba(171, 65, 149, 0.7)', '#215798']}
+                colors={[TEADSPINK, TEADSBLUE]}
                 style={styles.background}
                 start={{ x: 0, y: 1 }}
                 end={{ x: 1, y: 1 }}
@@ -41,7 +41,7 @@ export default function App() {
           }}
         />
         <Stack.Screen
-          name="Native"
+          name={NATIVESCREEN}
           component={InFeed}
           options={{
             title: '',
@@ -49,7 +49,7 @@ export default function App() {
             headerBackground: () => (
               <LinearGradient
                 // Background Linear Gradient
-                colors={['rgba(171, 65, 149, 0.7)', '#215798']}
+                colors={[TEADSPINK, TEADSBLUE]}
                 style={styles.background}
                 start={{ x: 0, y: 1 }}
                 end={{ x: 1, y: 1 }}
