@@ -5,7 +5,7 @@ import ActionBarImage from './components/ActionBarImage'
 import Article from './pages/Article'
 import { LinearGradient } from 'expo-linear-gradient'
 import ActionBarImageWhite from './components/ActionBarImageWhite'
-import styles from './styles/styles'
+import styleApp from './styles/styleApp'
 import HomeScreen from './pages/Homescreen'
 import InFeed from './pages/InFeed'
 import { HOMESCREEN, DEMOSCREEN, TEADSPINK, TEADSBLUE, NATIVESCREEN } from './constants'
@@ -33,7 +33,7 @@ export default function App() {
               <LinearGradient
                 // Background Linear Gradient
                 colors={[TEADSPINK, TEADSBLUE]}
-                style={styles.background}
+                style={styleApp.background}
                 start={{ x: 0, y: 1 }}
                 end={{ x: 1, y: 1 }}
               />
@@ -50,7 +50,7 @@ export default function App() {
               <LinearGradient
                 // Background Linear Gradient
                 colors={[TEADSPINK, TEADSBLUE]}
-                style={styles.background}
+                style={styleApp.background}
                 start={{ x: 0, y: 1 }}
                 end={{ x: 1, y: 1 }}
               />

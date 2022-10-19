@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, Pressable } from 'react-native'
-import styles from '../styles/styles'
+import styleListFormats from '../styles/styleListFormats'
 import { NATIVESCREEN } from '../constants'
 
 const ListFormats = ({ navigation }) => {
@@ -10,17 +10,17 @@ const ListFormats = ({ navigation }) => {
 
   return (
     <View>
-      <Text style={styles.listText}>Formats</Text>
-      <View style={styles.containerRow}>
-        <View style={styles.formatContainerRow}>
-          <Pressable style={styles.button}>
-            <Text style={styles.text}>InRead</Text>
+      <Text style={styleListFormats.listText}>Formats</Text>
+      <View style={styleListFormats.containerRow}>
+        <View style={styleListFormats.formatContainerRow}>
+          <Pressable style={styleListFormats.button}>
+            <Text style={styleListFormats.text}>InRead</Text>
           </Pressable>
         </View>
 
-        <View style={styles.formatContainerRow}>
-          <Pressable style={styles.buttonUnpressed} onPress={() => navigateToNative(navigation)}>
-            <Text style={styles.textUnpressed}>Native</Text>
+        <View style={styleListFormats.formatContainerRow}>
+          <Pressable style={styleListFormats.buttonUnpressed} onPress={() => navigateToNative(navigation)}>
+            <Text style={styleListFormats.textUnpressed}>Native</Text>
           </Pressable>
         </View>
       </View>

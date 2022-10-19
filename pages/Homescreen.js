@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import ListFormats from '../components/ListFormats'
 import ListCreatives from '../components/ListCreatives'
 import ListIntegrations from '../components/ListIntegrations'
-import styles from '../styles/styles'
+import styleHomescreen from '../styles/styleHomescreen'
 import { DEFAULT_CREATIVE, DEFAULT_MODAL, TEST_PID } from '../constants'
 
 export default function HomeScreen({ navigation }) {
@@ -19,7 +19,7 @@ export default function HomeScreen({ navigation }) {
   // On press on the button you can see log on android studio or in the developper tools
 
   return (
-    <ScrollView contentContainerStyle={styles.mainScrollView}>
+    <ScrollView contentContainerStyle={styleHomescreen.mainScrollView}>
       <View>
         {/* Component List Of Formats */}
         <ListFormats navigation={navigation} />

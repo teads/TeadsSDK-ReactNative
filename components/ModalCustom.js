@@ -1,10 +1,10 @@
 import React from 'react'
 import { Text, View, Pressable, Modal, TextInput } from 'react-native'
-import styles from '../styles/styles'
+import styleModalCustom from '../styles/styleModalCustom'
 
 export default function ModalCustom({ modalVisible, setModalVisible, pid, onChangePid }) {
   return (
-    <View style={styles.centeredView}>
+    <View style={styleModalCustom.centeredView}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -13,12 +13,12 @@ export default function ModalCustom({ modalVisible, setModalVisible, pid, onChan
           setModalVisible(!modalVisible)
         }}
       >
-        <View style={styles.centeredViewModal}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Enter your custom pid</Text>
-            <TextInput style={styles.input} onChangeText={onChangePid} value={pid} />
-            <Pressable style={styles.buttonModal} onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Ok</Text>
+        <View style={styleModalCustom.centeredViewModal}>
+          <View style={styleModalCustom.modalView}>
+            <Text style={styleModalCustom.modalText}>Enter your custom pid</Text>
+            <TextInput style={styleModalCustom.input} onChangeText={onChangePid} value={pid} />
+            <Pressable style={styleModalCustom.buttonModal} onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styleModalCustom.textStyle}>Ok</Text>
             </Pressable>
           </View>
         </View>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, Pressable } from 'react-native'
 import ModalCustom from '../components/ModalCustom'
-import styles from '../styles/styles'
+import styleListCreatives from '../styles/styleListCreatives'
 import { CREATIVETYPES, CUSTOM } from '../constants'
 
 const ListCreatives = ({ pid, onChangePid, modalVisible, setModalVisible, selectedCreative, setSelectedCreative }) => {
@@ -10,10 +10,12 @@ const ListCreatives = ({ pid, onChangePid, modalVisible, setModalVisible, select
       return (
         <View key={creativeType}>
           <Pressable
-            style={selectedCreative == creativeType ? styles.button : styles.buttonUnpressed}
+            style={selectedCreative == creativeType ? styleListCreatives.button : styleListCreatives.buttonUnpressed}
             onPress={() => setSelectedCreative(creativeType)}
           >
-            <Text style={selectedCreative == creativeType ? styles.text : styles.textUnpressed}>{creativeType}</Text>
+            <Text style={selectedCreative == creativeType ? styleListCreatives.text : styleListCreatives.textUnpressed}>
+              {creativeType}
+            </Text>
           </Pressable>
         </View>
       )
@@ -22,18 +24,20 @@ const ListCreatives = ({ pid, onChangePid, modalVisible, setModalVisible, select
 
   return (
     <View>
-      <Text style={styles.listText}>Creatives</Text>
-      <View style={styles.containerRow}>{listCreatives()}</View>
+      <Text style={styleListCreatives.listText}>Creatives</Text>
+      <View style={styleListCreatives.containerRow}>{listCreatives()}</View>
 
-      <View style={styles.containerRow}>
-        <View style={styles.centered}>
+      <View style={styleListCreatives.containerRow}>
+        <View style={styleListCreatives.centered}>
           <Pressable
-            style={selectedCreative == CUSTOM ? styles.button : styles.buttonUnpressed}
+            style={selectedCreative == CUSTOM ? styleListCreatives.button : styleListCreatives.buttonUnpressed}
             onPress={() => {
               setSelectedCreative(CUSTOM), setModalVisible(true)
             }}
           >
-            <Text style={selectedCreative == CUSTOM ? styles.text : styles.textUnpressed}>{CUSTOM}</Text>
+            <Text style={selectedCreative == CUSTOM ? styleListCreatives.text : styleListCreatives.textUnpressed}>
+              {CUSTOM}
+            </Text>
           </Pressable>
         </View>
       </View>

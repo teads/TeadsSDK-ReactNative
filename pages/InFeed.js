@@ -2,7 +2,7 @@ import { Text, View, ImageBackground, ScrollView } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import * as React from 'react'
 import InFeedItem from '../components/InFeedItem'
-import styles from '../styles/styles'
+import styleInFeed from '../styles/styleInFeed'
 import CoffeImage from '../assets/coffee_bg.png'
 import { COVER_RESIZING, TAB_NATIVE_ITEMS, TEADSBLUE, TEADSPINK } from '../constants'
 
@@ -25,23 +25,23 @@ export default function InFeed() {
   }
 
   return (
-    <ScrollView style={styles.mainScrollView}>
-      <View style={styles.mainView}>
-        <ImageBackground source={CoffeImage} resizeMode={COVER_RESIZING} style={styles.image}>
+    <ScrollView style={styleInFeed.mainScrollView}>
+      <View style={styleInFeed.mainView}>
+        <ImageBackground source={CoffeImage} resizeMode={COVER_RESIZING} style={styleInFeed.image}>
           <LinearGradient
             // Background Linear Gradient
             colors={[TEADSPINK, TEADSBLUE]}
-            style={styles.background}
+            style={styleInFeed.background}
             start={{ x: 0, y: 1 }}
             end={{ x: 1, y: 1 }}
           />
-          <View style={styles.viewFullWidth}>
-            <Text style={styles.title}>Native Demo InFeed </Text>
-            <Text style={styles.subtitle}>Scroll down to see your creative</Text>
+          <View style={styleInFeed.viewFullWidth}>
+            <Text style={styleInFeed.title}>Native Demo InFeed </Text>
+            <Text style={styleInFeed.subtitle}>Scroll down to see your creative</Text>
           </View>
         </ImageBackground>
       </View>
-      <View style={styles.viewCollumn}>{listItems()}</View>
+      <View style={styleInFeed.viewCollumn}>{listItems()}</View>
     </ScrollView>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, Image } from 'react-native'
-import styles from '../styles/styles'
+import styleListIntegrations from '../styles/styleListIntegrations'
 import { DEMOSCREEN, TAB_INTEGRATIONS } from '../constants'
 
 const ListIntegrations = ({ navigation }) => {
@@ -11,14 +11,14 @@ const ListIntegrations = ({ navigation }) => {
   const listIntegrations = () => {
     return TAB_INTEGRATIONS.map(integration => {
       return (
-        <View key={integration.type} style={styles.integrationsItems}>
+        <View key={integration.type} style={styleListIntegrations.integrationsItems}>
           <TouchableOpacity onPress={() => navigateToDemo(navigation)}>
-            <View style={styles.containerColumn}>
-              <View style={styles.imageItems}>
-                <Image source={integration.image} style={styles.integrationsImages} />
+            <View style={styleListIntegrations.containerColumn}>
+              <View style={styleListIntegrations.imageItems}>
+                <Image source={integration.image} style={styleListIntegrations.integrationsImages} />
               </View>
-              <View style={styles.textItems}>
-                <Text style={styles.textIntegrations}>{integration.type}</Text>
+              <View style={styleListIntegrations.textItems}>
+                <Text style={styleListIntegrations.textIntegrations}>{integration.type}</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -29,8 +29,8 @@ const ListIntegrations = ({ navigation }) => {
 
   return (
     <View>
-      <Text style={styles.listText}>Integrations</Text>
-      <View style={styles.containerRow}>{listIntegrations()}</View>
+      <Text style={styleListIntegrations.listText}>Integrations</Text>
+      <View style={styleListIntegrations.containerRow}>{listIntegrations()}</View>
     </View>
   )
 }
