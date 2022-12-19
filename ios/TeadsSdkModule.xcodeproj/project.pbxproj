@@ -3,12 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E555C0D2413F4C50049A1A2 /* TeadsSdkModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* TeadsSdkModule.m */; };
-		F4FF95D7245B92E800C19C63 /*  TeadsSdkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  TeadsSdkModule.swift */; };
+		D2AD057A291279D10008CA12 /* TeadsSDK in Frameworks */ = {isa = PBXBuildFile; productRef = D2AD0579291279D10008CA12 /* TeadsSDK */; };
+		F4FF95D7245B92E800C19C63 /* TeadsSdkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* TeadsSdkModule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2AD057A291279D10008CA12 /* TeadsSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +76,9 @@
 			dependencies = (
 			);
 			name = TeadsSdkModule;
+			packageProductDependencies = (
+				D2AD0579291279D10008CA12 /* TeadsSDK */,
+			);
 			productName = RCTDataManager;
 			productReference = 134814201AA4EA6300B7C361 /* libTeadsSdkModule.a */;
 			productType = "com.apple.product-type.library.static";
@@ -102,6 +106,9 @@
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
+			packageReferences = (
+				D2AD0578291279D10008CA12 /* XCRemoteSwiftPackageReference "TeadsSDK-iOS" */,
+			);
 			productRefGroup = 58B511D21A9E6C8500147676;
 			projectDirPath = "";
 			projectRoot = "";
@@ -117,7 +124,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4FF95D7245B92E800C19C63 /* TeadsSdkModule.swift in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* TeadsSdkModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +284,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D2AD0578291279D10008CA12 /* XCRemoteSwiftPackageReference "TeadsSDK-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/teads/TeadsSDK-iOS";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D2AD0579291279D10008CA12 /* TeadsSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2AD0578291279D10008CA12 /* XCRemoteSwiftPackageReference "TeadsSDK-iOS" */;
+			productName = TeadsSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 58B511D31A9E6C8500147676 /* Project object */;
 }
