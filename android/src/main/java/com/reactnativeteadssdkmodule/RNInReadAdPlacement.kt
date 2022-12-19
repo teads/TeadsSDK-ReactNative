@@ -4,7 +4,6 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import com.facebook.react.bridge.*
-import com.mypackage.CustomView
 import tv.teads.sdk.*
 import tv.teads.sdk.renderer.InReadAdView
 import java.util.*
@@ -36,8 +35,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
               instanceIdentifier
             )
           )
-
-
 
           Handler(Looper.getMainLooper()).post {
             Log.d("from ad","didReceiveAd")

@@ -1,6 +1,5 @@
 // replace with your package
 package com.mypackage
-
 import android.content.Context
 import android.widget.FrameLayout
 import tv.teads.sdk.renderer.InReadAdView
@@ -21,3 +20,4 @@ class CustomView(context: Context) : FrameLayout(context) {
 
 
 }
+
