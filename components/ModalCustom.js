@@ -1,64 +1,10 @@
 import React from 'react'
-import { Text, View, Pressable, Modal, TextInput, StyleSheet } from 'react-native'
+import { Text, View, Pressable, Modal, TextInput } from 'react-native'
+import styleModalCustom from '../styles/styleModalCustom'
 
 export default function ModalCustom({ modalVisible, setModalVisible, pid, onChangePid }) {
-  const styles = StyleSheet.create({
-    centeredView: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 22
-    },
-    modalView: {
-      margin: 20,
-      backgroundColor: 'white',
-      borderRadius: 20,
-      padding: 35,
-      alignItems: 'center',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5
-    },
-    buttonClose: {
-      backgroundColor: '#2196F3'
-    },
-    textStyle: {
-      color: 'white',
-      fontWeight: 'bold',
-      textAlign: 'center'
-    },
-    modalText: {
-      marginBottom: 15,
-      textAlign: 'center'
-    },
-    input: {
-      height: 40,
-      margin: 12,
-      borderWidth: 1,
-      padding: 10
-    },
-    button: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingVertical: 12,
-      paddingHorizontal: 8,
-      borderRadius: 18,
-      elevation: 3,
-      backgroundColor: '#0818B3'
-    },
-    textStyle: {
-      color: 'white',
-      fontWeight: 'bold',
-      textAlign: 'center'
-    }
-  })
   return (
-    <View style={styles.centeredView}>
+    <View style={styleModalCustom.centeredView}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -67,12 +13,12 @@ export default function ModalCustom({ modalVisible, setModalVisible, pid, onChan
           setModalVisible(!modalVisible)
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Enter your custom pid</Text>
-            <TextInput style={styles.input} onChangeText={onChangePid} value={pid} />
-            <Pressable style={styles.button} onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Ok</Text>
+        <View style={styleModalCustom.centeredViewModal}>
+          <View style={styleModalCustom.modalView}>
+            <Text style={styleModalCustom.modalText}>Enter your custom pid</Text>
+            <TextInput style={styleModalCustom.input} onChangeText={onChangePid} value={pid} />
+            <Pressable style={styleModalCustom.buttonModal} onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styleModalCustom.textStyle}>Ok</Text>
             </Pressable>
           </View>
         </View>

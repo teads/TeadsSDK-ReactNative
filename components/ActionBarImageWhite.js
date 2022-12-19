@@ -1,11 +1,12 @@
 import React from 'react'
 import { View, Image } from 'react-native'
 import TeadsSampleAppWhite from '../assets/Teads-Sample-App.imageset/Teads-Sample-App-white.png'
+import styleActionBarImageWhite from '../styles/styleActionBarImageWhite'
 
 const ActionBarImageWhite = () => {
   return (
-    <View style={{ flexDirection: 'row' }}>
-      <Image style={{ width: 150, height: 30, resizeMode: 'cover' }} source={TeadsSampleAppWhite} />
+    <View style={styleActionBarImageWhite.viewRow}>
+      <Image style={styleActionBarImageWhite.logoTeads} source={TeadsSampleAppWhite} />
     </View>
   )
 }
