@@ -194,7 +194,7 @@ const RNInReadAdPlacement = NativeModules.RNInReadAdPlacement
 export async function requestAd(
   settingsMap: Map<String, any>
 ): Promise<String> {
-  console.log('settings', settingsMap);
+  console.log('settingsfromJS', settingsMap);
   return await RNInReadAdPlacement.requestAd(settingsMap);
 }
 

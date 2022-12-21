@@ -8,12 +8,12 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
 
-@interface RCT_EXTERN_MODULE(RNAd, NSObject)
+@interface RCT_EXTERN_MODULE(RNInReadAdPlacement, NSObject)
 
 RCT_EXTERN_METHOD(
-                  requestAd:(NSArray)settingsMap
+                  requestAd:(NSDictionary *)settingsMap
                   resolve:(RCTPromiseResolveBlock)resolve
-                  rejecter: (RCTPromiseRejectBlock)reject
+                  reject: (RCTPromiseRejectBlock)reject
                   )
 
 + (BOOL)requiresMainQueueSetup
