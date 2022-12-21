@@ -15,14 +15,22 @@ class RNTeads: NSObject {
     @objc
     func createInReadPlacement(_ pid : Float, settingsMap : NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
         print("settings",settingsMap)
-        if settingsMap != nil {
-            //RNTeadsInReadAdInstanceManager.shared.placement = Teads.createInReadPlacement(pid: Int(pid), settings: settingsMap)
-                resolve(nil)
-            }
-         else {
+        let data = json(from: settingsMap)!
+        let decoder = JSONDecoder()
+        if let settings = try? decoder.decode(TeadsAdPlacementSettings.self, from: data) {
+            RNTeadsInReadAdInstanceManager.shared.placement = Teads.createInReadPlacement(pid: Int(pid), settings: settings)
+            resolve(nil)
+        }
+        else {
             let error = NSError(domain: "", code: 200, userInfo: nil)
             reject("E_RNTeads", "Error on RNTeads", error)
         }
     }
-
+    
+    func json(from object:Any) -> Data? {
+        guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
+            return nil
+        }
+        return data
+    }
 }
