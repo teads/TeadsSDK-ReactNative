@@ -2,10 +2,10 @@ import * as React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import { multiply } from 'react-native-teads-sdk-module';
 // import MyView from '../../src/my-view';
-// import Teads from '../../src/teads';
+import Teads from '../../src/teads';
 import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
 import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
-// import TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
+import type TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
@@ -18,7 +18,7 @@ export default function App() {
 
   var testAdPlacementSetting = new TeadsAdPlacementSettings();
   var testAdRequestSettings = new TeadsAdRequestSettings();
-  // var placement: TeadsInReadAdPlacement | undefined;
+  var placement: TeadsInReadAdPlacement | undefined;
 
   console.log(testAdPlacementSetting);
 
@@ -36,13 +36,15 @@ export default function App() {
     await testAdRequestSettings.RNenableValidationMode();
     console.log('TeadsAdRequestSettings', testAdRequestSettings.mapValue);
 
-    // //id de test
-    // placement = await Teads.RNcreateInReadPlacement(
-    //   128779,
-    //   testAdPlacementSetting
-    // );
+    // id de test
+    placement = await Teads.RNcreateInReadPlacement(
+      128779,
+      testAdPlacementSetting
+    );
 
-    // await placement?.RNrequestAd(testAdRequestSettings).then(setAdId);
+    console.log('placement', placement);
+
+    //await placement?.RNrequestAd(testAdRequestSettings).then(setAdId);
     // console.log('TeadsPlacement requestAd', adId);
 
     multiply(2, 10).then(setResult);
