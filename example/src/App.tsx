@@ -5,12 +5,12 @@ import { multiply } from 'react-native-teads-sdk-module';
 import Teads from '../../src/teads';
 import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
 import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
-import type TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
+import TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
   // const [showAd, setShowAd] = React.useState<boolean>(false);
-  // const [adId, setAdId] = React.useState<String>('testid');
+  const [adId, setAdId] = React.useState<String>('testid');
 
   React.useEffect(() => {
     multiply(1, 2).then(setResult);
@@ -28,6 +28,7 @@ export default function App() {
     //await testAdPlacementSetting.RNsetUsPrivacy('ok');
 
     console.log('TeadsAdPlacementSettings', testAdPlacementSetting.mapValue);
+    console.log(TeadsInReadAdPlacement);
 
     console.log(
       'retour de req',
@@ -44,15 +45,16 @@ export default function App() {
 
     console.log('placement', placement);
 
-    //await placement?.RNrequestAd(testAdRequestSettings).then(setAdId);
-    // console.log('TeadsPlacement requestAd', adId);
+    await placement?.RNrequestAd(testAdRequestSettings).then(setAdId);
+    console.log('TeadsPlacement requestAd', adId);
 
     multiply(2, 10).then(setResult);
   }
 
-  // function onPressAd(this: any) {
-  //   setShowAd(!showAd);
-  // }
+  function onPressAd(this: any) {
+    console.log('adIDDDDD', adId);
+    //setShowAd(!showAd);
+  }
 
   // let ad;
   // showAd
@@ -75,7 +77,7 @@ export default function App() {
         onPress={onPress}
       />
       <Text>Result: {result}</Text>
-      {/* <Button title="show ad" color="#841584" onPress={onPressAd} /> */}
+      <Button title="show ad" color="#841584" onPress={onPressAd} />
       {/* {ad} */}
     </View>
   );

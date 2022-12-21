@@ -11,35 +11,46 @@ import TeadsSDK
 class RNInReadAdPlacement: NSObject {
     
     @objc
-    func requestAd(_ settingsMap:NSArray, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-        if let data = try? JSONSerialization.data(withJSONObject: settingsMap, options: .prettyPrinted) {
-            let decoder = JSONDecoder()
-            if let settings = try? decoder.decode(TeadsAdRequestSettings.self, from: data) {
-                //RNTeadsInReadAdInstanceManager.shared.placement? = self
-                if let id = RNTeadsInReadAdInstanceManager.shared.placement?.requestAd(requestSettings: settings) {
-                    resolve(id.uuidString)
-                } else {
-                    let error = NSError(domain: "", code: 200, userInfo: nil)
-                    reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement", error)
-                }
+    func requestAd(_ settingsMap:NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+        print("settingsFromRequest",settingsMap)
+        let data = json(from: settingsMap)!
+        let decoder = JSONDecoder()
+        if let settings = try? decoder.decode(TeadsAdRequestSettings.self, from: data) {
+            //RNTeadsInReadAdInstanceManager.shared.placement = self
+            if let id = RNTeadsInReadAdInstanceManager.shared.placement?.requestAd(requestSettings: settings) {
+                print("ID", id.uuidString)
+                resolve(id.uuidString)
+            } else {
+                let error = NSError(domain: "", code: 200, userInfo: nil)
+                reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement request ad", error)
             }
-        }
-        else {
+        }else {
             let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement", error)
+            reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement decoding", error)
         }
     }
-}
-
-extension RNInReadAdPlacement: TeadsAdPlacementDelegate {
+    
+    func json(from object:Any) -> Data? {
+        guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
+            return nil
+        }
+        return data
+    }
+    
     func didFailToReceiveAd(reason: AdFailReason) {
         print("didFailToReceiveAd")
     }
     
     func adOpportunityTrackerView(trackerView: TeadsAdOpportunityTrackerView) {
-        print("adOpportunityTrackerView")
+       //nothing
     }
     
+}
+
+
+
+extension RNInReadAdPlacement: TeadsAdPlacementDelegate {
+
     
     func didReceiveAd(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {
         RNTeadsInReadAdInstanceManager.shared.new(instance: RNInReadAdInstanceMap(teadsAd: ad, adRatio: adRatio))
