@@ -2,7 +2,7 @@
 //  RNTeads.swift
 //  react-native-teads-sdk-module
 //
-//  Created by Numa Maurin on 09/11/2022.
+//  Created by Numa Maurin on 21/12/2022.
 //
 
 import Foundation
@@ -13,17 +13,16 @@ import UIKit
 class RNTeads: NSObject {
     
     @objc
-    func createInReadAdPlacement(_ pid:Float, settingsMap:NSArray, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-        
-        if let data = try? JSONSerialization.data(withJSONObject: settingsMap, options: .prettyPrinted){
-            let decoder = JSONDecoder()
-            if let settings = try? decoder.decode(TeadsAdPlacementSettings.self, from: data) {
-                RNTeadsInReadAdInstanceManager.shared.placement = Teads.createInReadPlacement(pid: Int(pid), settings: settings)
+    func createInReadPlacement(_ pid : Float, settingsMap : NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+        print("settings",settingsMap)
+        if settingsMap != nil {
+            //RNTeadsInReadAdInstanceManager.shared.placement = Teads.createInReadPlacement(pid: Int(pid), settings: settingsMap)
                 resolve(nil)
             }
-        } else {
+         else {
             let error = NSError(domain: "", code: 200, userInfo: nil)
             reject("E_RNTeads", "Error on RNTeads", error)
         }
     }
+
 }
