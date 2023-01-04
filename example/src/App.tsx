@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import { multiply } from 'react-native-teads-sdk-module';
-// import MyView from '../../src/my-view';
+import MyView from '../../src/my-view';
 import Teads from '../../src/teads';
 import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
 import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
@@ -9,7 +9,7 @@ import TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
-  // const [showAd, setShowAd] = React.useState<boolean>(false);
+  const [showAd, setShowAd] = React.useState<boolean>(false);
   const [adId, setAdId] = React.useState<String>('testid');
 
   React.useEffect(() => {
@@ -53,21 +53,21 @@ export default function App() {
 
   function onPressAd(this: any) {
     console.log('adIDDDDD', adId);
-    //setShowAd(!showAd);
+    setShowAd(!showAd);
   }
 
-  // let ad;
-  // showAd
-  //   ? (ad = (
-  //       <MyView
-  //         style={{
-  //           height: 400,
-  //           width: 400,
-  //         }}
-  //         adId={adId}
-  //       ></MyView>
-  //     ))
-  //   : (ad = <></>);
+  let ad;
+  showAd
+    ? (ad = (
+        <MyView
+          style={{
+            height: 400,
+            width: 400,
+          }}
+          adId={adId}
+        ></MyView>
+      ))
+    : (ad = <></>);
 
   return (
     <View style={styles.container}>
@@ -78,7 +78,7 @@ export default function App() {
       />
       <Text>Result: {result}</Text>
       <Button title="show ad" color="#841584" onPress={onPressAd} />
-      {/* {ad} */}
+      {ad}
     </View>
   );
 }
