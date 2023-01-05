@@ -72,11 +72,12 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Button
-        title="Click to invoke your native module!"
+        title="Click to  request an ad with RN!"
         color="#841584"
         onPress={onPress}
       />
       <Text>Result: {result}</Text>
+      <Text>adId: {adId}</Text>
       <Button title="show ad" color="#841584" onPress={onPressAd} />
       {ad}
     </View>

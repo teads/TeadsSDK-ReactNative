@@ -9,6 +9,7 @@ import TeadsSDK
 
 @objc(RNInReadAdPlacement)
 class RNInReadAdPlacement: NSObject {
+
     
     @objc
     func requestAd(_ settingsMap:NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
@@ -16,7 +17,7 @@ class RNInReadAdPlacement: NSObject {
         let data = json(from: settingsMap)!
         let decoder = JSONDecoder()
         if let settings = try? decoder.decode(TeadsAdRequestSettings.self, from: data) {
-            //RNTeadsInReadAdInstanceManager.shared.placement = self
+            RNTeadsInReadAdInstanceManager.shared.placement?.delegate = self
             if let id = RNTeadsInReadAdInstanceManager.shared.placement?.requestAd(requestSettings: settings) {
                 print("ID", id.uuidString)
                 resolve(id.uuidString)
@@ -49,12 +50,11 @@ class RNInReadAdPlacement: NSObject {
 
 
 
-extension RNInReadAdPlacement: TeadsAdPlacementDelegate {
-
-    
+extension RNInReadAdPlacement: TeadsInReadAdPlacementDelegate {
     func didReceiveAd(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {
         RNTeadsInReadAdInstanceManager.shared.new(instance: RNInReadAdInstanceMap(teadsAd: ad, adRatio: adRatio))
         //channel.invokeMethod("didReceiveAd", arguments: [ad.requestIdentifier.uuidString])
+        print("DIDRECEIVEDAD")
     }
     
     func didUpdateRatio(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {
