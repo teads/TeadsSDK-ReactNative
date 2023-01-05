@@ -24,6 +24,7 @@ class RNTeadsInReadAdInstanceManager {
     
     func instance(for requestIdentifier: String) throws -> RNInReadAdInstanceMap {
         if let instance = list.first(where: { $0.teadsAd.requestIdentifier.uuidString == requestIdentifier }) {
+            //print("list instance",instance)
             return instance
         } else {
             throw NSError()
