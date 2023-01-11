@@ -3,7 +3,6 @@ import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
 import com.mypackage.CustomView
 import com.reactnativeteadssdkmodule.RNAdInstanceManager
-import okhttp3.internal.wait
 import tv.teads.sdk.renderer.InReadAdView
 
 class MyViewManager : SimpleViewManager<CustomView>() {
@@ -15,24 +14,19 @@ class MyViewManager : SimpleViewManager<CustomView>() {
     return REACT_CLASS
   }
 
-  private var adView: InReadAdView? = null
-  private var adId: String? = null
-
   @ReactProp(name = "adId")
-  fun setAdId(view: CustomView, newId: String?) {
-    if (newId == null ) return
-    adId = newId
-    adView=RNAdInstanceManager.shared.instance(newId).inReadAdView
+  fun setAdId(view: CustomView, adId: String?) {
+    if (adId != null || adId == view.adId) {
+      view.adId = adId
+      view.inReadAdView=RNAdInstanceManager.shared.instance(adId).inReadAdView
+      view.addView(RNAdInstanceManager.shared.instance(adId).inReadAdView)
+    }
+    view.invalidate()
   }
 
 
   override fun createViewInstance(reactContext: ThemedReactContext): CustomView {
-    var customView=CustomView(reactContext)
 
-
-    adView?.let { customView.setInReadAdView(it) }
-    adView?.let { customView.addView(adView) }
-
-    return customView
+    return CustomView(reactContext)
   }
 }

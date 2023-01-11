@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
-import { multiply } from 'react-native-teads-sdk-module';
 import MyView from '../../src/my-view';
 import Teads from '../../src/teads';
 import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
@@ -8,35 +7,22 @@ import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
 import TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
   const [showAd, setShowAd] = React.useState<boolean>(false);
   const [adId, setAdId] = React.useState<String>('testid');
 
-  React.useEffect(() => {
-    multiply(1, 2).then(setResult);
-  }, []);
-
   var testAdPlacementSetting = new TeadsAdPlacementSettings();
   var testAdRequestSettings = new TeadsAdRequestSettings();
-  var placement: TeadsInReadAdPlacement | undefined;
 
-  console.log(testAdPlacementSetting);
+  var placement: TeadsInReadAdPlacement | undefined;
+  placement = new TeadsInReadAdPlacement();
 
   async function onPress(this: any) {
     await testAdPlacementSetting.RNdisableCrashMonitoring();
-    //await testAdPlacementSetting.RNuserConsent('yes', 'ok', 12123, 1212333);
-    //await testAdPlacementSetting.RNsetUsPrivacy('ok');
+    await testAdRequestSettings.RNpageUrl('www.example.com');
 
-    console.log('TeadsAdPlacementSettings', testAdPlacementSetting.mapValue);
     console.log(TeadsInReadAdPlacement);
 
-    console.log(
-      'retour de req',
-      await testAdRequestSettings.RNpageUrl('www.example.com')
-    );
-    //await testAdRequestSettings.RNenableValidationMode();
-    //console.log('TeadsAdRequestSettings', testAdRequestSettings.mapValue);
-
+    // await testAdRequestSettings.RNenableValidationMode();
     await testAdPlacementSetting.RNenableDebug();
 
     // id de test
@@ -45,16 +31,10 @@ export default function App() {
       testAdPlacementSetting
     );
 
-    console.log('placement', placement);
-
     await placement?.RNrequestAd(testAdRequestSettings).then(setAdId);
-    console.log('TeadsPlacement requestAd', adId);
-
-    multiply(2, 10).then(setResult);
   }
 
   function onPressAd(this: any) {
-    console.log('adIDDDDD', adId);
     setShowAd(!showAd);
   }
 
@@ -78,7 +58,6 @@ export default function App() {
         color="#841584"
         onPress={onPress}
       />
-      <Text>Result: {result}</Text>
       <Text>adId: {adId}</Text>
       <Button title="show ad" color="#841584" onPress={onPressAd} />
       {ad}
