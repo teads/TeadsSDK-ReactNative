@@ -53,12 +53,16 @@ class RNInReadAdPlacement: NSObject {
 extension RNInReadAdPlacement: TeadsInReadAdPlacementDelegate {
     func didReceiveAd(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {
         RNTeadsInReadAdInstanceManager.shared.new(instance: RNInReadAdInstanceMap(teadsAd: ad, adRatio: adRatio))
-        //channel.invokeMethod("didReceiveAd", arguments: [ad.requestIdentifier.uuidString])
+        //supp adRatio
+        
         print("DIDRECEIVEDAD")
     }
     
     func didUpdateRatio(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {
         //channel.invokeMethod("didUpdateRatio", arguments: [ad.requestIdentifier.uuidString])
+    }
+    func didLogMessage(message: String) {
+        print(message)
     }
     
 }

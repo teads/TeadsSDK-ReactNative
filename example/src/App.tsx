@@ -34,12 +34,14 @@ export default function App() {
       'retour de req',
       await testAdRequestSettings.RNpageUrl('www.example.com')
     );
-    await testAdRequestSettings.RNenableValidationMode();
-    console.log('TeadsAdRequestSettings', testAdRequestSettings.mapValue);
+    //await testAdRequestSettings.RNenableValidationMode();
+    //console.log('TeadsAdRequestSettings', testAdRequestSettings.mapValue);
+
+    await testAdPlacementSetting.RNenableDebug();
 
     // id de test
     placement = await Teads.RNcreateInReadPlacement(
-      128779,
+      84242,
       testAdPlacementSetting
     );
 
