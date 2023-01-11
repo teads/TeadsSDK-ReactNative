@@ -14,7 +14,7 @@ class RNAd: NSObject {
     @objc
     func delegate(_ requestIdentifier:String, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
         do {
-            try RNTeadsInReadAdInstanceManager.shared.instance(for: requestIdentifier).teadsAd.delegate = self
+            try RNTeadsInReadAdInstanceManager.shared.instance(for: requestIdentifier).delegate = self
             resolve(nil)
         } catch {
             let error = NSError(domain: "", code: 200, userInfo: nil)

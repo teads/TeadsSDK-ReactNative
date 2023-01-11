@@ -10,7 +10,7 @@ import Foundation
 @objc(CustomViewManager)
 class CustomViewManager: RCTViewManager {
     override func view() -> UIView! {
-        return CustomView.init(frame: CGRect(x: 0, y: 0, width: 400, height: 500))
+        return CustomView()
     }
     
     override static func requiresMainQueueSetup() -> Bool {

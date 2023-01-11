@@ -52,9 +52,7 @@ class RNInReadAdPlacement: NSObject {
 
 extension RNInReadAdPlacement: TeadsInReadAdPlacementDelegate {
     func didReceiveAd(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {
-        RNTeadsInReadAdInstanceManager.shared.new(instance: RNInReadAdInstanceMap(teadsAd: ad, adRatio: adRatio))
-        //supp adRatio
-        
+        RNTeadsInReadAdInstanceManager.shared.new(instance: ad)
         print("DIDRECEIVEDAD")
     }
     
