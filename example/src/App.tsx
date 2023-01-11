@@ -19,10 +19,6 @@ export default function App() {
   async function onPress(this: any) {
     await testAdPlacementSetting.RNdisableCrashMonitoring();
     await testAdRequestSettings.RNpageUrl('www.example.com');
-
-    console.log(TeadsInReadAdPlacement);
-
-    // await testAdRequestSettings.RNenableValidationMode();
     await testAdPlacementSetting.RNenableDebug();
 
     // id de test
@@ -54,7 +50,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Button
-        title="Click to  request an ad with RN!"
+        title="Click to request an ad with RN!"
         color="#841584"
         onPress={onPress}
       />

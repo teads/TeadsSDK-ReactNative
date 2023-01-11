@@ -9,52 +9,41 @@ import UIKit
 
 @objc(CustomView)
 class CustomView: UIView {
-    private var inReadAdView: TeadsInReadAdView
+    private var inReadAdView = TeadsInReadAdView()
     private var requestIdentifier: String = ""
     
-    
-    @objc var adId = "" {
+    @objc var adId : String? {
         didSet {
-            if adId == "testid" {
-                self.backgroundColor = UIColor.red.withAlphaComponent(0.1)
+            guard let adId = adId else {
+                return
             }
-            else {
-                self.backgroundColor = UIColor.blue.withAlphaComponent(0.1)
-                print("ID received by the view",adId)
-                do {
-                    let data = try RNTeadsInReadAdInstanceManager.shared.instance(for: adId)
-                    self.inReadAdView = TeadsInReadAdView(bind: data.teadsAd);
-                    print("AD FOUND",data.teadsAd)
-                    self.requestIdentifier = adId
-                    self.inReadAdView.bind(data.teadsAd)
-                    print("AD LINKED",data.teadsAd.requestIdentifier)
-                  
-                    self.addSubview(inReadAdView)
-                    inReadAdView.frame = frame
-                } catch {
-                    print("NO AD FOR  ID",adId)
-                }
-                
+            print("ID received by the view",adId)
+            do {
+                let teadsAd = try RNTeadsInReadAdInstanceManager.shared.instance(for: adId)
+                self.inReadAdView = TeadsInReadAdView(bind: teadsAd);
+                print("AD FOUND",teadsAd)
+                self.requestIdentifier = adId
+                self.inReadAdView.bind(teadsAd)
+                print("AD LINKED",teadsAd.requestIdentifier.uuidString)
+                inReadAdView.translatesAutoresizingMaskIntoConstraints = false
+                self.addSubview(inReadAdView)
+                NSLayoutConstraint.activate([
+                    leadingAnchor.constraint(equalTo: inReadAdView.leadingAnchor),
+                    trailingAnchor.constraint(equalTo: inReadAdView.trailingAnchor),
+                    topAnchor.constraint(equalTo: inReadAdView.topAnchor),
+                    bottomAnchor.constraint(equalTo: inReadAdView.bottomAnchor)
+                ])
+            } catch {
+                print("NO AD FOR  ID",adId)
             }
-            self.setupView()
+            
         }
     }
     
-    override init(frame: CGRect) {
-        self.inReadAdView = TeadsInReadAdView(frame: frame)
-        super.init(frame: frame)
-        self.backgroundColor = UIColor.red.withAlphaComponent(0.1)
-        }
+//    deinit {
+//        if let adId = adId {
+//            RNTeadsInReadAdInstanceManager.shared.removeInstance(for: adId)
+//        }
+//    }
     
-    required init?(coder aDecoder: NSCoder) {
-        self.inReadAdView = TeadsInReadAdView();
-        super.init(coder: aDecoder)
-        setupView()
-    }
-    
-    private func setupView() {
-        // in here you can configure your view
-        print("view setup done",adId)
-        
-    }
 }

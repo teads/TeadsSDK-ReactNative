@@ -8,28 +8,29 @@
 import Foundation
 import TeadsSDK
 
-struct RNInReadAdInstanceMap {
-  let teadsAd: TeadsInReadAd
-  let adRatio: TeadsAdRatio
-}
 
 class RNTeadsInReadAdInstanceManager {
     static let shared = RNTeadsInReadAdInstanceManager()
     var placement: TeadsInReadAdPlacement?
-    private var list = [RNInReadAdInstanceMap]()
+    private var list = [String: TeadsInReadAd]()
     
-    func new(instance: RNInReadAdInstanceMap) {
-        list.append(instance)
+    func new(instance: TeadsInReadAd) {
+        list [instance.requestIdentifier.uuidString] = instance
     }
     
-    func instance(for requestIdentifier: String) throws -> RNInReadAdInstanceMap {
-        if let instance = list.first(where: { $0.teadsAd.requestIdentifier.uuidString == requestIdentifier }) {
-            //print("list instance",instance)
+    func instance(for requestIdentifier: String) throws -> TeadsInReadAd {
+        if let instance = list[requestIdentifier] {
             return instance
         } else {
             throw NSError()
         }
     }
+    
+    func removeInstance(for requestIdentifier: String) {
+        list.removeValue(forKey: requestIdentifier)
+    }
+    
+    
 }
 
 class RNTeadsNativeAdInstanceManager {
