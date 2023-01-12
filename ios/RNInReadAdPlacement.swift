@@ -16,15 +16,11 @@ class RNInReadAdPlacement: NSObject {
         print("settingsFromRequest",settingsMap)
         let data = json(from: settingsMap)!
         let decoder = JSONDecoder()
-        if let settings = try? decoder.decode(TeadsAdRequestSettings.self, from: data) {
-            RNTeadsInReadAdInstanceManager.shared.placement?.delegate = self
-            if let id = RNTeadsInReadAdInstanceManager.shared.placement?.requestAd(requestSettings: settings) {
+        RNTeadsInReadAdInstanceManager.shared.placement?.delegate = self
+        if let settings = try? decoder.decode(TeadsAdRequestSettings.self, from: data),
+           let id = RNTeadsInReadAdInstanceManager.shared.placement?.requestAd(requestSettings: settings) {
                 print("ID", id.uuidString)
                 resolve(id.uuidString)
-            } else {
-                let error = NSError(domain: "", code: 200, userInfo: nil)
-                reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement request ad", error)
-            }
         }else {
             let error = NSError(domain: "", code: 200, userInfo: nil)
             reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement decoding", error)

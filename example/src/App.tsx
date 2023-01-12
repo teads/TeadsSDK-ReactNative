@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
-import MyView from '../../src/my-view';
+import TeadsAdView from '../../src/teads-ad-view';
 import Teads from '../../src/teads';
 import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
 import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
 import TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export default function App() {
   const [showAd, setShowAd] = React.useState<boolean>(false);
@@ -17,17 +18,17 @@ export default function App() {
   placement = new TeadsInReadAdPlacement();
 
   async function onPress(this: any) {
-    await testAdPlacementSetting.RNdisableCrashMonitoring();
-    await testAdRequestSettings.RNpageUrl('www.example.com');
-    await testAdPlacementSetting.RNenableDebug();
+    await testAdPlacementSetting.disableCrashMonitoring();
+    await testAdRequestSettings.pageUrl('www.example.com');
+    await testAdPlacementSetting.enableDebug();
 
     // id de test
-    placement = await Teads.RNcreateInReadPlacement(
+    placement = await Teads.createInReadPlacement(
       84242,
       testAdPlacementSetting
     );
 
-    await placement?.RNrequestAd(testAdRequestSettings).then(setAdId);
+    await placement?.requestAd(testAdRequestSettings).then(setAdId);
   }
 
   function onPressAd(this: any) {
@@ -37,13 +38,14 @@ export default function App() {
   let ad;
   showAd
     ? (ad = (
-        <MyView
+        <TeadsAdView
           style={{
             height: 400,
             width: 400,
+            backgroundColor: Colors.red,
           }}
           adId={adId}
-        ></MyView>
+        ></TeadsAdView>
       ))
     : (ad = <></>);
 
@@ -57,6 +59,7 @@ export default function App() {
       <Text>adId: {adId}</Text>
       <Button title="show ad" color="#841584" onPress={onPressAd} />
       {ad}
+      <Text>Hello world</Text>
     </View>
   );
 }

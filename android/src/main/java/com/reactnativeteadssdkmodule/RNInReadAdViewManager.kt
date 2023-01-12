@@ -1,13 +1,12 @@
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
-import com.mypackage.CustomView
 import com.reactnativeteadssdkmodule.RNAdInstanceManager
-import tv.teads.sdk.renderer.InReadAdView
+import com.reactnativeteadssdkmodule.RNInReadAdView
 
-class MyViewManager : SimpleViewManager<CustomView>() {
+class RNInReadAdViewManager : SimpleViewManager<RNInReadAdView>() {
   companion object {
-    private const val REACT_CLASS = "CustomView"
+    private const val REACT_CLASS = "RNInReadAdView"
   }
 
   override fun getName(): String {
@@ -15,8 +14,8 @@ class MyViewManager : SimpleViewManager<CustomView>() {
   }
 
   @ReactProp(name = "adId")
-  fun setAdId(view: CustomView, adId: String?) {
-    if (adId != null || adId == view.adId) {
+  fun setAdId(view: RNInReadAdView, adId: String?) {
+    if (adId != null && adId != view.adId) {
       view.adId = adId
       view.inReadAdView=RNAdInstanceManager.shared.instance(adId).inReadAdView
       view.addView(RNAdInstanceManager.shared.instance(adId).inReadAdView)
@@ -25,8 +24,7 @@ class MyViewManager : SimpleViewManager<CustomView>() {
   }
 
 
-  override fun createViewInstance(reactContext: ThemedReactContext): CustomView {
-
-    return CustomView(reactContext)
+  override fun createViewInstance(reactContext: ThemedReactContext): RNInReadAdView {
+    return RNInReadAdView(reactContext)
   }
 }

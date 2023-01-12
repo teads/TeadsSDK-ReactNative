@@ -1,6 +1,6 @@
 import {} from 'react-native-teads-sdk-module';
 
-// pas encore implémentée pb de private on un des params
+// should we implement it ? I d'ont really know what it should do
 export default class TeadsAdRatio {
   adRequestIdentifier: String;
 
@@ -8,7 +8,7 @@ export default class TeadsAdRatio {
     this.adRequestIdentifier = adRequestIdentifier;
   }
 
-  public RNcalculateHeight = async () => {
+  public calculateHeight = async () => {
     try {
       this.adRequestIdentifier = 'not implemented';
     } catch (e) {
@@ -16,7 +16,7 @@ export default class TeadsAdRatio {
     }
   };
 
-  public RNvalue = async () => {
+  public value = async () => {
     try {
       this.adRequestIdentifier = 'not implemented';
     } catch (e) {

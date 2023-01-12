@@ -1,9 +1,7 @@
 package com.reactnativeteadssdkmodule
-import android.util.Log
 import com.facebook.react.bridge.*
 import tv.teads.sdk.AdPlacementSettings
 import tv.teads.sdk.TeadsSDK
-import tv.teads.sdk.utils.userConsent.TCFVersion
 
 
 class RNTeads(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {

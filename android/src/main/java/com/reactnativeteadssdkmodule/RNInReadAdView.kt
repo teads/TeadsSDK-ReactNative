@@ -1,19 +1,16 @@
 // replace with your package
-package com.mypackage
+package com.reactnativeteadssdkmodule
 import android.content.Context
 import android.widget.FrameLayout
-import com.reactnativeteadssdkmodule.RNAdInstanceManager
 import tv.teads.sdk.renderer.InReadAdView
 
-class CustomView(context: Context) : FrameLayout(context) {
+class RNInReadAdView(context: Context) : FrameLayout(context) {
   var inReadAdView: InReadAdView = InReadAdView(context)
   var adId : String = ""
 
   init {
     // set padding
     setPadding(10,10,10,10)
-
   }
-
 }
 

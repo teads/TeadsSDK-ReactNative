@@ -1,7 +1,6 @@
+import { NativeModules, Platform } from 'react-native';
 import {
-  disableCrashMonitoring,
   disableTeadsAudioSessionManagement,
-  enableDebug,
   userConsent,
   setUsPrivacy,
   disableBatteryMonitoring,
@@ -12,25 +11,45 @@ import {
   toolBarBackgroundColor,
 } from 'react-native-teads-sdk-module';
 
+const LINKING_ERROR =
+  `The package 'react-native-teads-sdk-module' doesn't seem to be linked. Make sure: \n\n` +
+  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
+  '- You rebuilt the app after installing the package\n' +
+  '- You are not using Expo managed workflow\n';
+
 //add enum as in the flutter adapter
 export default class TeadsAdPlacementSettings {
   public mapValue: Map<String, any>;
 
+  private bridgeAdPlacementSettings = NativeModules.RNAdPlacementSettings
+    ? NativeModules.RNAdPlacementSettings
+    : new Proxy(
+        {},
+        {
+          get() {
+            throw new Error(LINKING_ERROR);
+          },
+        }
+      );
+
   constructor() {
-    //pas instancier vide, voir si on peux recup du kotlin les val par defaut
-    //faire ticket pour apres
     this.mapValue = new Map<String, any>();
   }
 
-  public RNdisableCrashMonitoring = async () => {
+  /**
+   * fffffffffff ceash
+   *
+   */
+  public disableCrashMonitoring = async () => {
     try {
-      this.mapValue = await disableCrashMonitoring();
+      this.mapValue =
+        await this.bridgeAdPlacementSettings.disableCrashMonitoring();
     } catch (e) {
       console.error(e);
     }
   };
 
-  public RNdisableTeadsAudioSessionManagement = async () => {
+  public disableTeadsAudioSessionManagement = async () => {
     try {
       this.mapValue = await disableTeadsAudioSessionManagement();
     } catch (e) {
@@ -38,15 +57,16 @@ export default class TeadsAdPlacementSettings {
     }
   };
 
-  public RNenableDebug = async () => {
+  public enableDebug = async () => {
     try {
-      this.mapValue = await enableDebug();
+      this.mapValue = await this.bridgeAdPlacementSettings.enableDebug();
+      console.log('enableDebug mapValue', this.mapValue);
     } catch (e) {
       console.error(e);
     }
   };
 
-  public RNuserConsent = async (
+  public userConsent = async (
     subjectToGDPR: String,
     consent: String,
     tcfVersion: number = 2,
@@ -64,7 +84,7 @@ export default class TeadsAdPlacementSettings {
     }
   };
 
-  public RNsetUsPrivacy = async (consent: String) => {
+  public setUsPrivacy = async (consent: String) => {
     try {
       this.mapValue = await setUsPrivacy(consent);
     } catch (e) {
@@ -72,7 +92,7 @@ export default class TeadsAdPlacementSettings {
     }
   };
 
-  public RNdisableBatteryMonitoring = async () => {
+  public disableBatteryMonitoring = async () => {
     try {
       this.mapValue = await disableBatteryMonitoring();
     } catch (e) {
@@ -80,7 +100,7 @@ export default class TeadsAdPlacementSettings {
     }
   };
 
-  public RNaddExtras = async (key: String, value: String) => {
+  public addExtras = async (key: String, value: String) => {
     try {
       this.mapValue = await addExtras(key, value);
     } catch (e) {
@@ -88,7 +108,7 @@ export default class TeadsAdPlacementSettings {
     }
   };
 
-  public RNenableLocation = async () => {
+  public enableLocation = async () => {
     try {
       this.mapValue = await enableLocation();
     } catch (e) {
@@ -96,7 +116,7 @@ export default class TeadsAdPlacementSettings {
     }
   };
 
-  public RNuseLightEndScreen = async () => {
+  public useLightEndScreen = async () => {
     try {
       this.mapValue = await useLightEndScreen();
     } catch (e) {
@@ -104,7 +124,7 @@ export default class TeadsAdPlacementSettings {
     }
   };
 
-  public RNhideBrowserUrl = async () => {
+  public hideBrowserUrl = async () => {
     try {
       this.mapValue = await hideBrowserUrl();
     } catch (e) {
@@ -112,7 +132,7 @@ export default class TeadsAdPlacementSettings {
     }
   };
 
-  public RNtoolBarBackgroundColor = async (color: number) => {
+  public toolBarBackgroundColor = async (color: number) => {
     try {
       this.mapValue = await toolBarBackgroundColor(color);
     } catch (e) {

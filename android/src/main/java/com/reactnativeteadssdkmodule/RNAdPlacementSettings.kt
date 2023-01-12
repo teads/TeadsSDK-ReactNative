@@ -1,10 +1,10 @@
 package com.reactnativeteadssdkmodule
 
-import android.util.Log
+
 import com.facebook.react.bridge.*
 import tv.teads.sdk.AdPlacementSettings
 import tv.teads.sdk.utils.userConsent.TCFVersion
-import kotlin.reflect.typeOf
+
 
 
 class RNAdPlacementSettings(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {

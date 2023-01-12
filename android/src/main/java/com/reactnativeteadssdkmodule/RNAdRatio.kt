@@ -6,8 +6,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 
 class RNAdRatio(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
-
-  //voir avec thibault ce qu'on avait fait pour flutter jme rappelle plus
+  // not sure if we need it ?
 
   override fun getName(): String {
     return "RNAdRatio"
