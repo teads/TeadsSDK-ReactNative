@@ -4,14 +4,13 @@ import TeadsAdRequestSettings from './teads-ad-request-settings';
 import TeadsInReadAd from './teads-inread-ad';
 
 export default class TeadsInReadAdPlacement {
-  //map de pair de InReadAd et AdRatio ?
   inReadAdAdRatioMap: Map<TeadsInReadAd, TeadsAdRatio>;
 
   constructor() {
     this.inReadAdAdRatioMap = new Map<TeadsInReadAd, TeadsAdRatio>();
   }
 
-  public RNrequestAd = async (
+  public requestAd = async (
     requestSettings: TeadsAdRequestSettings
   ): Promise<String> => {
     try {
@@ -28,6 +27,4 @@ export default class TeadsInReadAdPlacement {
       return 'error:' + e;
     }
   };
-
-  //ajouter les délégate
 }

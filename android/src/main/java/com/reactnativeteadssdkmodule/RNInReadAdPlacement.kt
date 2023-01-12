@@ -22,7 +22,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
     RNAdInstanceManager.shared.placement?.requestAd(AdRequestSettings.fromMap(settingsMap.toHashMap().toMap()),
       object : InReadAdListener {
         override fun adOpportunityTrackerView(trackerView: AdOpportunityTrackerView) {
-          //TODO: add adOpportunityTrackerView
         }
 
         override fun onAdReceived(

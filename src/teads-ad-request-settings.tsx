@@ -11,7 +11,7 @@ export default class TeadsAdRequestSettings {
     this.mapValue = new Map<String, any>();
   }
 
-  public RNenableValidationMode = async () => {
+  public enableValidationMode = async () => {
     try {
       this.mapValue = await enableValidationMode();
     } catch (e) {
@@ -19,7 +19,7 @@ export default class TeadsAdRequestSettings {
     }
   };
 
-  public RNpageUrl = async (urlString: String) => {
+  public pageUrl = async (urlString: String) => {
     try {
       this.mapValue = await pageUrl(urlString);
     } catch (e) {
@@ -27,7 +27,7 @@ export default class TeadsAdRequestSettings {
     }
   };
 
-  public RNaddExtras = async (key: String, value: String) => {
+  public addExtras = async (key: String, value: String) => {
     try {
       this.mapValue = await addExtraSetting(key, value);
     } catch (e) {

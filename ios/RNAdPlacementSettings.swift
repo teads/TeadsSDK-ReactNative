@@ -7,16 +7,28 @@
 
 import Foundation
 import TeadsSDK
-
+import React
 
 @objc(RNAdPlacementSettings)
 class RNAdPlacementSettings: NSObject {
     
     let placementSettings: TeadsAdPlacementSettings = {
         let settings = TeadsAdPlacementSettings()
-        //mettre extras RN Version
+        settings.addExtras(TeadsAdPlacementSettings.pluginReactNative, for: TeadsAdPlacementSettings.pluginKey)
+        if let major  = React.RCTGetReactNativeVersion()[React.RCTVersionMajor], let minor  = React.RCTGetReactNativeVersion()[React.RCTVersionMinor], let patch  = React.RCTGetReactNativeVersion()[React.RCTVersionPatch]
+        {
+        settings.addExtras("\(major).\(minor).\(patch)", for: TeadsAdPlacementSettings.pluginVersionKey)
+        } else {
+            settings.addExtras("unknown", for: TeadsAdPlacementSettings.pluginVersionKey)
+        }
         return settings
     }()
+    
+    func raiseError(rejecter reject: RCTPromiseRejectBlock,functionName: String = #function) {
+        let error = NSError(domain: "Teads", code: 200, userInfo: nil)
+        reject("E_AdPlacementSettings", "Error on AdPlacementsSettings", error)
+    }
+    
     
     @objc
     func disableCrashMonitoring(
@@ -24,8 +36,7 @@ class RNAdPlacementSettings: NSObject {
         rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
         if (placementSettings.isEqual(nil)) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings", error)
+            raiseError(rejecter: reject)
         } else {
             placementSettings.disableCrashMonitoring()
             resolve(try? placementSettings.asDictionary())
@@ -39,8 +50,7 @@ class RNAdPlacementSettings: NSObject {
     ) -> Void {
         
         if (placementSettings.isEqual(nil)) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings", error)
+            raiseError(rejecter: reject)
         } else {
             placementSettings.disableTeadsAudioSessionManagement()
             resolve(try? placementSettings.asDictionary())

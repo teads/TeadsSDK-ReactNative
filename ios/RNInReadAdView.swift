@@ -1,14 +1,15 @@
 //
-//  CustomView.swift
+//  RNInReadAdView.swift
 //  react-native-teads-sdk-module
 //
-//  Created by Numa Maurin on 04/01/2023.
+//  Created by Numa Maurin on 12/01/2023.
 //
+
 import TeadsSDK
 import UIKit
 
-@objc(CustomView)
-class CustomView: UIView {
+@objc(RNInReadAdView)
+class RNInReadAdView: UIView {
     private var inReadAdView = TeadsInReadAdView()
     private var requestIdentifier: String = ""
     

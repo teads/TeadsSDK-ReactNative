@@ -6,22 +6,6 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo managed workflow\n';
 
-//model from react native doc
-const TeadsSdkModule = NativeModules.TeadsSdkModule
-  ? NativeModules.TeadsSdkModule
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
-
-export async function multiply(a: number, b: number): Promise<number> {
-  return await TeadsSdkModule.multiply(a, b);
-}
-
 //RNAdPlacementSettings
 const RNAdPlacementSettings = NativeModules.RNAdPlacementSettings
   ? NativeModules.RNAdPlacementSettings
@@ -47,10 +31,6 @@ export async function disableTeadsAudioSessionManagement(): Promise<
   Map<String, any>
 > {
   return await RNAdPlacementSettings.disableTeadsAudioSessionManagement();
-}
-
-export async function enableDebug(): Promise<Map<String, any>> {
-  return await RNAdPlacementSettings.enableDebug();
 }
 
 export async function setUsPrivacy(consent: String): Promise<Map<String, any>> {
@@ -139,7 +119,6 @@ export async function createInReadPlacement(
   pid: number,
   settingsMap: Map<String, any>
 ) {
-  console.log('iterator', settingsMap);
   await RNTeads.createInReadPlacement(pid, settingsMap);
 }
 
@@ -194,8 +173,5 @@ const RNInReadAdPlacement = NativeModules.RNInReadAdPlacement
 export async function requestAd(
   settingsMap: Map<String, any>
 ): Promise<String> {
-  console.log('settingsfromJS', settingsMap);
   return await RNInReadAdPlacement.requestAd(settingsMap);
 }
-
-//RNAdRatio to add when no more problem

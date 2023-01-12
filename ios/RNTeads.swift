@@ -17,12 +17,11 @@ class RNTeads: NSObject {
         print("settingsFromTeads",settingsMap)
         let data = json(from: settingsMap)!
         let decoder = JSONDecoder()
-        if let settings = try? decoder.decode(TeadsAdPlacementSettings.self, from: data) {
+        do {
+            let settings = try decoder.decode(TeadsAdPlacementSettings.self, from: data)
             RNTeadsInReadAdInstanceManager.shared.placement = Teads.createInReadPlacement(pid: Int(pid), settings: settings)
             resolve(nil)
-        }
-        else {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
+        } catch {
             reject("E_RNTeads", "Error on RNTeads", error)
         }
     }

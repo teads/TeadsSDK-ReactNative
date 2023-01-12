@@ -1,8 +1,8 @@
 import { requireNativeComponent, ViewStyle } from 'react-native';
 
-type CustomViewViewProps = {
+type inReadAdViewProps = {
   style: ViewStyle;
   adId: String | undefined;
 };
 
-export default requireNativeComponent<CustomViewViewProps>('CustomView');
+export default requireNativeComponent<inReadAdViewProps>('RNInReadAdView');
