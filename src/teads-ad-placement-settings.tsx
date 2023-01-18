@@ -1,15 +1,4 @@
 import { NativeModules, Platform } from 'react-native';
-import {
-  disableTeadsAudioSessionManagement,
-  userConsent,
-  setUsPrivacy,
-  disableBatteryMonitoring,
-  addExtras,
-  enableLocation,
-  useLightEndScreen,
-  hideBrowserUrl,
-  toolBarBackgroundColor,
-} from 'react-native-teads-sdk-module';
 
 const LINKING_ERROR =
   `The package 'react-native-teads-sdk-module' doesn't seem to be linked. Make sure: \n\n` +
@@ -17,7 +6,6 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo managed workflow\n';
 
-//add enum as in the flutter adapter
 export default class TeadsAdPlacementSettings {
   public mapValue: Map<String, any>;
 
@@ -37,7 +25,7 @@ export default class TeadsAdPlacementSettings {
   }
 
   /**
-   * fffffffffff ceash
+   * comments todo
    *
    */
   public disableCrashMonitoring = async () => {
@@ -49,23 +37,35 @@ export default class TeadsAdPlacementSettings {
     }
   };
 
+  /**
+   * comments todo
+   *
+   */
   public disableTeadsAudioSessionManagement = async () => {
     try {
-      this.mapValue = await disableTeadsAudioSessionManagement();
+      this.mapValue =
+        await this.bridgeAdPlacementSettings.disableTeadsAudioSessionManagement();
     } catch (e) {
       console.error(e);
     }
   };
 
+  /**
+   * comments todo
+   *
+   */
   public enableDebug = async () => {
     try {
       this.mapValue = await this.bridgeAdPlacementSettings.enableDebug();
-      console.log('enableDebug mapValue', this.mapValue);
     } catch (e) {
       console.error(e);
     }
   };
 
+  /**
+   * comments todo
+   *
+   */
   public userConsent = async (
     subjectToGDPR: String,
     consent: String,
@@ -73,7 +73,7 @@ export default class TeadsAdPlacementSettings {
     cmpSdkId: number = 0
   ) => {
     try {
-      this.mapValue = await userConsent(
+      this.mapValue = await this.bridgeAdPlacementSettings.userConsent(
         subjectToGDPR,
         consent,
         tcfVersion,
@@ -84,57 +84,92 @@ export default class TeadsAdPlacementSettings {
     }
   };
 
+  /**
+   * comments todo
+   *
+   */
   public setUsPrivacy = async (consent: String) => {
     try {
-      this.mapValue = await setUsPrivacy(consent);
+      this.mapValue = await this.bridgeAdPlacementSettings.setUsPrivacy(
+        consent
+      );
     } catch (e) {
       console.error(e);
     }
   };
 
+  /**
+   * comments todo
+   *
+   */
   public disableBatteryMonitoring = async () => {
     try {
-      this.mapValue = await disableBatteryMonitoring();
+      this.mapValue =
+        await this.bridgeAdPlacementSettings.disableBatteryMonitoring();
     } catch (e) {
       console.error(e);
     }
   };
 
+  /**
+   * comments todo
+   *
+   */
   public addExtras = async (key: String, value: String) => {
     try {
-      this.mapValue = await addExtras(key, value);
+      this.mapValue = await this.bridgeAdPlacementSettings.addExtras(
+        key,
+        value
+      );
     } catch (e) {
       console.error(e);
     }
   };
 
+  /**
+   * comments todo
+   *
+   */
   public enableLocation = async () => {
     try {
-      this.mapValue = await enableLocation();
+      this.mapValue = await this.bridgeAdPlacementSettings.enableLocation();
     } catch (e) {
       console.error(e);
     }
   };
 
+  /**
+   * comments todo
+   *
+   */
   public useLightEndScreen = async () => {
     try {
-      this.mapValue = await useLightEndScreen();
+      this.mapValue = await this.bridgeAdPlacementSettings.useLightEndScreen();
     } catch (e) {
       console.error(e);
     }
   };
 
+  /**
+   * comments todo
+   *
+   */
   public hideBrowserUrl = async () => {
     try {
-      this.mapValue = await hideBrowserUrl();
+      this.mapValue = await this.bridgeAdPlacementSettings.hideBrowserUrl();
     } catch (e) {
       console.error(e);
     }
   };
 
+  /**
+   * comments todo
+   *
+   */
   public toolBarBackgroundColor = async (color: number) => {
     try {
-      this.mapValue = await toolBarBackgroundColor(color);
+      this.mapValue =
+        await this.bridgeAdPlacementSettings.toolBarBackgroundColor(color);
     } catch (e) {
       console.error(e);
     }

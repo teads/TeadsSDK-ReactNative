@@ -1,6 +1,4 @@
-import {} from 'react-native-teads-sdk-module';
-
-// should we implement it ? I d'ont really know what it should do
+// should we implement it on ios ? just usefull for android i think
 export default class TeadsAdRatio {
   adRequestIdentifier: String;
 
@@ -8,6 +6,10 @@ export default class TeadsAdRatio {
     this.adRequestIdentifier = adRequestIdentifier;
   }
 
+  /**
+   * comments todo
+   *
+   */
   public calculateHeight = async () => {
     try {
       this.adRequestIdentifier = 'not implemented';
@@ -16,6 +18,10 @@ export default class TeadsAdRatio {
     }
   };
 
+  /**
+   * comments todo
+   *
+   */
   public value = async () => {
     try {
       this.adRequestIdentifier = 'not implemented';
