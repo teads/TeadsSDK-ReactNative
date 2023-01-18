@@ -17,7 +17,7 @@ class RNAdPlacementSettings: NSObject {
         settings.addExtras(TeadsAdPlacementSettings.pluginReactNative, for: TeadsAdPlacementSettings.pluginKey)
         if let major  = React.RCTGetReactNativeVersion()[React.RCTVersionMajor], let minor  = React.RCTGetReactNativeVersion()[React.RCTVersionMinor], let patch  = React.RCTGetReactNativeVersion()[React.RCTVersionPatch]
         {
-        settings.addExtras("\(major).\(minor).\(patch)", for: TeadsAdPlacementSettings.pluginVersionKey)
+            settings.addExtras("\(major).\(minor).\(patch)", for: TeadsAdPlacementSettings.pluginVersionKey)
         } else {
             settings.addExtras("unknown", for: TeadsAdPlacementSettings.pluginVersionKey)
         }
@@ -35,11 +35,11 @@ class RNAdPlacementSettings: NSObject {
         _ resolve: RCTPromiseResolveBlock,
         rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
-        if (placementSettings.isEqual(nil)) {
-            raiseError(rejecter: reject)
-        } else {
+        do {
             placementSettings.disableCrashMonitoring()
-            resolve(try? placementSettings.asDictionary())
+            resolve(try placementSettings.asDictionary())
+        } catch {
+            reject("RNAdPlacementSettings", "Error on RNAdPlacementSettings disableCrashMonitoring", error)
         }
     }
     
@@ -48,12 +48,11 @@ class RNAdPlacementSettings: NSObject {
         _ resolve: RCTPromiseResolveBlock,
         rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
-        
-        if (placementSettings.isEqual(nil)) {
-            raiseError(rejecter: reject)
-        } else {
+        do {
             placementSettings.disableTeadsAudioSessionManagement()
-            resolve(try? placementSettings.asDictionary())
+            resolve(try placementSettings.asDictionary())
+        } catch {
+            reject("RNAdPlacementSettings", "Error on RNAdPlacementSettings disableTeadsAudioSessionManagement", error)
         }
     }
     
@@ -63,14 +62,11 @@ class RNAdPlacementSettings: NSObject {
         _ resolve: RCTPromiseResolveBlock,
         rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
-        
-        if (placementSettings.isEqual(nil)) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings", error)
-        } else {
+        do {
             placementSettings.enableDebug()
-            resolve(try? placementSettings.asDictionary())
-        }
+            resolve(try placementSettings.asDictionary())
+        } catch {
+            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings enableDebug", error)        }
     }
     
     @objc
@@ -83,21 +79,14 @@ class RNAdPlacementSettings: NSObject {
         resolve: RCTPromiseResolveBlock,
         rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
-        print(tcfVersion)
-        if (placementSettings.isEqual(nil) ) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings", error)
-        } else {
-            print(Int(tcfVersion))
-            //VOIR PK IL VEUT PAS FAIRE DE TCF VERSION
-            print(TCFVersion.init(rawValue: Int(tcfVersion)))
-            print(TCFVersion(rawValue: Int(tcfVersion)))
+        do {
             let tcfVersionreturn = TCFVersion.init(rawValue: Int(tcfVersion))
-            print(tcfVersionreturn as Any)
             if (tcfVersionreturn != nil) {
                 placementSettings.userConsent(subjectToGDPR: subjectToGDPR, consent: consent, tcfVersion:tcfVersionreturn!, cmpSdkID: Int(cmpSdkID))
-                resolve(try? placementSettings.asDictionary())
+                resolve(try placementSettings.asDictionary())
             }
+        } catch {
+            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings userConsent", error)
         }
     }
     
@@ -107,13 +96,11 @@ class RNAdPlacementSettings: NSObject {
         resolve: RCTPromiseResolveBlock,
         rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
-        print(consent)
-        if (placementSettings.isEqual(nil) ) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings", error)
-        } else {
+        do {
             placementSettings.setUsPrivacy(consent: consent)
-            resolve(try? placementSettings.asDictionary())
+            resolve(try placementSettings.asDictionary())
+        } catch {
+            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings setUsPrivacy", error)
         }
     }
     
@@ -123,62 +110,53 @@ class RNAdPlacementSettings: NSObject {
                     resolve: RCTPromiseResolveBlock,
                     rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
-        if (placementSettings.isEqual(nil) ) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings", error)
-        } else {
+        do {
             placementSettings.addExtras(value, for: key)
-            resolve(try? placementSettings.asDictionary())
+            resolve(try placementSettings.asDictionary())
+        } catch {
+            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings addExtras", error)
         }
     }
     
     
     @objc
     func enableLocation(resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-      // Android only
-        if (placementSettings.isEqual(nil) ) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings", error)
-        } else {
-       
-            resolve(try? placementSettings.asDictionary())
+        // Android only
+        do {
+            resolve(try placementSettings.asDictionary())
+        } catch {
+            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings enableLocation", error)
         }
     }
     
     @objc
     func useLightEndScreen(resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-      // Android only
-        if (placementSettings.isEqual(nil) ) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings", error)
-        } else {
-       
-            resolve(try? placementSettings.asDictionary())
+        // Android only
+        do {
+            resolve(try placementSettings.asDictionary())
+        } catch {
+            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings useLightEndScreen", error)
         }
     }
     
     @objc
     func hideBrowserUrl(resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-      // Android only
-        if (placementSettings.isEqual(nil) ) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings", error)
-        } else {
-       
-            resolve(try? placementSettings.asDictionary())
+        // Android only
+        do {
+            resolve(try placementSettings.asDictionary())
+        } catch {
+            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings hideBrowserUrl", error)
         }
     }
     
     @objc
     func toolBarBackgroundColor(resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-      // Android only
-        if (placementSettings.isEqual(nil) ) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings", error)
-        } else {
-       
-            resolve(try? placementSettings.asDictionary())
+        // Android only
+        do {
+            resolve(try placementSettings.asDictionary())
+        } catch {
+            reject("E_AdPlacementSettings", "Error on AdPlacementsSettings toolBarBackgroundColor", error)
         }
     }
-
+    
 }

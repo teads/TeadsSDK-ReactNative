@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "name": "project",
   "version": "1.0.0",
   "scripts": {
@@ -42,6 +43,8 @@
   },
   "private": true
 =======
+=======
+>>>>>>> 8690d10 (feat: refactoring error handling)
   "name": "react-native-teads-sdk-module",
   "version": "0.1.0",
   "description": "test",
@@ -192,5 +195,8 @@
       ]
     ]
   }
+<<<<<<< HEAD
 >>>>>>> a8c1c56 (chore: initial commit)
+=======
+>>>>>>> 8690d10 (feat: refactoring error handling)
 }

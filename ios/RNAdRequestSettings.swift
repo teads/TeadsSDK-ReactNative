@@ -11,7 +11,7 @@ import TeadsSDK
 
 @objc(RNAdRequestSettings)
 class RNAdRequestSettings: NSObject {
-
+    
     let adRequestSettings = TeadsAdRequestSettings()
     
     @objc
@@ -19,13 +19,11 @@ class RNAdRequestSettings: NSObject {
         _ resolve: RCTPromiseResolveBlock,
         rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
-        
-        if (adRequestSettings.isEqual(nil)) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdRequestSettings", "Error on AdRequestSettings", error)
-        } else {
+        do {
             adRequestSettings.enableValidationMode()
-            resolve(try? adRequestSettings.asDictionary())
+            resolve(try adRequestSettings.asDictionary())
+        } catch {
+            reject("E_AdRequestSettings", "Error on AdRequestSettings enableValidationMode", error)
         }
     }
     
@@ -35,13 +33,11 @@ class RNAdRequestSettings: NSObject {
         resolve: RCTPromiseResolveBlock,
         rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
-        
-        if (adRequestSettings.isEqual(nil)) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdRequestSettings", "Error on AdRequestSettings", error)
-        } else {
+        do {
             adRequestSettings.pageUrl(urlString)
-            resolve(try?  adRequestSettings.asDictionary())
+            resolve(try  adRequestSettings.asDictionary())
+        } catch  {
+            reject("E_AdRequestSettings", "Error on AdRequestSettings pageUrl", error)
         }
     }
     
@@ -51,12 +47,12 @@ class RNAdRequestSettings: NSObject {
                     resolve: RCTPromiseResolveBlock,
                     rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
-        if (adRequestSettings.isEqual(nil) ) {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_AdRequestSettings", "Error on AdRequestSettings", error)
-        } else {
+        do {
             adRequestSettings.addExtras(value, for: key)
-            resolve(try? adRequestSettings.asDictionary())
+            resolve(try adRequestSettings.asDictionary())
+        } catch  {
+            reject("E_AdRequestSettings", "Error on AdRequestSettings addExtras", error)
+
         }
     }
     
