@@ -1,7 +1,9 @@
 package com.reactnativeteadssdkmodule
 
 
+import android.util.Log
 import com.facebook.react.bridge.*
+import com.facebook.react.modules.systeminfo.ReactNativeVersion
 import tv.teads.sdk.AdPlacementSettings
 import tv.teads.sdk.utils.userConsent.TCFVersion
 
@@ -13,6 +15,8 @@ class RNAdPlacementSettings(reactContext: ReactApplicationContext) : ReactContex
 
   init {
     placementSettingsBuilder.build()
+    placementSettingsBuilder.addPlacementExtra("plugin","react_native")
+    placementSettingsBuilder.addPlacementExtra("pluginVersion",ReactNativeVersion.VERSION.get("major").toString()+"."+ReactNativeVersion.VERSION.get("minor").toString()+"."+ReactNativeVersion.VERSION.get("patch").toString() )
   }
 
   override fun getName(): String {

@@ -1,10 +1,5 @@
-import { NativeModules, Platform } from 'react-native';
-
-const LINKING_ERROR =
-  `The package 'react-native-teads-sdk-module' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+import { NativeModules } from 'react-native';
+import { LINKING_ERROR } from './constants';
 
 export default class TeadsAdRequestSettings {
   mapValue: Map<String, any>;
@@ -24,9 +19,12 @@ export default class TeadsAdRequestSettings {
   }
 
   /**
-   * comments todo
-   *
-   */ public enableValidationMode = async () => {
+   *The Teads inApp Validation tool is the best way to ensure all basic features and prerequisites are correctly implemented.
+   * It is also useful during integration iterations.
+   * - Warning: Remember to remove this setting when you are going in production.
+   * - Note: Follow [validate your integration documentation](https://support.teads.tv/support/solutions/articles/36000314783-validation-tool)
+   */
+  public enableValidationMode = async () => {
     try {
       this.mapValue = await this.bridgeAdRequestSettings.enableValidationMode();
     } catch (e) {
@@ -35,8 +33,10 @@ export default class TeadsAdRequestSettings {
   };
 
   /**
-   * comments todo
-   *
+   * Set the publisher http page url that matches the content where Teads Ad will be loaded.
+   *  - parameters:
+   *      - urlString: The content related page URL.
+   *  - requires: urlsString value should be a valid reachable URL mathing slot neighbor content
    */
   public pageUrl = async (urlString: String) => {
     try {
@@ -47,8 +47,11 @@ export default class TeadsAdRequestSettings {
   };
 
   /**
-   * comments todo
-   *
+   * Add extra informations to settings.
+   *  - parameters:
+   *      - value: Extra value.
+   *      - key: Extra key.
+   *  - note: for Adapater scope mainly
    */
   public addExtras = async (key: String, value: String) => {
     try {

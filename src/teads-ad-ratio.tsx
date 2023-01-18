@@ -7,8 +7,12 @@ export default class TeadsAdRatio {
   }
 
   /**
-   * comments todo
-   *
+   * Not yet Implemented
+   * iOS only
+   * Compute the best height for your TeadsInReadAdView with the given width.
+   *  - parameters:
+   *     - width: the width of your TeadsInReadAdView.
+   *  - returns: The calculated height that fit the creative aspect ratio.
    */
   public calculateHeight = async () => {
     try {
@@ -19,8 +23,13 @@ export default class TeadsAdRatio {
   };
 
   /**
-   * comments todo
-   *
+   * Not yet Implemented
+   * iOS only
+   * Get a CGFloat ratio for a given width.
+   *  You can use returned value to specify autolayout multiplier constraint.
+   *  - parameters:
+   *      - width: the width of your TeadsInReadAdView.
+   *  - returns: The ratio corresponding to the given width.
    */
   public value = async () => {
     try {
