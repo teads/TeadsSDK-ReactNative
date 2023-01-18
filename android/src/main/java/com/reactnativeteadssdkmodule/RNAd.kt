@@ -1,5 +1,4 @@
 package com.reactnativeteadssdkmodule
-import android.util.Log
 import com.facebook.react.bridge.*
 
 

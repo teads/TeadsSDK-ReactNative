@@ -27,4 +27,6 @@ class RNInReadAdViewManager : SimpleViewManager<RNInReadAdView>() {
   override fun createViewInstance(reactContext: ThemedReactContext): RNInReadAdView {
     return RNInReadAdView(reactContext)
   }
+
+
 }

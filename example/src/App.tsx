@@ -5,7 +5,6 @@ import Teads from '../../src/teads';
 import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
 import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
 import TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export default function App() {
   const [showAd, setShowAd] = React.useState<boolean>(false);
@@ -42,7 +41,6 @@ export default function App() {
           style={{
             height: 400,
             width: 400,
-            backgroundColor: Colors.red,
           }}
           adId={adId}
         ></TeadsAdView>
