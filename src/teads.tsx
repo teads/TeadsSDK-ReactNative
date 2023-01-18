@@ -1,6 +1,6 @@
+import TeadsAdPlacementSettings from './teads-ad-placement-settings';
 import TeadsInReadAdPlacement from './teads-inread-ad-placement';
 import { NativeModules, Platform } from 'react-native';
-import type TeadsAdPlacementSettings from './teads-ad-placement-settings';
 
 const LINKING_ERROR =
   `The package 'react-native-teads-sdk-module' doesn't seem to be linked. Make sure: \n\n` +
@@ -30,6 +30,7 @@ export default class Teads {
   ) => {
     try {
       await this.bridgeTeads.createInReadPlacement(pid, settings.mapValue);
+      console.log(TeadsAdPlacementSettings);
       var placement = new TeadsInReadAdPlacement();
       return placement;
     } catch (e) {

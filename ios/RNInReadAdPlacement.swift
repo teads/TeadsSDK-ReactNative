@@ -9,7 +9,7 @@ import TeadsSDK
 
 @objc(RNInReadAdPlacement)
 class RNInReadAdPlacement: NSObject {
-
+    
     
     @objc
     func requestAd(_ settingsMap:NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
@@ -17,13 +17,13 @@ class RNInReadAdPlacement: NSObject {
         let data = json(from: settingsMap)!
         let decoder = JSONDecoder()
         RNTeadsInReadAdInstanceManager.shared.placement?.delegate = self
-        if let settings = try? decoder.decode(TeadsAdRequestSettings.self, from: data),
-           let id = RNTeadsInReadAdInstanceManager.shared.placement?.requestAd(requestSettings: settings) {
-                print("ID", id.uuidString)
-                resolve(id.uuidString)
-        }else {
-            let error = NSError(domain: "", code: 200, userInfo: nil)
-            reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement decoding", error)
+        do {
+            let settings = try decoder.decode(TeadsAdRequestSettings.self, from: data)
+            let id = RNTeadsInReadAdInstanceManager.shared.placement?.requestAd(requestSettings: settings)
+            print("ID", id?.uuidString)
+            resolve(id?.uuidString)
+        } catch {
+            reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement requestAd", error)
         }
     }
     
@@ -39,7 +39,7 @@ class RNInReadAdPlacement: NSObject {
     }
     
     func adOpportunityTrackerView(trackerView: TeadsAdOpportunityTrackerView) {
-       //nothing
+        //nothing
     }
     
 }
@@ -53,8 +53,8 @@ extension RNInReadAdPlacement: TeadsInReadAdPlacementDelegate {
     }
     
     func didUpdateRatio(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {
-        //channel.invokeMethod("didUpdateRatio", arguments: [ad.requestIdentifier.uuidString])
     }
+    
     func didLogMessage(message: String) {
         print(message)
     }
