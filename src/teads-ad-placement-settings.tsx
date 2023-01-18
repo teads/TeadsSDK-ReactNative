@@ -1,10 +1,5 @@
-import { NativeModules, Platform } from 'react-native';
-
-const LINKING_ERROR =
-  `The package 'react-native-teads-sdk-module' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+import { NativeModules } from 'react-native';
+import { LINKING_ERROR } from './constants';
 
 export default class TeadsAdPlacementSettings {
   public mapValue: Map<String, any>;
@@ -25,7 +20,11 @@ export default class TeadsAdPlacementSettings {
   }
 
   /**
-   * comments todo
+   * #### Teads Crash Monitoring is a tool we use to monitor crashes that may occur ONLY IN OUR SDK.
+   * This tool is really helpful for us and it aims to improve our product continuously.
+   * Prevent TeadsSDK to automatically handle/monitor crashes
+   *
+   * - Note: TeadsSDK does not disturb any third party crash handler/reporter such as Crashlytics
    *
    */
   public disableCrashMonitoring = async () => {
@@ -38,8 +37,10 @@ export default class TeadsAdPlacementSettings {
   };
 
   /**
-   * comments todo
+   * #### By default, the Teads SDK handles the audio session by setting its category to ambient.
+   * This means that all the audio played by other apps will be simply mixed with the ad sound.
    *
+   * - Note: If you chose to handle the audio session by yourself you need to call `disableTeadsAudioSessionManagement` and implement  ``TeadsPlaybackDelegate``
    */
   public disableTeadsAudioSessionManagement = async () => {
     try {
@@ -51,8 +52,9 @@ export default class TeadsAdPlacementSettings {
   };
 
   /**
-   * comments todo
+   * #### Enable all TeadsSDK Log for debugging purpose
    *
+   * - warning: Remember to remove this setting when you are going in production
    */
   public enableDebug = async () => {
     try {
@@ -63,7 +65,14 @@ export default class TeadsAdPlacementSettings {
   };
 
   /**
-   * comments todo
+   * #### In order to follow the IAB specifications for GDPR, please fill the following parameters with attention.
+   * - Parameters:
+   *    - subjectToGDPR: `"1"` if the traffic or the publisher is in the EEA (European Economic Area), `"0"` if it is not, `"null"` if it's unknown.
+   *    - consent: Which vendors and purposes did the user give consent for.
+   *    - tcfVersion: Transparency and Consent Framework version.
+   *    - cmpSdkID: Consent Manager Platform unique identifier.
+   *
+   * -  Note: If you use a [CMP](https://iabeurope.eu/tcf-for-cmps/), you can skip this step: CMP will store those parameters into `UserDefaults`, TeadSDK will automatically retrieve these values. [GDPR Transparency and Consent Framework ](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md) IAB documentation.
    *
    */
   public userConsent = async (
@@ -85,8 +94,11 @@ export default class TeadsAdPlacementSettings {
   };
 
   /**
-   * comments todo
+   * #### In order to follow the IAB specifications for CCPA, please fill the following parameters with attention.
+   *  - Parameters:
+   *    - consent: The CCPA consent string.
    *
+   *  - Note: If you use a Content Management Platform, you can skip this step: CMP will store those parameters into `UserDefaults`, TeadSDK will automatically retrieve consent value. [CCPA](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md) IAB documentation.
    */
   public setUsPrivacy = async (consent: String) => {
     try {
@@ -99,8 +111,7 @@ export default class TeadsAdPlacementSettings {
   };
 
   /**
-   * comments todo
-   *
+   * #### Prevent to automatically set UIDevice.current.isBatteryMonitoringEnabled
    */
   public disableBatteryMonitoring = async () => {
     try {
@@ -112,8 +123,12 @@ export default class TeadsAdPlacementSettings {
   };
 
   /**
-   * comments todo
+   * #### Add extra informations to settings.
+   *  - parameters:
+   *      - value: Extra value.
+   *      - key: Extra key.
    *
+   *  - Note: for Adapater scope mainly
    */
   public addExtras = async (key: String, value: String) => {
     try {
@@ -127,8 +142,8 @@ export default class TeadsAdPlacementSettings {
   };
 
   /**
-   * comments todo
-   *
+   * When the SDK will be instantiate, it will retrieve the user precise or approximate location if the host
+   * application has the permissions. Disabling the location will reduce the quantity of ads received.
    */
   public enableLocation = async () => {
     try {
@@ -139,7 +154,7 @@ export default class TeadsAdPlacementSettings {
   };
 
   /**
-   * comments todo
+   * #### When the ad playback is finished, we display an endscreen with light color. (Dark color by default).
    *
    */
   public useLightEndScreen = async () => {
@@ -151,8 +166,7 @@ export default class TeadsAdPlacementSettings {
   };
 
   /**
-   * comments todo
-   *
+   * #### Hide the website url in the internal browser only. The url is visible by default.
    */
   public hideBrowserUrl = async () => {
     try {
@@ -163,8 +177,9 @@ export default class TeadsAdPlacementSettings {
   };
 
   /**
-   * comments todo
-   *
+   * #### Set the toolbar background color on the browser.
+   * - parameters:
+   *      - color the color as a int
    */
   public toolBarBackgroundColor = async (color: number) => {
     try {

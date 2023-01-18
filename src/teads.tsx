@@ -1,12 +1,7 @@
 import TeadsAdPlacementSettings from './teads-ad-placement-settings';
 import TeadsInReadAdPlacement from './teads-inread-ad-placement';
-import { NativeModules, Platform } from 'react-native';
-
-const LINKING_ERROR =
-  `The package 'react-native-teads-sdk-module' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+import { NativeModules } from 'react-native';
+import { LINKING_ERROR } from './constants';
 
 export default class Teads {
   private static bridgeTeads = NativeModules.RNTeads

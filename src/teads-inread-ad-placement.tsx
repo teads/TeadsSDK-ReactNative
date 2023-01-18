@@ -1,13 +1,8 @@
 import TeadsAdRatio from './teads-ad-ratio';
 import TeadsAdRequestSettings from './teads-ad-request-settings';
 import TeadsInReadAd from './teads-inread-ad';
-import { NativeModules, Platform } from 'react-native';
-
-const LINKING_ERROR =
-  `The package 'react-native-teads-sdk-module' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+import { NativeModules } from 'react-native';
+import { LINKING_ERROR } from './constants';
 
 export default class TeadsInReadAdPlacement {
   inReadAdAdRatioMap: Map<TeadsInReadAd, TeadsAdRatio>;
@@ -28,7 +23,7 @@ export default class TeadsInReadAdPlacement {
   }
 
   /**
-   * comments todo
+   * comments TODO
    *
    */
   public requestAd = async (
