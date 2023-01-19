@@ -20,7 +20,9 @@ class RNInReadAdView: UIView {
             }
             print("ID received by the view",adId)
             do {
-                let teadsAd = try RNTeadsInReadAdInstanceManager.shared.instance(for: adId)
+                let teadsAd: TeadsInReadAd = try RNTeadsInReadAdInstanceManager.shared.instance(for: adId)
+                teadsAd.delegate = self
+                teadsAd.playbackDelegate = self
                 self.inReadAdView = TeadsInReadAdView(bind: teadsAd);
                 print("AD FOUND",teadsAd)
                 self.requestIdentifier = adId
@@ -48,3 +50,12 @@ class RNInReadAdView: UIView {
 //    }
     
 }
+
+
+extension RNInReadAdView: TeadsAdDelegate{
+    func willPresentModalView(ad: TeadsAd) -> UIViewController? {
+        return nil
+    }
+}
+
+extension RNInReadAdView: TeadsPlaybackDelegate{}

@@ -11,15 +11,30 @@ import TeadsSDK
 
 class RNTeadsInReadAdInstanceManager {
     static let shared = RNTeadsInReadAdInstanceManager()
-    var placement: TeadsInReadAdPlacement?
-    private var list = [String: TeadsInReadAd]()
+    private var list = [String: TeadsAd]()
+    private var placementList = [Int: TeadsAdPlacement]()
     
-    func new(instance: TeadsInReadAd) {
+    // MARK: Placement
+    
+    func placement<T: TeadsAdPlacement>(for pid: Float) throws -> T {
+        if let placement = placementList[Int(pid)] as? T {
+            return placement
+        } else {
+            throw NSError()
+        }
+    }
+    
+    func new<T: TeadsAdPlacement>(placement: T, pid: Int) {
+        placementList [pid] = placement
+    }
+    
+    // MARK: Ad
+    func new<T: TeadsAd>(instance: T) {
         list [instance.requestIdentifier.uuidString] = instance
     }
     
-    func instance(for requestIdentifier: String) throws -> TeadsInReadAd {
-        if let instance = list[requestIdentifier] {
+    func instance<T: TeadsAd>(for requestIdentifier: String) throws -> T {
+        if let instance = list[requestIdentifier] as? T {
             return instance
         } else {
             throw NSError()
@@ -29,8 +44,7 @@ class RNTeadsInReadAdInstanceManager {
     func removeInstance(for requestIdentifier: String) {
         list.removeValue(forKey: requestIdentifier)
     }
-    
-    
+
 }
 
 class RNTeadsNativeAdInstanceManager {

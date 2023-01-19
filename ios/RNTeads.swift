@@ -19,7 +19,11 @@ class RNTeads: NSObject {
         let decoder = JSONDecoder()
         do {
             let settings = try decoder.decode(TeadsAdPlacementSettings.self, from: data)
-            RNTeadsInReadAdInstanceManager.shared.placement = Teads.createInReadPlacement(pid: Int(pid), settings: settings)
+            let pid = Int(pid)
+            guard let placement = Teads.createInReadPlacement(pid: pid, settings: settings) else {
+                throw NSError()
+            }
+            RNTeadsInReadAdInstanceManager.shared.new(placement: placement, pid: pid)
             resolve(nil)
         } catch {
             reject("E_RNTeads", "Error on RNTeads", error)

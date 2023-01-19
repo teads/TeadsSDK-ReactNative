@@ -12,16 +12,17 @@ class RNInReadAdPlacement: NSObject {
     
     
     @objc
-    func requestAd(_ settingsMap:NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+    func requestAd(_ pid: Float, settingsMap:NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
         print("settingsFromRequest",settingsMap)
         let data = json(from: settingsMap)!
         let decoder = JSONDecoder()
-        RNTeadsInReadAdInstanceManager.shared.placement?.delegate = self
         do {
             let settings = try decoder.decode(TeadsAdRequestSettings.self, from: data)
-            let id = RNTeadsInReadAdInstanceManager.shared.placement?.requestAd(requestSettings: settings)
-            print("ID", id?.uuidString)
-            resolve(id?.uuidString)
+            let placement: TeadsInReadAdPlacement = try RNTeadsInReadAdInstanceManager.shared.placement(for: pid)
+            placement.delegate = self
+            let id = placement.requestAd(requestSettings: settings)
+            print("ID", id.uuidString)
+            resolve(id.uuidString)
         } catch {
             reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement requestAd", error)
         }
