@@ -53,39 +53,46 @@ npm run ios
 =======
 # react-native-teads-sdk-module
 
-inplementation of teads sdk in react native
+implementation of teads sdk in react native
 
 ## Installation on an another app
 
-````sh
+```sh
 npm i
-npm install react-native-teads-sdk-module```
+npm install react-native-teads-sdk-module
+```
 
 ## Usage
 
 ```js
-import { teadsExample } from "react-native-teads-sdk-module";
+import { TeadsModule } from 'react-native-teads-sdk-module';
 
 // ...
 
-const result = await teadsExample();
-````
+const result = await TeadsModule();
+```
 
 ## launch the example here
 
+```sh
 yarn
 yarn example android
-(for ios simulator)
+
+OR
+
 yarn example ios
+```
 
 OR
 
 directly from Xcode with
 
-cd thisRepo/example/ios
+```sh
+cd YourRepository/example/ios
 rm -rf Pods/ Podfile.lock TeadsSdkModuleExample.xcworkspace/
 pod install
 open TeadsSdkModuleExample.xcworkspace/
+```
 
 then build and run
 

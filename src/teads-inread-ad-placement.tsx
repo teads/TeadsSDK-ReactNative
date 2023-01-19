@@ -18,12 +18,17 @@ export default class TeadsInReadAdPlacement {
         }
       );
 
-  constructor() {
+  constructor(private pid: number) {
     this.inReadAdAdRatioMap = new Map<TeadsInReadAd, TeadsAdRatio>();
   }
 
   /**
-   * comments TODO
+   * Request an InRead ad on this placement
+   * listen for events by implementing ``TeadsInReadAdPlacementDelegate``
+   * - parameters:
+   *     - requestSettings: settings ``TeadsInReadAdRequestSettings`` to tweak your needs
+   * - returns: a unique request identifier, this identifier will be the same value of `TeadsInReadAd.requestIdentifier` property
+   * - requires: ``TeadsInReadAdPlacement/delegate`` property must be set to perform ad request, otherwise didReceiveAd will not be triggered
    *
    */
   public requestAd = async (
@@ -31,7 +36,10 @@ export default class TeadsInReadAdPlacement {
   ): Promise<String> => {
     try {
       TeadsAdRequestSettings.toString;
-      var id = this.bridgeInReadAdPlacement.requestAd(requestSettings.mapValue);
+      var id = this.bridgeInReadAdPlacement.requestAd(
+        this.pid,
+        requestSettings.mapValue
+      );
       this.inReadAdAdRatioMap.set(
         new TeadsInReadAd(await id),
         new TeadsAdRatio(await id)

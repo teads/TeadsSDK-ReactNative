@@ -11,9 +11,10 @@
 @interface RCT_EXTERN_MODULE(RNInReadAdPlacement, NSObject)
 
 RCT_EXTERN_METHOD(
-                  requestAd:(NSDictionary *)settingsMap
-                  resolve:(RCTPromiseResolveBlock)resolve
-                  reject: (RCTPromiseRejectBlock)reject
+                  requestAd:(float)pid
+                    settingsMap:(NSDictionary *)settingsMap
+                    resolve:(RCTPromiseResolveBlock)resolve
+                    reject: (RCTPromiseRejectBlock)reject
                   )
 
 + (BOOL)requiresMainQueueSetup
