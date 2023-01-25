@@ -4,7 +4,6 @@ import TeadsAdView from '../../src/teads-ad-view';
 import Teads from '../../src/teads';
 import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
 import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
-import type TeadsInReadAdPlacement from 'src/teads-inread-ad-placement';
 
 export default function App() {
   const [showAd, setShowAd] = React.useState<boolean>(false);
@@ -14,12 +13,6 @@ export default function App() {
   var testAdPlacementSetting = new TeadsAdPlacementSettings();
   var testAdRequestSettings = new TeadsAdRequestSettings();
 
-  var placement1: TeadsInReadAdPlacement | undefined;
-  //placement1 = new TeadsInReadAdPlacement();
-
-  var placement2: TeadsInReadAdPlacement | undefined;
-  //placement2 = new TeadsInReadAdPlacement();
-
   async function onPress(this: any) {
     await testAdPlacementSetting.disableCrashMonitoring();
     console.log(testAdPlacementSetting.mapValue);
@@ -27,14 +20,14 @@ export default function App() {
     await testAdPlacementSetting.enableDebug();
 
     // id de test
-    placement1 = await Teads.createInReadPlacement(
+    var placement1 = await Teads.createInReadPlacement(
       84242,
       testAdPlacementSetting
     );
 
     await placement1?.requestAd(testAdRequestSettings).then(setAdId);
 
-    placement2 = await Teads.createInReadPlacement(
+    var placement2 = await Teads.createInReadPlacement(
       128779,
       testAdPlacementSetting
     );

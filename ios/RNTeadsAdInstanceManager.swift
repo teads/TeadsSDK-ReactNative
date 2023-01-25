@@ -15,7 +15,6 @@ class RNTeadsInReadAdInstanceManager {
     private var placementList = [Int: TeadsAdPlacement]()
     
     // MARK: Placement
-    
     func placement<T: TeadsAdPlacement>(for pid: Float) throws -> T {
         if let placement = placementList[Int(pid)] as? T {
             return placement

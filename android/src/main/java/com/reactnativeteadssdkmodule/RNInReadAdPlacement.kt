@@ -17,9 +17,9 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
 
   //requestAd
   @ReactMethod
-  fun requestAd( settingsMap : ReadableMap, promise: Promise) {
+  fun requestAd( pid: Int, settingsMap : ReadableMap, promise: Promise) {
     val instanceIdentifier = UUID.randomUUID().toString()
-    RNAdInstanceManager.shared.placement?.requestAd(AdRequestSettings.fromMap(settingsMap.toHashMap().toMap()),
+    RNAdInstanceManager.shared.instance(pid).inReadAdPlacement.requestAd(AdRequestSettings.fromMap(settingsMap.toHashMap().toMap()),
       object : InReadAdListener {
         override fun adOpportunityTrackerView(trackerView: AdOpportunityTrackerView) {
         }
@@ -34,6 +34,7 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
               instanceIdentifier
             )
           )
+
 
           Handler(Looper.getMainLooper()).post {
             Log.d("from ad","didReceiveAd")
