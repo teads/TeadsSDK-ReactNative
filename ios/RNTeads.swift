@@ -23,7 +23,9 @@ class RNTeads: NSObject {
             guard let placement = Teads.createInReadPlacement(pid: pid, settings: settings) else {
                 throw NSError()
             }
-            RNTeadsInReadAdInstanceManager.shared.new(placement: placement, pid: pid)
+            print("pid placement from sdk",placement.pid)
+        
+            RNTeadsInReadAdInstanceManager.shared.new(placement: placement, pid: placement.pid)
             resolve(nil)
         } catch {
             reject("E_RNTeads", "Error on RNTeads", error)

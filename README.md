@@ -4,6 +4,8 @@ implementation of teads sdk in react native
 
 ## Installation on an another app
 
+not implemented yet
+
 ```sh
 npm i
 npm install react-native-teads-sdk-module
@@ -24,9 +26,11 @@ const result = await TeadsModule();
 ```sh
 yarn
 yarn example android
+```
 
 OR
 
+```sh
 yarn example ios
 ```
 
@@ -48,7 +52,7 @@ OR
 directly from Android studio
 
 open project and run it
-with metro launch on the side
+with metro launched on the side
 
 ## Contributing
 

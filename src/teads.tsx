@@ -16,7 +16,9 @@ export default class Teads {
       );
 
   /**
-   * comments todo
+   * Create a native ad placement to request native ads.
+   * Pass your Teads [pid] and the placement's related [settings] you want to apply.
+   * Returns a instance of placement .s
    *
    */
   static createInReadPlacement = async (
