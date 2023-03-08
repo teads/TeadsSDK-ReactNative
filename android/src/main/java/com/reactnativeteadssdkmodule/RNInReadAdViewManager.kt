@@ -1,3 +1,5 @@
+import android.util.Log
+import android.view.ViewGroup
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
@@ -15,10 +17,10 @@ class RNInReadAdViewManager : SimpleViewManager<RNInReadAdView>() {
 
   @ReactProp(name = "adId")
   fun setAdId(view: RNInReadAdView, adId: String?) {
-    if (adId != null && adId != view.adId) {
+    if (adId != null) {
       view.adId = adId
-      view.inReadAdView=RNAdInstanceManager.shared.instance(adId).inReadAdView
-      view.addView(RNAdInstanceManager.shared.instance(adId).inReadAdView)
+      view.inReadAdView = RNAdInstanceManager.shared.instance(adId).inReadAdView
+      view.addView(view.inReadAdView)
     }
     view.invalidate()
   }
@@ -27,6 +29,5 @@ class RNInReadAdViewManager : SimpleViewManager<RNInReadAdView>() {
   override fun createViewInstance(reactContext: ThemedReactContext): RNInReadAdView {
     return RNInReadAdView(reactContext)
   }
-
 
 }

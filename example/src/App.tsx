@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Button, ScrollView } from 'react-native';
 import TeadsAdView from '../../src/teads-ad-view';
 import Teads from '../../src/teads';
 import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
@@ -7,8 +7,8 @@ import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
 
 export default function App() {
   const [showAd, setShowAd] = React.useState<boolean>(false);
-  const [adId, setAdId] = React.useState<String>('testid');
-  const [adId2, setAdId2] = React.useState<String>('testid');
+  const [adId, setAdId] = React.useState<String>();
+  const [adId2, setAdId2] = React.useState<String>();
 
   var testAdPlacementSetting = new TeadsAdPlacementSettings();
   var testAdRequestSettings = new TeadsAdRequestSettings();
@@ -18,6 +18,7 @@ export default function App() {
     console.log(testAdPlacementSetting.mapValue);
     await testAdRequestSettings.pageUrl('www.example.com');
     await testAdPlacementSetting.enableDebug();
+    await testAdPlacementSetting.setUsPrivacy('consent');
 
     // id de test
     var placement1 = await Teads.createInReadPlacement(
@@ -44,8 +45,8 @@ export default function App() {
     ? (ad = (
         <TeadsAdView
           style={{
-            height: 300,
-            width: 400,
+            height: 200,
+            width: '100%',
           }}
           adId={adId}
         ></TeadsAdView>
@@ -58,7 +59,7 @@ export default function App() {
         <TeadsAdView
           style={{
             height: 300,
-            width: 400,
+            width: '100%',
           }}
           adId={adId2}
         ></TeadsAdView>
@@ -66,19 +67,21 @@ export default function App() {
     : (ad2 = <></>);
 
   return (
-    <View style={styles.container}>
-      <Button
-        title="Click to request an ad with RN!"
-        color="#841584"
-        onPress={onPress}
-      />
-      <Text>adId: {adId}</Text>
-      <Text>adId: {adId2}</Text>
-      <Button title="show ad" color="#841584" onPress={onPressAd} />
-      {ad}
-      {ad2}
-      <Text>Hello world</Text>
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <Button
+          title="Click to request an ad with RN!"
+          color="#841584"
+          onPress={onPress}
+        />
+        <Text>adId: {adId}</Text>
+        <Text>adId: {adId2}</Text>
+        <Button title="show ad" color="#841584" onPress={onPressAd} />
+        {ad}
+        {ad2}
+        <Text>Hello world</Text>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -87,6 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 100,
   },
   box: {
     width: 60,
