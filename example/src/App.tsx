@@ -22,7 +22,7 @@ export default function App() {
 
     // id de test
     var placement1 = await Teads.createInReadPlacement(
-      84242,
+      127547,
       testAdPlacementSetting
     );
 
@@ -79,7 +79,6 @@ export default function App() {
         <Button title="show ad" color="#841584" onPress={onPressAd} />
         {ad}
         {ad2}
-        <Text>Hello world</Text>
       </View>
     </ScrollView>
   );

@@ -1,7 +1,6 @@
 package com.reactnativeteadssdkmodule
 
 import tv.teads.sdk.InReadAdPlacement
-import tv.teads.sdk.loader.AdPlacement
 import tv.teads.sdk.renderer.InReadAdView
 
 

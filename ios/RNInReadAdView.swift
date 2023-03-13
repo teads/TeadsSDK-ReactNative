@@ -43,12 +43,6 @@ class RNInReadAdView: UIView {
         }
     }
     
-//    deinit {
-//        if let adId = adId {
-//            RNTeadsInReadAdInstanceManager.shared.removeInstance(for: adId)
-//        }
-//    }
-    
 }
 
 
