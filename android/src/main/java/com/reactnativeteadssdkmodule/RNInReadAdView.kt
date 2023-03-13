@@ -1,4 +1,4 @@
-// replace with your package
+
 package com.reactnativeteadssdkmodule
 import android.content.Context
 import android.widget.FrameLayout
@@ -9,8 +9,7 @@ class RNInReadAdView(context: Context) : FrameLayout(context) {
   var adId : String = ""
 
   init {
-    // set padding
-    setPadding(10,10,10,10)
+    setPadding(16,16,16,16)
   }
 }
 
