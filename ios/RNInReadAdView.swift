@@ -28,6 +28,7 @@ class RNInReadAdView: UIView {
                 self.requestIdentifier = adId
                 self.inReadAdView.bind(teadsAd)
                 print("AD LINKED",teadsAd.requestIdentifier.uuidString)
+                print("test")
                 inReadAdView.translatesAutoresizingMaskIntoConstraints = false
                 self.addSubview(inReadAdView)
                 NSLayoutConstraint.activate([
