@@ -1,9 +1,4 @@
 #!/bin/sh
-<<<<<<< HEAD
-. "$(dirname "$0")/_/husky.sh"
-
-npx lint-staged
-=======
 
 if [ "$LEFTHOOK" = "0" ]; then
   exit 0
@@ -40,4 +35,3 @@ call_lefthook()
 
 
 call_lefthook "run pre-commit $@"
->>>>>>> 8690d10 (feat: refactoring error handling)
