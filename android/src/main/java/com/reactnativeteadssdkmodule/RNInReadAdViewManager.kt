@@ -19,15 +19,13 @@ class RNInReadAdViewManager : SimpleViewManager<RNInReadAdView>() {
       view.adId = adId
       view.inReadAdView = RNAdInstanceManager.shared.instance(adId).inReadAdView
       view.addView(view.inReadAdView)
-      view.invalidate()
-      this.invalidate()
     }
     view.invalidate()
   }
 
 
   override fun createViewInstance(reactContext: ThemedReactContext): RNInReadAdView {
-    return RNInReadAdView(reactContext)
+    return RNInReadAdView(reactContext.baseContext)
   }
 
 }

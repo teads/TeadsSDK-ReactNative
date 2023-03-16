@@ -15,7 +15,6 @@ export default function App() {
 
   async function onPress(this: any) {
     await testAdPlacementSetting.disableCrashMonitoring();
-    console.log(testAdPlacementSetting.mapValue);
     await testAdRequestSettings.pageUrl('www.example.com');
     await testAdPlacementSetting.enableDebug();
     await testAdPlacementSetting.setUsPrivacy('consent');
