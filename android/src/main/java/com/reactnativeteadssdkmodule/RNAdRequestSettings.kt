@@ -1,5 +1,6 @@
 package com.reactnativeteadssdkmodule
 import com.facebook.react.bridge.*
+import tv.teads.sdk.AdPlacementSettings
 import tv.teads.sdk.AdRequestSettings
 
 
@@ -10,29 +11,31 @@ class RNAdRequestSettings(reactContext: ReactApplicationContext) : ReactContextB
     return "RNAdRequestSettings"
   }
 
+  private fun convertSettingsAsWritableMap(settings : AdRequestSettings.Builder): WritableMap {
+    //tool to convert AdRequestSettings into WritableMap for ReactNative compatibility
+    val map: MutableMap<String?, Any?> = settings.build().toMap() as MutableMap<String?, Any?>
+    return MapUtil.toWritableMap(map)
+  }
+
   //enableValidationMode
   @ReactMethod
   fun enableValidationMode(promise: Promise) {
-    val map: MutableMap<String?, Any?> =adRequestSettings.enableValidationMode().build().toMap() as MutableMap<String?, Any?>
-    val result :WritableMap = MapUtil.toWritableMap(map)
-    //convert into WritableMap for ReactNative compatibility
-    promise.resolve(result)
+    adRequestSettings.enableValidationMode()
+    promise.resolve(convertSettingsAsWritableMap(adRequestSettings))
   }
 
   //pageUrl
   @ReactMethod
   fun pageUrl(urlString:String, promise: Promise) {
-    val map: MutableMap<String?, Any?> =adRequestSettings.pageSlotUrl(urlString).build().toMap() as MutableMap<String?, Any?>
-    val result :WritableMap = MapUtil.toWritableMap(map)
-    promise.resolve(result)
+    adRequestSettings.pageSlotUrl(urlString)
+    promise.resolve(convertSettingsAsWritableMap(adRequestSettings))
   }
 
   //addExtraSetting
   @ReactMethod
   fun addExtraSetting(key:String, value:String, promise: Promise) {
-    val map: MutableMap<String?, Any?> =adRequestSettings.addExtra(key, value).build().toMap() as MutableMap<String?, Any?>
-    val result :WritableMap = MapUtil.toWritableMap(map)
-    promise.resolve(result)
+    adRequestSettings.addExtra(key, value)
+    promise.resolve(convertSettingsAsWritableMap(adRequestSettings))
   }
 
 

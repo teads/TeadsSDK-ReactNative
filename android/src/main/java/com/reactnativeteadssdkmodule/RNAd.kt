@@ -13,13 +13,13 @@ class RNAd(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(r
   //auto on android
   @ReactMethod
   fun delegate( promise: Promise) {
-    promise.resolve("ok")
+    promise.resolve(true)
   }
 
   //playback
   //auto on android
   fun playback( promise: Promise) {
-    promise.resolve("ok")
+    promise.resolve(true)
   }
 
 }

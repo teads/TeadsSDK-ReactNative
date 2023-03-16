@@ -14,6 +14,7 @@ export default function App() {
   var testAdRequestSettings = new TeadsAdRequestSettings();
 
   async function onPress(this: any) {
+    await testAdPlacementSetting.enableDebug();
     await testAdPlacementSetting.disableCrashMonitoring();
     await testAdRequestSettings.pageUrl('www.example.com');
     await testAdPlacementSetting.enableDebug();
@@ -21,7 +22,7 @@ export default function App() {
 
     // id de test
     var placement1 = await Teads.createInReadPlacement(
-      127547,
+      84242,
       testAdPlacementSetting
     );
 
@@ -44,7 +45,7 @@ export default function App() {
     ? (ad = (
         <TeadsAdView
           style={{
-            height: 200,
+            height: 300,
             width: '100%',
           }}
           adId={adId}
@@ -57,7 +58,7 @@ export default function App() {
     ? (ad2 = (
         <TeadsAdView
           style={{
-            height: 300,
+            height: 400,
             width: '100%',
           }}
           adId={adId2}
