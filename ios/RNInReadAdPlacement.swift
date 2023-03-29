@@ -13,24 +13,24 @@ class RNInReadAdPlacement: NSObject {
     
     @objc
     func requestAd(_ pid: Float, settingsMap:NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-        print("settingsFromRequest",settingsMap)
-        let data = json(from: settingsMap)!
         let decoder = JSONDecoder()
-        do {
-            let settings = try decoder.decode(TeadsAdRequestSettings.self, from: data)
-            let placement: TeadsInReadAdPlacement = try RNTeadsInReadAdInstanceManager.shared.placement(for: pid)
-            placement.delegate = self
-            let id = placement.requestAd(requestSettings: settings)
-            print("ID", id.uuidString)
-            resolve(id.uuidString)
-        } catch {
-            reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement requestAd", error)
+        if let data = json(from: settingsMap) {
+            do {
+                let settings = try decoder.decode(TeadsAdRequestSettings.self, from: data)
+                let placement: TeadsInReadAdPlacement = try RNTeadsInReadAdInstanceManager.shared.placement(for: pid)
+                placement.delegate = self
+                let id = placement.requestAd(requestSettings: settings)
+                resolve(id.uuidString)
+            } catch {
+                reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement requestAd", error)
+            }
+        } else {
+            reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement requestAd", RCTErrorWithMessage("BAD_ARGS: Wrong argument types"))
         }
     }
     
     func json(from object:Any) -> Data? {
-        guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
-            return nil
+        guard let data = try? JSONSerialization.data(withJSONObject: object, options: .prettyPrinted) else {   return nil
         }
         return data
     }
@@ -50,13 +50,13 @@ class RNInReadAdPlacement: NSObject {
 extension RNInReadAdPlacement: TeadsInReadAdPlacementDelegate {
     func didReceiveAd(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {
         RNTeadsInReadAdInstanceManager.shared.new(instance: ad)
-        print("DIDRECEIVEDAD")
     }
     
     func didUpdateRatio(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {
     }
     
     func didLogMessage(message: String) {
+        // Intended print to follow SDK lifecycle
         print(message)
     }
     

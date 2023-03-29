@@ -20,7 +20,6 @@ class RNInReadAdViewManager : SimpleViewManager<RNInReadAdView>() {
       view.inReadAdView = RNAdInstanceManager.shared.instance(adId).inReadAdView
       view.addView(view.inReadAdView)
     }
-    view.inReadAdView.invalidate()
     view.invalidate()
   }
 

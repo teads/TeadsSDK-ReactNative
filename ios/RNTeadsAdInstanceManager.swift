@@ -11,7 +11,7 @@ import TeadsSDK
 
 class RNTeadsInReadAdInstanceManager {
     static let shared = RNTeadsInReadAdInstanceManager()
-    private var list = [String: TeadsAd]()
+    private var adList = [String: TeadsAd]()
     private var placementList = [Int: TeadsAdPlacement]()
     
     // MARK: Placement
@@ -19,7 +19,7 @@ class RNTeadsInReadAdInstanceManager {
         if let placement = placementList[Int(pid)] as? T {
             return placement
         } else {
-            throw NSError()
+            throw noAdPlacement
         }
     }
     
@@ -29,19 +29,19 @@ class RNTeadsInReadAdInstanceManager {
     
     // MARK: Ad
     func new<T: TeadsAd>(instance: T) {
-        list [instance.requestIdentifier.uuidString] = instance
+        adList [instance.requestIdentifier.uuidString] = instance
     }
     
     func instance<T: TeadsAd>(for requestIdentifier: String) throws -> T {
-        if let instance = list[requestIdentifier] as? T {
+        if let instance = adList[requestIdentifier] as? T {
             return instance
         } else {
-            throw NSError()
+            throw noAdInstance
         }
     }
     
     func removeInstance(for requestIdentifier: String) {
-        list.removeValue(forKey: requestIdentifier)
+        adList.removeValue(forKey: requestIdentifier)
     }
 
 }
@@ -49,17 +49,17 @@ class RNTeadsInReadAdInstanceManager {
 class RNTeadsNativeAdInstanceManager {
     static let shared = RNTeadsNativeAdInstanceManager()
     var placement: TeadsNativeAdPlacement?
-    private var list = [TeadsNativeAd]()
+    private var adList = [TeadsNativeAd]()
     
     func new(ad: TeadsNativeAd) {
-        list.append(ad)
+        adList.append(ad)
     }
     
     func ad(for requestIdentifier: String) throws -> TeadsNativeAd {
-        if let ad = list.first(where: { $0.requestIdentifier.uuidString == requestIdentifier }) {
+        if let ad = adList.first(where: { $0.requestIdentifier.uuidString == requestIdentifier }) {
             return ad
         } else {
-            throw NSError()
+            throw noAdInstance
         }
     }
 }

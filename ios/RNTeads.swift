@@ -14,19 +14,16 @@ class RNTeads: NSObject {
     
     @objc
     func createInReadPlacement(_ pid : Float, settingsMap : NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-        print("settingsFromTeads",settingsMap)
         let data = json(from: settingsMap)!
         let decoder = JSONDecoder()
         do {
             let settings = try decoder.decode(TeadsAdPlacementSettings.self, from: data)
             let pid = Int(pid)
             guard let placement = Teads.createInReadPlacement(pid: pid, settings: settings) else {
-                throw NSError()
+                throw noAdPlacement
             }
-            print("pid placement from sdk",placement.pid)
-        
             RNTeadsInReadAdInstanceManager.shared.new(placement: placement, pid: placement.pid)
-            resolve(nil)
+            resolve(pid)
         } catch {
             reject("E_RNTeads", "Error on RNTeads", error)
         }

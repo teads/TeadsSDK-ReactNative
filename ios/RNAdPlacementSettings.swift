@@ -24,11 +24,6 @@ class RNAdPlacementSettings: NSObject {
         return settings
     }()
     
-    func raiseError(rejecter reject: RCTPromiseRejectBlock,functionName: String = #function) {
-        let error = NSError(domain: "Teads", code: 200, userInfo: nil)
-        reject("E_AdPlacementSettings", "Error on AdPlacementsSettings", error)
-    }
-    
     
     @objc
     func disableCrashMonitoring(
@@ -80,9 +75,10 @@ class RNAdPlacementSettings: NSObject {
         rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
         do {
-            let tcfVersionreturn = TCFVersion.init(rawValue: Int(tcfVersion))
-            if (tcfVersionreturn != nil) {
-                placementSettings.userConsent(subjectToGDPR: subjectToGDPR, consent: consent, tcfVersion:tcfVersionreturn!, cmpSdkID: Int(cmpSdkID))
+            if let tcfVersionreturn = TCFVersion(rawValue: Int(tcfVersion)) {
+                placementSettings.userConsent(subjectToGDPR: subjectToGDPR, consent: consent, tcfVersion:tcfVersionreturn, cmpSdkID: Int(cmpSdkID))
+                resolve(try placementSettings.asDictionary())
+            } else {
                 resolve(try placementSettings.asDictionary())
             }
         } catch {
