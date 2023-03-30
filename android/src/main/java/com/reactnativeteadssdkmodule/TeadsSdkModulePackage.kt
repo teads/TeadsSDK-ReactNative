@@ -7,7 +7,7 @@ import com.facebook.react.bridge.ReactApplicationContext
 
 class TeadsSdkModulePackage : ReactPackage {
     override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
-        return listOf(RNAdPlacementSettings(reactContext),RNAdRequestSettings(reactContext),RNTeads(reactContext),RNInReadAdPlacement(reactContext))
+        return listOf(RNAdPlacementSettings(reactContext),RNAdRequestSettings(reactContext),RNTeads(reactContext),RNInReadAdPlacement(reactContext),RNAdRatio(reactContext))
     }
 
   override fun createViewManagers(

@@ -19,13 +19,14 @@ class RNInReadAdView: UIView {
                 return
             }
             do {
-                let teadsAd: TeadsInReadAd = try RNTeadsInReadAdInstanceManager.shared.instance(for: adId)
+                let teadsAd: TeadsInReadAd = try RNTeadsInReadAdInstanceManager.shared.instance(for: adId).teadsAd
                 teadsAd.delegate = self
                 teadsAd.playbackDelegate = self
                 inReadAdView.bind(teadsAd)
                 self.requestIdentifier = adId
                 self.inReadAdView.bind(teadsAd)
                 inReadAdView.translatesAutoresizingMaskIntoConstraints = false
+            
                 self.addSubview(inReadAdView)
                 NSLayoutConstraint.activate([
                     leadingAnchor.constraint(equalTo: inReadAdView.leadingAnchor),

@@ -4,14 +4,20 @@ import TeadsAdView from '../../src/teads-ad-view';
 import Teads from '../../src/teads';
 import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
 import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
+import TeadsAdRatio from '../../src/teads-ad-ratio';
+import { Dimensions } from 'react-native';
 
 export default function App() {
   const [showAd, setShowAd] = React.useState<boolean>(false);
   const [adId, setAdId] = React.useState<String>();
   const [adId2, setAdId2] = React.useState<String>();
+  const [height, setHeight] = React.useState<number>();
 
   var testAdPlacementSetting = new TeadsAdPlacementSettings();
   var testAdRequestSettings = new TeadsAdRequestSettings();
+  var testAdRatio = new TeadsAdRatio(Dimensions.get('window').width);
+  //witdh of the ad is choose by the user
+  //more optimal height is calculate by adRatio function
 
   async function onPress(this: any) {
     await testAdPlacementSetting.enableDebug();
@@ -22,7 +28,7 @@ export default function App() {
 
     // id de test
     var placement1 = await Teads.createInReadPlacement(
-      84242,
+      128779,
       testAdPlacementSetting
     );
 
@@ -36,7 +42,12 @@ export default function App() {
     await placement2?.requestAd(testAdRequestSettings).then(setAdId2);
   }
 
-  function onPressAd(this: any) {
+  async function onPressAd() {
+    if (adId) {
+      await testAdRatio
+        .calculateHeight(testAdRatio.width, adId)
+        .then(setHeight);
+    }
     setShowAd(!showAd);
   }
 
@@ -45,8 +56,8 @@ export default function App() {
     ? (ad = (
         <TeadsAdView
           style={{
-            height: 300,
-            width: '100%',
+            height: height,
+            width: testAdRatio.width,
           }}
           adId={adId}
         ></TeadsAdView>
@@ -77,6 +88,7 @@ export default function App() {
         <Text>adId: {adId}</Text>
         <Text>adId: {adId2}</Text>
         <Button title="show ad" color="#841584" onPress={onPressAd} />
+
         {ad}
         {ad2}
       </View>

@@ -1,9 +1,24 @@
-// should we implement it on ios ? just usefull for android i think
-export default class TeadsAdRatio {
-  adRequestIdentifier: String;
+import { NativeModules } from 'react-native';
+import { LINKING_ERROR } from './constants';
 
-  constructor(adRequestIdentifier: String) {
-    this.adRequestIdentifier = adRequestIdentifier;
+export default class TeadsAdRatio {
+  width: number;
+  height: number;
+
+  private bridgeAdRatio = NativeModules.RNAdRatio
+    ? NativeModules.RNAdRatio
+    : new Proxy(
+        {},
+        {
+          get() {
+            throw new Error(LINKING_ERROR);
+          },
+        }
+      );
+
+  constructor(width: number) {
+    this.width = width;
+    this.height = 100;
   }
 
   /**
@@ -12,13 +27,22 @@ export default class TeadsAdRatio {
    * Compute the best height for your TeadsInReadAdView with the given width.
    *  - parameters:
    *     - width: the width of your TeadsInReadAdView.
+   *     - requestidentifier : the id of your TeadsAd
    *  - returns: The calculated height that fit the creative aspect ratio.
    */
-  public calculateHeight = async () => {
+  public calculateHeight = async (
+    height: number,
+    requestIdentifier: String
+  ) => {
     try {
-      this.adRequestIdentifier = 'not implemented';
+      this.height = await this.bridgeAdRatio.calculateHeight(
+        height,
+        requestIdentifier
+      );
+      return this.height;
     } catch (e) {
       console.error(e);
+      return undefined;
     }
   };
 
@@ -33,7 +57,7 @@ export default class TeadsAdRatio {
    */
   public value = async () => {
     try {
-      this.adRequestIdentifier = 'not implemented';
+      this.width = 1;
     } catch (e) {
       console.error(e);
     }
