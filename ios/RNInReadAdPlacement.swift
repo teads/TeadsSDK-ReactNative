@@ -17,7 +17,7 @@ class RNInReadAdPlacement: NSObject {
         if let data = json(from: settingsMap) {
             do {
                 let settings = try decoder.decode(TeadsAdRequestSettings.self, from: data)
-                let placement: TeadsInReadAdPlacement = try RNTeadsInReadAdInstanceManager.shared.placement(for: pid)
+                let placement: TeadsInReadAdPlacement = try RNTeadsInstanceManager.shared.placement(for: pid)
                 placement.delegate = self
                 let id = placement.requestAd(requestSettings: settings)
                 resolve(id.uuidString)
@@ -48,8 +48,8 @@ class RNInReadAdPlacement: NSObject {
 
 
 extension RNInReadAdPlacement: TeadsInReadAdPlacementDelegate {
-    func didReceiveAd(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {
-        RNTeadsInReadAdInstanceManager.shared.new(instance: RNInReadAdInstanceMap(teadsAd: ad,adRatio: adRatio))
+    func didReceiveAd(ad: TeadsInReadAd, adRatio _: TeadsAdRatio) {
+        RNTeadsInstanceManager.shared.new(instance: ad)
     }
     
     func didUpdateRatio(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {

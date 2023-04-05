@@ -20,9 +20,9 @@ final class RNTeads: NSObject {
             let settings = try decoder.decode(TeadsAdPlacementSettings.self, from: data)
             let pid = Int(pid)
             guard let placement = Teads.createInReadPlacement(pid: pid, settings: settings) else {
-                throw noAdPlacement
+                throw RNTeadsError.noAdPlacement.error
             }
-            RNTeadsInReadAdInstanceManager.shared.new(placement: placement, pid: placement.pid)
+            RNTeadsInstanceManager.shared.new(placement: placement, pid: placement.pid)
             resolve(pid)
         } catch {
             reject("E_RNTeads", "Error on RNTeads", error)

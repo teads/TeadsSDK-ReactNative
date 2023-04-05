@@ -20,10 +20,8 @@ final class RNAdRatio: NSObject {
         rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
         do {
-            var height = try RNTeadsInReadAdInstanceManager.shared.instance(for: requestIdentifier).adRatio.calculateHeight(for: CGFloat(width))
-            print("width",width)
-            print("height",height)
-            
+            let ad: TeadsInReadAd = try RNTeadsInstanceManager.shared.instance(for: requestIdentifier)
+            let height = ad.adRatio.calculateHeight(for: CGFloat(width))
             resolve(height)
             
         } catch  {

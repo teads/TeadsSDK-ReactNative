@@ -19,7 +19,7 @@ final class RNInReadAdView: UIView {
                 return
             }
             do {
-                let teadsAd: TeadsInReadAd = try RNTeadsInReadAdInstanceManager.shared.instance(for: adId).teadsAd
+                let teadsAd: TeadsInReadAd = try RNTeadsInstanceManager.shared.instance(for: adId)
                 teadsAd.delegate = self
                 teadsAd.playbackDelegate = self
                 inReadAdView.bind(teadsAd)

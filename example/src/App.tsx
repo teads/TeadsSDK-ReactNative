@@ -28,7 +28,7 @@ export default function App() {
 
     // id de test
     var placement1 = await Teads.createInReadPlacement(
-      128779,
+      84242,
       testAdPlacementSetting
     );
 
