@@ -10,7 +10,7 @@ import TeadsSDK
 import React
 
 @objc(RNAdRatio)
-class RNAdRatio: NSObject {
+final class RNAdRatio: NSObject {
     
     @objc
     func calculateHeight(

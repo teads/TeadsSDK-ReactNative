@@ -10,7 +10,7 @@ import TeadsSDK
 import UIKit
 
 @objc(RNTeads)
-class RNTeads: NSObject {
+final class RNTeads: NSObject {
     
     @objc
     func createInReadPlacement(_ pid : Float, settingsMap : NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {

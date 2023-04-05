@@ -21,6 +21,7 @@ class RNInReadAdViewManager : SimpleViewManager<RNInReadAdView>() {
       view.addView(view.inReadAdView)
     }
     view.invalidate()
+    view.inReadAdView.invalidate()
   }
 
 

@@ -9,7 +9,7 @@ import TeadsSDK
 import UIKit
 
 @objc(RNInReadAdView)
-class RNInReadAdView: UIView {
+final class RNInReadAdView: UIView {
     private let inReadAdView = TeadsInReadAdView()
     private var requestIdentifier: String = ""
     

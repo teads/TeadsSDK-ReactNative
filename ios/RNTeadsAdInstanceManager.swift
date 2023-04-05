@@ -13,7 +13,7 @@ struct RNInReadAdInstanceMap {
     let adRatio: TeadsAdRatio
 }
 
-class RNTeadsInReadAdInstanceManager {
+final class RNTeadsInReadAdInstanceManager {
     static let shared = RNTeadsInReadAdInstanceManager()
     private var adListwithRatio = [RNInReadAdInstanceMap]()
     private var placementList = [Int: TeadsAdPlacement]()
@@ -50,7 +50,7 @@ class RNTeadsInReadAdInstanceManager {
     
 }
 
-class RNTeadsNativeAdInstanceManager {
+final class RNTeadsNativeAdInstanceManager {
     static let shared = RNTeadsNativeAdInstanceManager()
     var placement: TeadsNativeAdPlacement?
     private var adList = [TeadsNativeAd]()

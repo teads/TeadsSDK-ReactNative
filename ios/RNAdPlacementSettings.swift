@@ -10,7 +10,7 @@ import TeadsSDK
 import React
 
 @objc(RNAdPlacementSettings)
-class RNAdPlacementSettings: NSObject {
+final class RNAdPlacementSettings: NSObject {
     
     let placementSettings: TeadsAdPlacementSettings = {
         let settings = TeadsAdPlacementSettings()
