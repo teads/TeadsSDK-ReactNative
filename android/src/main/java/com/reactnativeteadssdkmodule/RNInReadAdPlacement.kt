@@ -35,7 +35,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
             )
           )
 
-
           Handler(Looper.getMainLooper()).post {
             Log.d("from ad","didReceiveAd")
           }

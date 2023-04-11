@@ -22,7 +22,7 @@ class RNAdInstanceManager {
     if (instance != null) {
       return instance
     } else {
-      throw Exception()
+      throw IllegalStateException("AdInstanceMap is null")
     }
   }
 
@@ -37,7 +37,7 @@ class RNAdInstanceManager {
     if (placement != null) {
       return placement
     } else {
-      throw Exception()
+      throw IllegalStateException("AdPlacementMap is null")
     }
   }
 
