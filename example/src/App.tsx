@@ -10,7 +10,6 @@ import { Dimensions } from 'react-native';
 export default function App() {
   const [showAd, setShowAd] = React.useState<boolean>(false);
   const [adId, setAdId] = React.useState<String>();
-  const [adId2, setAdId2] = React.useState<String>();
   const [height, setHeight] = React.useState<number>();
 
   var testAdPlacementSetting = new TeadsAdPlacementSettings();
@@ -26,6 +25,8 @@ export default function App() {
     await testAdPlacementSetting.enableDebug();
     await testAdPlacementSetting.setUsPrivacy('consent');
 
+    console.log(testAdPlacementSetting.mapValue);
+
     // id de test
     var placement1 = await Teads.createInReadPlacement(
       84242,
@@ -33,13 +34,6 @@ export default function App() {
     );
 
     await placement1?.requestAd(testAdRequestSettings).then(setAdId);
-
-    var placement2 = await Teads.createInReadPlacement(
-      128779,
-      testAdPlacementSetting
-    );
-
-    await placement2?.requestAd(testAdRequestSettings).then(setAdId2);
   }
 
   async function onPressAd() {
@@ -64,19 +58,6 @@ export default function App() {
       ))
     : (ad = <></>);
 
-  let ad2;
-  showAd
-    ? (ad2 = (
-        <TeadsAdView
-          style={{
-            height: 400,
-            width: '100%',
-          }}
-          adId={adId2}
-        ></TeadsAdView>
-      ))
-    : (ad2 = <></>);
-
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -86,11 +67,8 @@ export default function App() {
           onPress={onPress}
         />
         <Text>adId: {adId}</Text>
-        <Text>adId: {adId2}</Text>
         <Button title="show ad" color="#841584" onPress={onPressAd} />
-
         {ad}
-        {ad2}
       </View>
     </ScrollView>
   );

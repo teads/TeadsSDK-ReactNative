@@ -26,7 +26,6 @@ final class RNInReadAdView: UIView {
                 self.requestIdentifier = adId
                 self.inReadAdView.bind(teadsAd)
                 inReadAdView.translatesAutoresizingMaskIntoConstraints = false
-            
                 self.addSubview(inReadAdView)
                 NSLayoutConstraint.activate([
                     leadingAnchor.constraint(equalTo: inReadAdView.leadingAnchor),
@@ -35,9 +34,8 @@ final class RNInReadAdView: UIView {
                     bottomAnchor.constraint(equalTo: inReadAdView.bottomAnchor)
                 ])
             } catch {
-                return 
+                return
             }
-            
         }
     }
     

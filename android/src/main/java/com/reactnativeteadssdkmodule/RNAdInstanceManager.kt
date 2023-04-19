@@ -17,7 +17,7 @@ class RNAdInstanceManager {
   }
 
   @Throws()
-  fun instance(requestIdentifier: String) : AdInstanceMap {
+  fun instance(requestIdentifier: String): AdInstanceMap {
     val instance = adViewInstancesMapList.firstOrNull { it.id == requestIdentifier }
     if (instance != null) {
       return instance
@@ -32,7 +32,7 @@ class RNAdInstanceManager {
   }
 
   @Throws()
-  fun instance(pid: Int) : AdPlacementMap {
+  fun instance(pid: Int): AdPlacementMap {
     val placement = placementList.firstOrNull { it.id == pid }
     if (placement != null) {
       return placement

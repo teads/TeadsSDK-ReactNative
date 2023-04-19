@@ -1,4 +1,5 @@
 package com.reactnativeteadssdkmodule
+
 import com.facebook.react.bridge.*
 
 
@@ -12,13 +13,13 @@ class RNAd(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(r
   //delegate
   //auto on android
   @ReactMethod
-  fun delegate( promise: Promise) {
+  fun delegate(promise: Promise) {
     promise.resolve(true)
   }
 
   //playback
   //auto on android
-  fun playback( promise: Promise) {
+  fun playback(promise: Promise) {
     promise.resolve(true)
   }
 

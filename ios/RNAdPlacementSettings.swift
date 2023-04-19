@@ -15,8 +15,9 @@ final class RNAdPlacementSettings: NSObject {
     let placementSettings: TeadsAdPlacementSettings = {
         let settings = TeadsAdPlacementSettings()
         settings.addExtras(TeadsAdPlacementSettings.pluginReactNative, for: TeadsAdPlacementSettings.pluginKey)
-        if let major  = React.RCTGetReactNativeVersion()[React.RCTVersionMajor], let minor  = React.RCTGetReactNativeVersion()[React.RCTVersionMinor], let patch  = React.RCTGetReactNativeVersion()[React.RCTVersionPatch]
-        {
+        if let major = React.RCTGetReactNativeVersion()[React.RCTVersionMajor],
+           let minor = React.RCTGetReactNativeVersion()[React.RCTVersionMinor],
+           let patch = React.RCTGetReactNativeVersion()[React.RCTVersionPatch] {
             settings.addExtras("\(major).\(minor).\(patch)", for: TeadsAdPlacementSettings.pluginVersionKey)
         } else {
             settings.addExtras("unknown", for: TeadsAdPlacementSettings.pluginVersionKey)

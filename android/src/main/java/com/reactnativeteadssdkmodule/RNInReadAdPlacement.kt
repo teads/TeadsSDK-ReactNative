@@ -9,7 +9,8 @@ import tv.teads.sdk.renderer.InReadAdView
 import java.util.*
 
 
-class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
+  ReactContextBaseJavaModule(reactContext) {
 
   override fun getName(): String {
     return "RNInReadAdPlacement"
@@ -17,9 +18,11 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
 
   //requestAd
   @ReactMethod
-  fun requestAd( pid: Int, settingsMap : ReadableMap, promise: Promise) {
+  fun requestAd(pid: Int, settingsMap: ReadableMap, promise: Promise) {
     val instanceIdentifier = UUID.randomUUID().toString()
-    RNAdInstanceManager.shared.instance(pid).inReadAdPlacement.requestAd(AdRequestSettings.fromMap(settingsMap.toHashMap().toMap()),
+    RNAdInstanceManager.shared.instance(pid).inReadAdPlacement.requestAd(AdRequestSettings.fromMap(
+      settingsMap.toHashMap().toMap()
+    ),
       object : InReadAdListener {
         override fun adOpportunityTrackerView(trackerView: AdOpportunityTrackerView) {
         }
@@ -36,7 +39,7 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
           )
 
           Handler(Looper.getMainLooper()).post {
-            Log.d("from ad","didReceiveAd")
+            Log.d("from ad", "didReceiveAd")
           }
 
 
@@ -50,7 +53,8 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
 
         override fun onAdClosed() {
           Handler(Looper.getMainLooper()).post {
-            Log.d("from ad",
+            Log.d(
+              "from ad",
               "didClose"
             )
           }
@@ -59,22 +63,27 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
         override fun onAdError(code: Int, description: String) {
 
           Handler(Looper.getMainLooper()).post {
-           Log.d("from ad",
-              "didCatchError")
-            Log.d("from error",description)
+            Log.d(
+              "from ad",
+              "didCatchError"
+            )
+            Log.d("from error", description)
           }
         }
 
         override fun onAdImpression() {
           Handler(Looper.getMainLooper()).post {
-            Log.d("from ad",
-              "didRecordImpression")
+            Log.d(
+              "from ad",
+              "didRecordImpression"
+            )
           }
         }
 
         override fun onAdExpandedToFullscreen() {
           Handler(Looper.getMainLooper()).post {
-            Log.d("from ad",
+            Log.d(
+              "from ad",
               "didExpandedToFullscreen"
             )
           }
@@ -88,31 +97,38 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
 
         override fun onAdRatioUpdate(adRatio: AdRatio) {
           Handler(Looper.getMainLooper()).post {
-            Log.d("from ad",
-              "didUpdateRatio")
+            Log.d(
+              "from ad",
+              "didUpdateRatio"
+            )
 
           }
         }
 
         override fun onFailToReceiveAd(failReason: String) {
           Handler(Looper.getMainLooper()).post {
-            Log.d("from Ad",
-              "didFailToReceiveAd")
-            Log.d("from fail",failReason)
+            Log.d(
+              "from Ad",
+              "didFailToReceiveAd"
+            )
+            Log.d("from fail", failReason)
           }
         }
       },
       object : VideoPlaybackListener {
         override fun onVideoComplete() {
           Handler(Looper.getMainLooper()).post {
-            Log.d("from ad",
-              "didComplete")
+            Log.d(
+              "from ad",
+              "didComplete"
+            )
           }
         }
 
         override fun onVideoPause() {
           Handler(Looper.getMainLooper()).post {
-            Log.d("from ad",
+            Log.d(
+              "from ad",
               "didPause"
             )
           }
@@ -120,8 +136,10 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) : ReactContextB
 
         override fun onVideoPlay() {
           Handler(Looper.getMainLooper()).post {
-            Log.d("from ad",
-              "didPlay")
+            Log.d(
+              "from ad",
+              "didPlay"
+            )
 
           }
         }

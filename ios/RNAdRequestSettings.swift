@@ -52,7 +52,7 @@ class RNAdRequestSettings: NSObject {
             resolve(try adRequestSettings.asDictionary())
         } catch  {
             reject("E_AdRequestSettings", "Error on AdRequestSettings addExtras", error)
-
+            
         }
     }
     

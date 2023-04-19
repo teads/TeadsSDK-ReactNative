@@ -12,9 +12,9 @@
 
 RCT_EXTERN_METHOD(
                   requestAd:(float)pid
-                    settingsMap:(NSDictionary *)settingsMap
-                    resolve:(RCTPromiseResolveBlock)resolve
-                    reject: (RCTPromiseRejectBlock)reject
+                  settingsMap:(NSDictionary *)settingsMap
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject: (RCTPromiseRejectBlock)reject
                   )
 
 + (BOOL)requiresMainQueueSetup

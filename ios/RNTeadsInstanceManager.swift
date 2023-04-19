@@ -4,10 +4,7 @@
 //
 //  Created by Numa Maurin on 09/11/2022.
 //
-
-import Foundation
 import TeadsSDK
-
 
 final class RNTeadsInstanceManager {
     static let shared = RNTeadsInstanceManager()
@@ -19,7 +16,7 @@ final class RNTeadsInstanceManager {
     
     // MARK: Placement
     func placement<T: TeadsAdPlacement>(for pid: Float) throws -> T {
-       try concurrentQueue.sync {
+        try concurrentQueue.sync {
             if let placement = placementList[Int(pid)] as? T {
                 return placement
             } else {

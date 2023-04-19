@@ -8,7 +8,7 @@ import Foundation
 import TeadsSDK
 
 @objc(RNInReadAdPlacement)
-class RNInReadAdPlacement: NSObject {
+final class RNInReadAdPlacement: NSObject {
     
     
     @objc

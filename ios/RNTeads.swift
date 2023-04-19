@@ -14,7 +14,7 @@ final class RNTeads: NSObject {
     
     @objc
     func createInReadPlacement(_ pid : Float, settingsMap : NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-        let data = json(from: settingsMap)!
+        let data = try! json(from: settingsMap)
         let decoder = JSONDecoder()
         do {
             let settings = try decoder.decode(TeadsAdPlacementSettings.self, from: data)
@@ -29,10 +29,7 @@ final class RNTeads: NSObject {
         }
     }
     
-    func json(from object:Any) -> Data? {
-        guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
-            return nil
-        }
-        return data
+    private func json(from object:Any) throws -> Data {
+        return try JSONSerialization.data(withJSONObject: object, options: [])
     }
 }

@@ -5,21 +5,27 @@ import com.facebook.react.modules.systeminfo.ReactNativeVersion
 import tv.teads.sdk.AdPlacementSettings
 import tv.teads.sdk.utils.userConsent.TCFVersion
 
-class RNAdPlacementSettings(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class RNAdPlacementSettings(reactContext: ReactApplicationContext) :
+  ReactContextBaseJavaModule(reactContext) {
 
   private var placementSettingsBuilder = AdPlacementSettings.Builder()
 
   init {
     placementSettingsBuilder.build()
-    placementSettingsBuilder.addPlacementExtra("plugin","react_native")
-    placementSettingsBuilder.addPlacementExtra("pluginVersion",ReactNativeVersion.VERSION.get("major").toString()+"."+ReactNativeVersion.VERSION.get("minor").toString()+"."+ReactNativeVersion.VERSION.get("patch").toString() )
+    placementSettingsBuilder.addPlacementExtra("plugin", "react_native")
+    placementSettingsBuilder.addPlacementExtra(
+      "pluginVersion",
+      ReactNativeVersion.VERSION.get("major")
+        .toString() + "." + ReactNativeVersion.VERSION.get("minor")
+        .toString() + "." + ReactNativeVersion.VERSION.get("patch").toString()
+    )
   }
 
   override fun getName(): String {
     return "RNAdPlacementSettings"
   }
 
-  private fun convertSettingsAsWritableMap(settings : AdPlacementSettings.Builder): WritableMap {
+  private fun convertSettingsAsWritableMap(settings: AdPlacementSettings.Builder): WritableMap {
     //convert AdPlacementSettings into WritableMap for ReactNative compatibility
     val map: MutableMap<String?, Any?> = settings.build().toMap() as MutableMap<String?, Any?>
     return MapUtil.toWritableMap(map)
@@ -50,33 +56,42 @@ class RNAdPlacementSettings(reactContext: ReactApplicationContext) : ReactContex
 
   //userConsent
   @ReactMethod
-  fun userConsent( subjectToGDPR :String,
-                   consent :String,
-                   tcfVersion: Int,
-                   cmpSdkId:Int,
-                   promise: Promise) {
-    placementSettingsBuilder.userConsent(subjectToGDPR, consent, TCFVersion.fromInt(tcfVersion), cmpSdkId)
+  fun userConsent(
+    subjectToGDPR: String,
+    consent: String,
+    tcfVersion: Int,
+    cmpSdkId: Int,
+    promise: Promise
+  ) {
+    placementSettingsBuilder.userConsent(
+      subjectToGDPR,
+      consent,
+      TCFVersion.fromInt(tcfVersion),
+      cmpSdkId
+    )
     promise.resolve(convertSettingsAsWritableMap(placementSettingsBuilder))
   }
 
   //setUsPrivacy
   @ReactMethod
-  fun setUsPrivacy( consent:String,
-                   promise: Promise) {
+  fun setUsPrivacy(
+    consent: String,
+    promise: Promise
+  ) {
     placementSettingsBuilder.setUsPrivacy(consent)
     promise.resolve(convertSettingsAsWritableMap(placementSettingsBuilder))
   }
 
   //disableBatteryMonitoring
   @ReactMethod
-  fun disableBatteryMonitoring( promise: Promise) {
+  fun disableBatteryMonitoring(promise: Promise) {
     // iOS Only
     promise.resolve(convertSettingsAsWritableMap(placementSettingsBuilder))
   }
 
   //addExtras
   @ReactMethod
-  fun addExtras(key:String, value:String, promise: Promise) {
+  fun addExtras(key: String, value: String, promise: Promise) {
     placementSettingsBuilder.addPlacementExtra(key, value)
     promise.resolve(convertSettingsAsWritableMap(placementSettingsBuilder))
   }
@@ -104,7 +119,7 @@ class RNAdPlacementSettings(reactContext: ReactApplicationContext) : ReactContex
 
   //toolBarBackgroundColor
   @ReactMethod
-  fun toolBarBackgroundColor(color:Int, promise: Promise) {
+  fun toolBarBackgroundColor(color: Int, promise: Promise) {
     placementSettingsBuilder.toolBarBackgroundColor(color)
     promise.resolve(convertSettingsAsWritableMap(placementSettingsBuilder))
   }
