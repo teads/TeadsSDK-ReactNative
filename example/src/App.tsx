@@ -25,7 +25,6 @@ export default function App() {
     await testAdPlacementSetting.enableDebug();
     await testAdPlacementSetting.setUsPrivacy('consent');
 
-    console.log(testAdPlacementSetting.mapValue);
 
     // id de test
     var placement1 = await Teads.createInReadPlacement(
