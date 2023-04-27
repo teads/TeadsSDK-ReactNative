@@ -42,10 +42,3 @@ final class RNInReadAdView: UIView {
 }
 
 
-extension RNInReadAdView: TeadsAdDelegate{
-    func willPresentModalView(ad: TeadsAd) -> UIViewController? {
-        return nil
-    }
-}
-
-extension RNInReadAdView: TeadsPlaybackDelegate{}
