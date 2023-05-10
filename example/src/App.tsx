@@ -22,7 +22,6 @@ export default function App() {
     await testAdPlacementSetting.enableDebug();
     await testAdPlacementSetting.disableCrashMonitoring();
     await testAdRequestSettings.pageUrl('www.example.com');
-    await testAdPlacementSetting.enableDebug();
     await testAdPlacementSetting.setUsPrivacy('consent');
 
     var placement1 = await Teads.createInReadPlacement(

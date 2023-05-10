@@ -22,7 +22,6 @@ export default class TeadsAdRatio {
   }
 
   /**
-   * Not yet Implemented
    * iOS only
    * Compute the best height for your TeadsInReadAdView with the given width.
    *  - parameters:
@@ -47,7 +46,6 @@ export default class TeadsAdRatio {
   };
 
   /**
-   * Not yet Implemented
    * iOS only
    * Get a CGFloat ratio for a given width.
    *  You can use returned value to specify autolayout multiplier constraint.
