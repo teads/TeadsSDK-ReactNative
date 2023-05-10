@@ -14,7 +14,7 @@ class RNTeads(reactContext: ReactApplicationContext) : ReactContextBaseJavaModul
   //createInReadPlacement
   @ReactMethod
   fun createInReadPlacement(pid: Int, settingsMap: ReadableMap, promise: Promise) {
-    RNAdInstanceManager.shared.new(
+    RNAdInstanceManager.new(
       RNAdInstanceManager.AdPlacementMap(
         TeadsSDK.createInReadPlacement(
           reactApplicationContext,

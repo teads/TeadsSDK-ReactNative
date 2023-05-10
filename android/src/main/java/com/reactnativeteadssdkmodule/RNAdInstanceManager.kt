@@ -4,7 +4,7 @@ import tv.teads.sdk.InReadAdPlacement
 import tv.teads.sdk.renderer.InReadAdView
 
 
-class RNAdInstanceManager {
+object RNAdInstanceManager {
   class AdInstanceMap constructor(val inReadAdView: InReadAdView, val id: String)
   class AdPlacementMap constructor(val inReadAdPlacement: InReadAdPlacement, val id: Int)
 
@@ -41,7 +41,4 @@ class RNAdInstanceManager {
     }
   }
 
-  companion object {
-    val shared: RNAdInstanceManager = RNAdInstanceManager()
-  }
 }

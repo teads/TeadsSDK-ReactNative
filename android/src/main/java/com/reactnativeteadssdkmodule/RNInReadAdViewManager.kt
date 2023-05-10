@@ -16,8 +16,7 @@ class RNInReadAdViewManager : SimpleViewManager<RNInReadAdView>() {
   @ReactProp(name = "adId")
   fun setAdId(view: RNInReadAdView, adId: String?) {
     if (adId != null) {
-      view.adId = adId
-      view.inReadAdView = RNAdInstanceManager.shared.instance(adId).inReadAdView
+      view.inReadAdView = RNAdInstanceManager.instance(adId).inReadAdView
       view.addView(view.inReadAdView)
     }
     view.invalidate()

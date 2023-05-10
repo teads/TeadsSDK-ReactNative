@@ -6,7 +6,5 @@ import tv.teads.sdk.renderer.InReadAdView
 
 class RNInReadAdView(context: Context) : FrameLayout(context) {
   var inReadAdView: InReadAdView = InReadAdView(context)
-  var adId : String = ""
-
 }
 

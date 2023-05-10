@@ -20,7 +20,7 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
   @ReactMethod
   fun requestAd(pid: Int, settingsMap: ReadableMap, promise: Promise) {
     val instanceIdentifier = UUID.randomUUID().toString()
-    RNAdInstanceManager.shared.instance(pid).inReadAdPlacement.requestAd(AdRequestSettings.fromMap(
+    RNAdInstanceManager.instance(pid).inReadAdPlacement.requestAd(AdRequestSettings.fromMap(
       settingsMap.toHashMap().toMap()
     ),
       object : InReadAdListener {
@@ -31,7 +31,7 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
           inReadAdView: InReadAdView,
           adRatio: AdRatio
         ) {
-          RNAdInstanceManager.shared.new(
+          RNAdInstanceManager.new(
             RNAdInstanceManager.AdInstanceMap(
               inReadAdView,
               instanceIdentifier

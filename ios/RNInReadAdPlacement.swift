@@ -35,10 +35,7 @@ final class RNInReadAdPlacement: NSObject {
         return data
     }
     
-    func didFailToReceiveAd(reason: AdFailReason) {
-        print("didFailToReceiveAd")
-    }
-    
+
     func adOpportunityTrackerView(trackerView: TeadsAdOpportunityTrackerView) {
         //nothing
     }
@@ -48,6 +45,10 @@ final class RNInReadAdPlacement: NSObject {
 
 
 extension RNInReadAdPlacement: TeadsInReadAdPlacementDelegate {
+    func didFailToReceiveAd(reason: TeadsSDK.AdFailReason) {
+        print(reason)
+    }
+    
     func didReceiveAd(ad: TeadsInReadAd, adRatio _: TeadsAdRatio) {
         RNTeadsInstanceManager.shared.new(instance: ad)
     }

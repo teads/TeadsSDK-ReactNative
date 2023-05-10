@@ -15,7 +15,7 @@ class RNAdRatio(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
   @ReactMethod
   fun calculateHeight(width: Double, requestIdentifier: String, promise: Promise) {
     promise.resolve(
-      RNAdInstanceManager.shared.instance(requestIdentifier).inReadAdView.inReadAd.adRatio.calculateHeight(
+      RNAdInstanceManager.instance(requestIdentifier).inReadAdView.inReadAd.adRatio.calculateHeight(
         width.toInt()
       ).toDouble()
     )
@@ -25,7 +25,7 @@ class RNAdRatio(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
   @ReactMethod
   fun value(width: Double, requestIdentifier: String, promise: Promise) {
     promise.resolve(
-      RNAdInstanceManager.shared.instance(requestIdentifier).inReadAdView.inReadAd.adRatio.getAdSlotRatio(
+      RNAdInstanceManager.instance(requestIdentifier).inReadAdView.inReadAd.adRatio.getAdSlotRatio(
         width.toInt()
       ).toDouble()
     )
