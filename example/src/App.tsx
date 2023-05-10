@@ -15,7 +15,7 @@ export default function App() {
   var testAdPlacementSetting = new TeadsAdPlacementSettings();
   var testAdRequestSettings = new TeadsAdRequestSettings();
   var testAdRatio = new TeadsAdRatio(Dimensions.get('window').width);
-  //witdh of the ad is choose by the user
+  //witdh of the ad insert by the user
   //more optimal height is calculate by adRatio function
 
   async function onPress(this: any) {
@@ -25,8 +25,6 @@ export default function App() {
     await testAdPlacementSetting.enableDebug();
     await testAdPlacementSetting.setUsPrivacy('consent');
 
-
-    // id de test
     var placement1 = await Teads.createInReadPlacement(
       84242,
       testAdPlacementSetting

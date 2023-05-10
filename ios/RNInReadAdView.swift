@@ -9,9 +9,12 @@ import TeadsSDK
 import UIKit
 
 @objc(RNInReadAdView)
-final class RNInReadAdView: UIView {
+final class RNInReadAdView: UIView, TeadsPlaybackDelegate, TeadsAdDelegate{
+    func willPresentModalView(ad: TeadsSDK.TeadsAd) -> UIViewController? {
+       return nil
+    }
+    
     private let inReadAdView = TeadsInReadAdView()
-    private var requestIdentifier: String = ""
     
     @objc var adId : String? {
         didSet {
@@ -23,7 +26,6 @@ final class RNInReadAdView: UIView {
                 teadsAd.delegate = self
                 teadsAd.playbackDelegate = self
                 inReadAdView.bind(teadsAd)
-                self.requestIdentifier = adId
                 self.inReadAdView.bind(teadsAd)
                 inReadAdView.translatesAutoresizingMaskIntoConstraints = false
                 self.addSubview(inReadAdView)

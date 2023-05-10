@@ -37,13 +37,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/teads/TeadsSDK-ReactNative//react-native-teads-sdk-module",
+  "repository": "https://github.com/teads/TeadsSDK-ReactNative/react-native-teads-sdk-module",
   "author": "Numa Maurin <numa.maurin@teads.tv> (https://github.com/teads/TeadsSDK-ReactNative/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/teads/TeadsSDK-ReactNative//react-native-teads-sdk-module/issues"
+    "url": "https://github.com/teads/TeadsSDK-ReactNative/react-native-teads-sdk-module/issues"
   },
-  "homepage": "https://github.com/teads/TeadsSDK-ReactNative//react-native-teads-sdk-module#readme",
+  "homepage": "https://github.com/teads/TeadsSDK-ReactNative/react-native-teads-sdk-module#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
