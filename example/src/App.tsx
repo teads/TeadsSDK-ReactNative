@@ -6,65 +6,68 @@ import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
 import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
 import TeadsAdRatio from '../../src/teads-ad-ratio';
 import { Dimensions } from 'react-native';
+import TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
 
 export default function App() {
-  const [showAd, setShowAd] = React.useState<boolean>(false);
+  const [showAd, setShowAd] = React.useState<boolean>(true);
   const [adId, setAdId] = React.useState<String>();
   const [height, setHeight] = React.useState<number>();
+  const [placement, setPlacement] = React.useState<
+    TeadsInReadAdPlacement | undefined
+  >();
 
-  var testAdPlacementSetting = new TeadsAdPlacementSettings();
-  var testAdRequestSettings = new TeadsAdRequestSettings();
-  var testAdRatio = new TeadsAdRatio(Dimensions.get('window').width);
-  //witdh of the ad insert by the user
-  //more optimal height is calculate by adRatio function
+  const testAdPlacementSetting = new TeadsAdPlacementSettings();
+  const testAdRequestSettings = new TeadsAdRequestSettings();
+  const testAdRatio = new TeadsAdRatio(Dimensions.get('window').width);
 
-  async function onPress(this: any) {
-    await testAdPlacementSetting.enableDebug();
-    await testAdPlacementSetting.disableCrashMonitoring();
-    await testAdRequestSettings.pageUrl('www.example.com');
-    await testAdPlacementSetting.enableDebug();
-    await testAdPlacementSetting.setUsPrivacy('consent');
+  React.useEffect(() => {
+    (async () => {
+      await testAdPlacementSetting.enableDebug();
+      const awaitedVal = await Teads.createInReadPlacement(
+        84242,
+        testAdPlacementSetting
+      );
+      setPlacement(awaitedVal);
+    })();
+  }, []);
 
-    var placement1 = await Teads.createInReadPlacement(
-      84242,
-      testAdPlacementSetting
-    );
+  async function onPress() {
+    const resultId = await placement?.requestAd(testAdRequestSettings);
+    setAdId(resultId);
 
-    await placement1?.requestAd(testAdRequestSettings).then(setAdId);
+    if (resultId) {
+      testAdRatio.calculateHeight(testAdRatio.width, resultId).then(setHeight);
+    }
   }
 
-  async function onPressAd() {
-    if (adId) {
-      await testAdRatio
-        .calculateHeight(testAdRatio.width, adId)
-        .then(setHeight);
-    }
+  async function toggleDisplay() {
     setShowAd(!showAd);
   }
 
   let ad;
   showAd
     ? (ad = (
-        <TeadsAdView
-          style={{
-            height: height,
-            width: testAdRatio.width,
-          }}
-          adId={adId}
-        ></TeadsAdView>
+        <>
+          <Text>adId: {adId}</Text>
+          <Text>H: {height}</Text>
+          <Text>W: {testAdRatio.width}</Text>
+          <TeadsAdView
+            style={{
+              height: height,
+              width: testAdRatio.width,
+            }}
+            adId={adId}
+          ></TeadsAdView>
+        </>
       ))
     : (ad = <></>);
 
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Button
-          title="Click to request an ad with RN!"
-          color="#841584"
-          onPress={onPress}
-        />
         <Text>adId: {adId}</Text>
-        <Button title="show ad" color="#841584" onPress={onPressAd} />
+        <Button title="claim ad" color="#841584" onPress={onPress} />
+        <Button title="show ad" color="#841584" onPress={toggleDisplay} />
         {ad}
       </View>
     </ScrollView>

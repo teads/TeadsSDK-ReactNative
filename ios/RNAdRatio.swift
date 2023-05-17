@@ -19,11 +19,10 @@ final class RNAdRatio: NSObject {
         resolve: RCTPromiseResolveBlock,
         rejecter reject: RCTPromiseRejectBlock
     ) -> Void {
-        do {
+        do{
             let ad: TeadsInReadAd = try RNTeadsInstanceManager.shared.instance(for: requestIdentifier)
             let height = ad.adRatio.calculateHeight(for: CGFloat(width))
             resolve(height)
-            
         } catch  {
             reject("E_AdRatio", "Error on E_AdRatio calculateHeight", error)
         }
