@@ -27,8 +27,8 @@ export default class Teads {
   ) => {
     try {
       await this.bridgeTeads.createInReadPlacement(pid, settings.mapValue);
-      var placement = new TeadsInReadAdPlacement(pid);
-      return placement;
+      console.log(TeadsAdPlacementSettings);
+      return new TeadsInReadAdPlacement(pid);
     } catch (e) {
       console.error(e);
       return;

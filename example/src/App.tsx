@@ -29,6 +29,7 @@ export default function App() {
       );
       setPlacement(awaitedVal);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function onPress() {
