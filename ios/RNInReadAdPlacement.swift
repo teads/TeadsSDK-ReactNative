@@ -10,9 +10,9 @@ import TeadsSDK
 @objc(RNInReadAdPlacement)
 final class RNInReadAdPlacement: NSObject {
     
-    
+    var promiseBlock = [UUID: (resolve: RCTPromiseResolveBlock,reject: RCTPromiseRejectBlock)]()
     @objc
-    func requestAd(_ pid: Float, settingsMap:NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+    func requestAd(_ pid: Float, settingsMap:NSDictionary, resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void {
         let decoder = JSONDecoder()
         if let data = json(from: settingsMap) {
             do {
@@ -20,7 +20,7 @@ final class RNInReadAdPlacement: NSObject {
                 let placement: TeadsInReadAdPlacement = try RNTeadsInstanceManager.shared.placement(for: pid)
                 placement.delegate = self
                 let id = placement.requestAd(requestSettings: settings)
-                resolve(id.uuidString)
+                promiseBlock[id] = (resolve: resolve, reject: reject)
             } catch {
                 reject("E_TeadsInReadAdPlacement", "Error on TeadsInReadAdPlacement requestAd", error)
             }
@@ -46,11 +46,16 @@ final class RNInReadAdPlacement: NSObject {
 
 extension RNInReadAdPlacement: TeadsInReadAdPlacementDelegate {
     func didFailToReceiveAd(reason: TeadsSDK.AdFailReason) {
-        print(reason)
+        let promiseClosure = promiseBlock[reason.requestIdentifier]
+        promiseClosure?.reject("E_TeadsInReadAdPlacement", #function, reason)
+        promiseBlock[reason.requestIdentifier] = nil
     }
     
     func didReceiveAd(ad: TeadsInReadAd, adRatio _: TeadsAdRatio) {
         RNTeadsInstanceManager.shared.new(instance: ad)
+        let promiseClosure = promiseBlock[ad.requestIdentifier]
+        promiseClosure?.resolve(ad.requestIdentifier.uuidString)
+        promiseBlock[ad.requestIdentifier] = nil
     }
     
     func didUpdateRatio(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {

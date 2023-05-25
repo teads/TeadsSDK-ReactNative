@@ -37,12 +37,11 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
               instanceIdentifier
             )
           )
+          promise.resolve(instanceIdentifier)
 
           Handler(Looper.getMainLooper()).post {
             Log.d("from ad", "didReceiveAd")
           }
-
-
         }
 
         override fun onAdClicked() {
@@ -61,7 +60,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
         }
 
         override fun onAdError(code: Int, description: String) {
-
           Handler(Looper.getMainLooper()).post {
             Log.d(
               "from ad",
@@ -145,8 +143,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
         }
 
       })
-    Log.d("placement instanceID", instanceIdentifier)
-    promise.resolve(instanceIdentifier)
 
   }
 
