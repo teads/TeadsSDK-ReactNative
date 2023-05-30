@@ -19,6 +19,7 @@
     "babel-plugin-module-resolver": "^4.1.0",
     "metro-react-native-babel-preset": "^0.67.0",
     "patch-package": "^6.4.7",
-    "postinstall-postinstall": "^2.1.0"
+    "postinstall-postinstall": "^2.1.0",
+    "webdriverio": "^8.10.5"
   }
 }
