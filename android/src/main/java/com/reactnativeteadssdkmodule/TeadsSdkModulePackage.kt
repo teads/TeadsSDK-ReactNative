@@ -13,7 +13,8 @@ class TeadsSdkModulePackage : ReactPackage {
       RNAdRequestSettings(reactContext),
       RNTeads(reactContext),
       RNInReadAdPlacement(reactContext),
-      RNAdRatio(reactContext)
+      RNAdRatio(reactContext),
+
     )
   }
 

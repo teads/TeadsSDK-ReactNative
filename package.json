@@ -1,6 +1,6 @@
 {
-  "name": "@appdevteads/react-native-teads-sdk-module",
-  "version": "0.1.0",
+  "name": "react-native-teads-sdk-module",
+  "version": "0.0.1",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -39,14 +39,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/teads/TeadsSDK-ReactNative/react-native-teads-sdk-module"
+    "url": "https://github.com/teads/TeadsSDK-ReactNative"
   },
   "author": "Numa Maurin <numa.maurin@teads.tv> (https://github.com/teads/TeadsSDK-ReactNative/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/teads/TeadsSDK-ReactNative/react-native-teads-sdk-module/issues"
+    "url": "https://github.com/teads/TeadsSDK-ReactNative/issues"
   },
-  "homepage": "https://github.com/teads/TeadsSDK-ReactNative/react-native-teads-sdk-module#readme",
+  "homepage": "https://github.com/teads/TeadsSDK-ReactNative#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

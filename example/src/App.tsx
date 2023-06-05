@@ -7,8 +7,14 @@ import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
 import TeadsAdRatio from '../../src/teads-ad-ratio';
 import { Dimensions } from 'react-native';
 import TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
+import { DeviceEventEmitter } from 'react-native';
 
 export default function App() {
+  //first event listenner from android
+  DeviceEventEmitter.addListener('didReceiveAd', (params) => {
+    console.log(params); // Access the data sent from Android
+  });
+
   const [showAd, setShowAd] = React.useState<boolean>(true);
   const [adId, setAdId] = React.useState<String>();
   const [height, setHeight] = React.useState<number>();
@@ -23,6 +29,7 @@ export default function App() {
   React.useEffect(() => {
     (async () => {
       await testAdPlacementSetting.enableDebug();
+      await testAdRequestSettings.enableValidationMode();
       const awaitedVal = await Teads.createInReadPlacement(
         84242,
         testAdPlacementSetting
