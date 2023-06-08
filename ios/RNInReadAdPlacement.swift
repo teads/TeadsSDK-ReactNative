@@ -6,6 +6,7 @@
 //
 import Foundation
 import TeadsSDK
+import React
 
 @objc(RNInReadAdPlacement)
 final class RNInReadAdPlacement: NSObject {
@@ -35,7 +36,7 @@ final class RNInReadAdPlacement: NSObject {
         return data
     }
     
-
+    
     func adOpportunityTrackerView(trackerView: TeadsAdOpportunityTrackerView) {
         //nothing
     }
@@ -45,6 +46,7 @@ final class RNInReadAdPlacement: NSObject {
 
 
 extension RNInReadAdPlacement: TeadsInReadAdPlacementDelegate {
+    
     func didFailToReceiveAd(reason: TeadsSDK.AdFailReason) {
         let promiseClosure = promiseBlock[reason.requestIdentifier]
         promiseClosure?.reject("E_TeadsInReadAdPlacement", #function, reason)
@@ -59,6 +61,7 @@ extension RNInReadAdPlacement: TeadsInReadAdPlacementDelegate {
     }
     
     func didUpdateRatio(ad: TeadsInReadAd, adRatio: TeadsAdRatio) {
+        // Implemented into RNAdRatio
     }
     
     func didLogMessage(message: String) {
@@ -67,3 +70,7 @@ extension RNInReadAdPlacement: TeadsInReadAdPlacementDelegate {
     }
     
 }
+
+
+
+

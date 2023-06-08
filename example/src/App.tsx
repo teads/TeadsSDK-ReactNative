@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, Button, ScrollView } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  ScrollView,
+  Platform,
+} from 'react-native';
 import TeadsAdView from '../../src/teads-ad-view';
 import Teads from '../../src/teads';
 import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
@@ -8,12 +15,11 @@ import TeadsAdRatio from '../../src/teads-ad-ratio';
 import { Dimensions } from 'react-native';
 import TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
 import { DeviceEventEmitter } from 'react-native';
+//import TeadsAdViewEvents from '../../src/teads-ad-view-events';
+import { NativeEventEmitter, NativeModules } from 'react-native';
 
 export default function App() {
-  //first event listenner from android
-  DeviceEventEmitter.addListener('didReceiveAd', (params) => {
-    console.log(params); // Access the data sent from Android
-  });
+  //const testTeadsAdViewEvents = new TeadsAdViewEvents();
 
   const [showAd, setShowAd] = React.useState<boolean>(true);
   const [adId, setAdId] = React.useState<String>();
@@ -52,6 +58,25 @@ export default function App() {
     setShowAd(!showAd);
   }
 
+  async function getEvents() {
+    if (Platform.OS === 'ios') {
+      // Code specific to iOS events
+      const eventEmitter = new NativeEventEmitter(
+        NativeModules.RNHandlerEvents
+      );
+      // Subscribe to the event
+      eventEmitter.addListener('didRecordImpression', (event) => {
+        const { data } = event;
+        console.log('Data received in React:', data);
+      });
+    } else if (Platform.OS === 'android') {
+      // Code specific to Android events
+      DeviceEventEmitter.addListener('didRecordImpression', (params) => {
+        console.log(params); // Access the data sent from Android
+      });
+    }
+  }
+
   let ad;
   showAd
     ? (ad = (
@@ -76,6 +101,7 @@ export default function App() {
         <Text>adId: {adId}</Text>
         <Button title="claim ad" color="#841584" onPress={onPress} />
         <Button title="show ad" color="#841584" onPress={toggleDisplay} />
+        <Button title="listen the event" color="pink" onPress={getEvents} />
         {ad}
       </View>
     </ScrollView>
