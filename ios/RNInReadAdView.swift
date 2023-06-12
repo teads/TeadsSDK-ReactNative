@@ -45,23 +45,23 @@ extension RNInReadAdView: TeadsAdDelegate {
     }
     func didCatchError(ad: TeadsSDK.TeadsAd){
         let swiftBridge = SwiftBridge()
-        swiftBridge.sendDataToJS("didCatchError",data: "didCatchError")
+        swiftBridge.sendDataToJS("didCatchError",adId: ad.requestIdentifier.uuidString)
     }
     func didRecordImpression(ad: TeadsSDK.TeadsAd){
         let swiftBridge = SwiftBridge()
-        swiftBridge.sendDataToJS("didRecordImpression",data: "didRecordImpression")
+        swiftBridge.sendDataToJS("didRecordImpression",adId: ad.requestIdentifier.uuidString)
     }
     func didRecordClick(ad: TeadsSDK.TeadsAd){
         let swiftBridge = SwiftBridge()
-        swiftBridge.sendDataToJS("didRecordClick",data: "didRecordClick")
+        swiftBridge.sendDataToJS("didRecordClick",adId: ad.requestIdentifier.uuidString)
     }
     func didExpandedToFullscreen(ad: TeadsSDK.TeadsAd){
         let swiftBridge = SwiftBridge()
-        swiftBridge.sendDataToJS("didExpandedToFullscreen",data: "didExpandedToFullscreen")
+        swiftBridge.sendDataToJS("didExpandedToFullscreen",adId: ad.requestIdentifier.uuidString)
     }
     func didCollapsedFromFullscreen(ad: TeadsSDK.TeadsAd){
         let swiftBridge = SwiftBridge()
-        swiftBridge.sendDataToJS("didCollapsedFromFullscreen",data: "didCollapsedFromFullscreen")
+        swiftBridge.sendDataToJS("didCollapsedFromFullscreen",adId: ad.requestIdentifier.uuidString)
     }
     
 }
@@ -70,23 +70,23 @@ extension RNInReadAdView: TeadsAdDelegate {
 extension RNInReadAdView : TeadsPlaybackDelegate{
     func adStartPlayingAudio(_ ad: TeadsSDK.TeadsAd){
         let swiftBridge = SwiftBridge()
-        swiftBridge.sendDataToJS("adStartPlayingAudio",data: "adStartPlayingAudio")
+        swiftBridge.sendDataToJS("adStartPlayingAudio",adId: ad.requestIdentifier.uuidString)
     }
     func adStopPlayingAudio(_ ad: TeadsSDK.TeadsAd){
         let swiftBridge = SwiftBridge()
-        swiftBridge.sendDataToJS("adStopPlayingAudio",data: "adStopPlayingAudio")
+        swiftBridge.sendDataToJS("adStopPlayingAudio",adId: ad.requestIdentifier.uuidString)
     }
     func didPlay(_ ad: TeadsSDK.TeadsAd){
         let swiftBridge = SwiftBridge()
-        swiftBridge.sendDataToJS("didPlay",data: "didPlay")
+        swiftBridge.sendDataToJS("didPlay",adId: ad.requestIdentifier.uuidString)
     }
     func didPause(_ ad: TeadsSDK.TeadsAd){
         let swiftBridge = SwiftBridge()
-        swiftBridge.sendDataToJS("didPause",data: "didPause")
+        swiftBridge.sendDataToJS("didPause",adId: ad.requestIdentifier.uuidString)
     }
     func didComplete(_ ad: TeadsSDK.TeadsAd){
         let swiftBridge = SwiftBridge()
-        swiftBridge.sendDataToJS("didComplete",data: "didComplete")
+        swiftBridge.sendDataToJS("didComplete",adId: ad.requestIdentifier.uuidString)
     }
 }
 

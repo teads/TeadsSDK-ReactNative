@@ -19,7 +19,7 @@ class SwiftBridge: NSObject, RCTBridgeModule {
     }
     
     // Implement methods to send data from Swift to JavaScript
-    @objc func sendDataToJS(_ name:String, data: String) {
+    @objc func sendDataToJS(_ name:String, adId: String) {
         // Retrieve the RCTBridge instance
         guard let bridge = RCTBridge.current() else {
             print("RCTBridge instance not found")
@@ -27,7 +27,7 @@ class SwiftBridge: NSObject, RCTBridgeModule {
         }
         // Send data to JavaScript
         let eventEmitter = bridge.module(for: RNHandlerEvents.self) as! RCTEventEmitter
-        eventEmitter.sendEvent(withName: name, body: ["data": data])
+        eventEmitter.sendEvent(withName: name, body: ["adId": adId])
     }
     
 }

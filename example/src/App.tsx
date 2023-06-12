@@ -15,7 +15,6 @@ import TeadsAdRatio from '../../src/teads-ad-ratio';
 import { Dimensions } from 'react-native';
 import TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
 import { DeviceEventEmitter } from 'react-native';
-//import TeadsAdViewEvents from '../../src/teads-ad-view-events';
 import { NativeEventEmitter, NativeModules } from 'react-native';
 
 export default function App() {
@@ -59,22 +58,12 @@ export default function App() {
   }
 
   async function getEvents() {
-    if (Platform.OS === 'ios') {
-      // Code specific to iOS events
-      const eventEmitter = new NativeEventEmitter(
-        NativeModules.RNHandlerEvents
-      );
-      // Subscribe to the event
-      eventEmitter.addListener('didRecordImpression', (event) => {
-        const { data } = event;
-        console.log('Data received in React:', data);
-      });
-    } else if (Platform.OS === 'android') {
-      // Code specific to Android events
-      DeviceEventEmitter.addListener('didRecordImpression', (params) => {
-        console.log(params); // Access the data sent from Android
-      });
-    }
+    const eventEmitter = new NativeEventEmitter(NativeModules.RNHandlerEvents);
+    // Subscribe to the event
+    eventEmitter.addListener('didRecordImpression', (event) => {
+      const { adId } = event;
+      console.log('Data received in React on didRecordImpression:', adId);
+    });
   }
 
   let ad;
