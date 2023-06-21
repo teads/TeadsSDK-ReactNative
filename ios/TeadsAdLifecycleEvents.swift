@@ -17,7 +17,7 @@ class TeadsAdLifecycleEvents: RCTEventEmitter {
     }
     
     override func supportedEvents() -> [String]! {
-        return ["didCatchError","didRecordImpression","didRecordClick","didExpandedToFullscreen","didCollapsedFromFullscreen","adStartPlayingAudio","adStopPlayingAudio","didPlay","didPause","didComplete"] //  names of the events your module will emit
+        return ["didCatchError","didRecordImpression","didRecordClick","didExpandedToFullscreen","didCollapsedFromFullscreen","adStartPlayingAudio","adStopPlayingAudio","didPlay","didPause","didComplete","didFailToReceiveAd","adOpportunityTrackerView"] //  names of the events your module will emit
     }
     
     override static func requiresMainQueueSetup() -> Bool {

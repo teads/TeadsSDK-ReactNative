@@ -17,17 +17,17 @@ export default function App() {
     TeadsInReadAdPlacement | undefined
   >();
 
-  const AdPlacementSetting = new TeadsAdPlacementSettings();
-  const AdRequestSettings = new TeadsAdRequestSettings();
-  const AdRatio = new TeadsAdRatio(Dimensions.get('window').width);
+  const adPlacementSetting = new TeadsAdPlacementSettings();
+  const adRequestSettings = new TeadsAdRequestSettings();
+  const adRatio = new TeadsAdRatio(Dimensions.get('window').width);
 
   React.useEffect(() => {
     (async () => {
-      await AdPlacementSetting.enableDebug();
-      await AdRequestSettings.enableValidationMode();
+      await adPlacementSetting.enableDebug();
+      await adRequestSettings.enableValidationMode();
       const placementCreation = await Teads.createInReadPlacement(
         84242,
-        AdPlacementSetting
+        adPlacementSetting
       );
       setPlacement(placementCreation);
     })();
@@ -35,11 +35,11 @@ export default function App() {
   }, []);
 
   async function onPress() {
-    const resultId = await placement?.requestAd(AdRequestSettings);
+    const resultId = await placement?.requestAd(adRequestSettings);
     setAdId(resultId);
 
     if (resultId) {
-      AdRatio.calculateHeight(AdRatio.width, resultId).then(setHeight);
+      adRatio.calculateHeight(adRatio.width, resultId).then(setHeight);
     }
   }
 
@@ -64,11 +64,11 @@ export default function App() {
         <>
           <Text>adId: {adId}</Text>
           <Text>H: {height}</Text>
-          <Text>W: {AdRatio.width}</Text>
+          <Text>W: {adRatio.width}</Text>
           <TeadsAdView
             style={{
               height: height,
-              width: AdRatio.width,
+              width: adRatio.width,
             }}
             adId={adId}
           ></TeadsAdView>
