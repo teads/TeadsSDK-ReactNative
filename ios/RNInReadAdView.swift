@@ -18,10 +18,10 @@ final class RNInReadAdView: UIView{
         eventEmitter = RCTBridge.current().module(for: TeadsAdLifecycleEvents.self) as? RCTEventEmitter
         super.init(frame: frame)
     }
-    required init?(coder: NSCoder) {
-        fatalError("toto")
-    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     @objc var adId : String? {
         didSet {
