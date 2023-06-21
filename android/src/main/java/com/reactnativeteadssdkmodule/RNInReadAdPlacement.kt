@@ -33,7 +33,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
       object : InReadAdListener {
         override fun adOpportunityTrackerView(trackerView: AdOpportunityTrackerView) {
           val params = Arguments.createMap()
-          params.putString("adOpportunityTrackerView", "adOpportunityTrackerView")
           params.putString("adId", instanceIdentifier)
           sendEvent(reactApplicationContext, "adOpportunityTrackerView", params)
         }
@@ -50,7 +49,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
           )
           promise.resolve(instanceIdentifier)
           val params = Arguments.createMap()
-          params.putString("didReceiveAd", "didReceiveAd")
           params.putString("adId", instanceIdentifier)
           sendEvent(reactApplicationContext, "didReceiveAd", params)
           Handler(Looper.getMainLooper()).post {
@@ -61,7 +59,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
 
         override fun onAdClicked() {
           val params = Arguments.createMap()
-          params.putString("didRecordClick", "didRecordClick")
           params.putString("adId",instanceIdentifier)
           sendEvent(reactApplicationContext, "didRecordClick", params)
           Handler(Looper.getMainLooper()).post {
@@ -71,7 +68,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
 
         override fun onAdClosed() {
           val params = Arguments.createMap()
-          params.putString("didClose", "didClose")
           params.putString("adId", instanceIdentifier)
           sendEvent(reactApplicationContext, "didClose", params)
           Handler(Looper.getMainLooper()).post {
@@ -84,7 +80,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
 
         override fun onAdError(code: Int, description: String) {
           val params = Arguments.createMap()
-          params.putString("didCatchError", "didCatchError")
           params.putString("adId", instanceIdentifier)
           params.putInt("code",code)
           params.putString("description", description)
@@ -101,7 +96,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
         override fun onAdImpression() {
           val params = Arguments.createMap()
           params.putString("adId", instanceIdentifier)
-          params.putString("didRecordImpression", "didRecordImpression")
           sendEvent(reactApplicationContext, "didRecordImpression", params)
           Handler(Looper.getMainLooper()).post {
             Log.d(
@@ -114,7 +108,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
         override fun onAdExpandedToFullscreen() {
           val params = Arguments.createMap()
           params.putString("adId", instanceIdentifier)
-          params.putString("didExpandedToFullscreen", "didExpandedToFullscreen")
           sendEvent(reactApplicationContext, "didExpandedToFullscreen", params)
           Handler(Looper.getMainLooper()).post {
             Log.d(
@@ -127,7 +120,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
         override fun onAdCollapsedFromFullscreen() {
           val params = Arguments.createMap()
           params.putString("adId",instanceIdentifier)
-          params.putString("didCollapsedFromFullscreen", "didCollapsedFromFullscreen")
           sendEvent(reactApplicationContext, "didCollapsedFromFullscreen", params)
           Handler(Looper.getMainLooper()).post {
             Log.d("from ad", "didCollapsedFromFullscreen")
@@ -137,7 +129,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
         override fun onAdRatioUpdate(adRatio: AdRatio) {
           val params = Arguments.createMap()
           params.putString("adId",instanceIdentifier)
-          params.putString("didUpdateRatio", "didUpdateRatio")
           sendEvent(reactApplicationContext, "didUpdateRatio", params)
           Handler(Looper.getMainLooper()).post {
             Log.d(
@@ -151,7 +142,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
         override fun onFailToReceiveAd(failReason: String) {
           val params = Arguments.createMap()
           params.putString("adId",instanceIdentifier)
-          params.putString("didFailToReceiveAd", "didFailToReceiveAd")
           params.putString("failReason", failReason)
           sendEvent(reactApplicationContext, "didFailToReceiveAd", params)
           Handler(Looper.getMainLooper()).post {
@@ -167,7 +157,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
         override fun onVideoComplete() {
           val params = Arguments.createMap()
           params.putString("adId", instanceIdentifier)
-          params.putString("didComplete", "didComplete")
           sendEvent(reactApplicationContext, "didComplete", params)
           Handler(Looper.getMainLooper()).post {
             Log.d(
@@ -180,7 +169,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
         override fun onVideoPause() {
           val params = Arguments.createMap()
           params.putString("adId",instanceIdentifier)
-          params.putString("didPause", "didPause")
           sendEvent(reactApplicationContext, "didPause", params)
           Handler(Looper.getMainLooper()).post {
             Log.d(
@@ -193,7 +181,6 @@ class RNInReadAdPlacement(reactContext: ReactApplicationContext) :
         override fun onVideoPlay() {
           val params = Arguments.createMap()
           params.putString("adId",instanceIdentifier)
-          params.putString("didPlay", "didPlay")
           sendEvent(reactApplicationContext, "didPlay", params)
           Handler(Looper.getMainLooper()).post {
             Log.d(
