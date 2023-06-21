@@ -1,12 +1,5 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  ScrollView,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, Button, ScrollView } from 'react-native';
 import TeadsAdView from '../../src/teads-ad-view';
 import Teads from '../../src/teads';
 import TeadsAdPlacementSettings from '../../src/teads-ad-placement-settings';
@@ -14,12 +7,9 @@ import TeadsAdRequestSettings from '../../src/teads-ad-request-settings';
 import TeadsAdRatio from '../../src/teads-ad-ratio';
 import { Dimensions } from 'react-native';
 import TeadsInReadAdPlacement from '../../src/teads-inread-ad-placement';
-import { DeviceEventEmitter } from 'react-native';
 import { NativeEventEmitter, NativeModules } from 'react-native';
 
 export default function App() {
-  //const testTeadsAdViewEvents = new TeadsAdViewEvents();
-
   const [showAd, setShowAd] = React.useState<boolean>(true);
   const [adId, setAdId] = React.useState<String>();
   const [height, setHeight] = React.useState<number>();
@@ -27,29 +17,29 @@ export default function App() {
     TeadsInReadAdPlacement | undefined
   >();
 
-  const testAdPlacementSetting = new TeadsAdPlacementSettings();
-  const testAdRequestSettings = new TeadsAdRequestSettings();
-  const testAdRatio = new TeadsAdRatio(Dimensions.get('window').width);
+  const AdPlacementSetting = new TeadsAdPlacementSettings();
+  const AdRequestSettings = new TeadsAdRequestSettings();
+  const AdRatio = new TeadsAdRatio(Dimensions.get('window').width);
 
   React.useEffect(() => {
     (async () => {
-      await testAdPlacementSetting.enableDebug();
-      await testAdRequestSettings.enableValidationMode();
-      const awaitedVal = await Teads.createInReadPlacement(
+      await AdPlacementSetting.enableDebug();
+      await AdRequestSettings.enableValidationMode();
+      const placementCreation = await Teads.createInReadPlacement(
         84242,
-        testAdPlacementSetting
+        AdPlacementSetting
       );
-      setPlacement(awaitedVal);
+      setPlacement(placementCreation);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function onPress() {
-    const resultId = await placement?.requestAd(testAdRequestSettings);
+    const resultId = await placement?.requestAd(AdRequestSettings);
     setAdId(resultId);
 
     if (resultId) {
-      testAdRatio.calculateHeight(testAdRatio.width, resultId).then(setHeight);
+      AdRatio.calculateHeight(AdRatio.width, resultId).then(setHeight);
     }
   }
 
@@ -58,11 +48,13 @@ export default function App() {
   }
 
   async function getEvents() {
-    const eventEmitter = new NativeEventEmitter(NativeModules.RNHandlerEvents);
+    const eventEmitter = new NativeEventEmitter(
+      NativeModules.TeadsAdLifecycleEvents
+    );
     // Subscribe to the event
     eventEmitter.addListener('didRecordImpression', (event) => {
       const { adId } = event;
-      console.log('Data received in React on didRecordImpression:', adId);
+      console.log('Id received in React on didRecordImpression:', adId);
     });
   }
 
@@ -72,11 +64,11 @@ export default function App() {
         <>
           <Text>adId: {adId}</Text>
           <Text>H: {height}</Text>
-          <Text>W: {testAdRatio.width}</Text>
+          <Text>W: {AdRatio.width}</Text>
           <TeadsAdView
             style={{
               height: height,
-              width: testAdRatio.width,
+              width: AdRatio.width,
             }}
             adId={adId}
           ></TeadsAdView>

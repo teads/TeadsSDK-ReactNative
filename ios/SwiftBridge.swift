@@ -11,7 +11,7 @@ import React
 @objc(SwiftBridge)
 class SwiftBridge: NSObject, RCTBridgeModule {
     private func requiresMainQueueSetup() -> Bool {
-        return true // Ensure the module initialization occurs on the main thread
+        return false // Ensure the module initialization occurs on the main thread
     }
     
     static func moduleName() -> String? {
@@ -26,7 +26,7 @@ class SwiftBridge: NSObject, RCTBridgeModule {
             return
         }
         // Send data to JavaScript
-        let eventEmitter = bridge.module(for: RNHandlerEvents.self) as! RCTEventEmitter
+        let eventEmitter = bridge.module(for: TeadsAdLifecycleEvents.self) as! RCTEventEmitter
         eventEmitter.sendEvent(withName: name, body: ["adId": adId])
     }
     

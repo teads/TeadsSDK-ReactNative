@@ -2,7 +2,7 @@
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
 
-@interface RCT_EXTERN_MODULE(RNHandlerEvents, RCTEventEmitter)
+@interface RCT_EXTERN_MODULE(TeadsAdLifecycleEvents, RCTEventEmitter)
 RCT_EXTERN_METHOD(sendCustomEvent:(NSDictionary *)data)
 @end
 

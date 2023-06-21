@@ -1,5 +1,5 @@
 //
-//  RNHandlerEventss.swift
+//  TeadsAdLifecycleEventss.swift
 //  react-native-teads-sdk-module
 //
 //  Created by Numa Maurin on 07/06/2023.
@@ -8,8 +8,8 @@
 import Foundation
 import React
 
-@objc(RNHandlerEvents)
-class RNHandlerEvents: RCTEventEmitter {
+@objc(TeadsAdLifecycleEvents)
+class TeadsAdLifecycleEvents: RCTEventEmitter {
     
     override init() {
         super.init()
@@ -21,7 +21,7 @@ class RNHandlerEvents: RCTEventEmitter {
     }
     
     override static func requiresMainQueueSetup() -> Bool {
-        return true // Ensure the module initialization occurs on the main thread
+        return false // Ensure the module initialization occurs on the main thread
     }
 }
 
