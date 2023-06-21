@@ -1,26 +1,43 @@
-import React from 'react'
-import { Text, View, Pressable } from 'react-native'
-import ModalCustom from '../components/ModalCustom'
-import styleListCreatives from '../styles/styleListCreatives'
-import { CREATIVETYPES, CUSTOM } from '../constants'
+import React from 'react';
+import { Text, View, Pressable } from 'react-native';
+import ModalCustom from '../components/ModalCustom';
+import styleListCreatives from '../styles/styleListCreatives';
+import { CREATIVETYPES, CUSTOM } from '../constants';
 
-const ListCreatives = ({ pid, onChangePid, modalVisible, setModalVisible, selectedCreative, setSelectedCreative }) => {
+const ListCreatives = ({
+  pid,
+  onChangePid,
+  modalVisible,
+  setModalVisible,
+  selectedCreative,
+  setSelectedCreative,
+}) => {
   const listCreatives = () => {
-    return CREATIVETYPES.map(creativeType => {
+    return CREATIVETYPES.map((creativeType) => {
       return (
         <View key={creativeType}>
           <Pressable
-            style={selectedCreative == creativeType ? styleListCreatives.button : styleListCreatives.buttonUnpressed}
+            style={
+              selectedCreative == creativeType
+                ? styleListCreatives.button
+                : styleListCreatives.buttonUnpressed
+            }
             onPress={() => setSelectedCreative(creativeType)}
           >
-            <Text style={selectedCreative == creativeType ? styleListCreatives.text : styleListCreatives.textUnpressed}>
+            <Text
+              style={
+                selectedCreative == creativeType
+                  ? styleListCreatives.text
+                  : styleListCreatives.textUnpressed
+              }
+            >
               {creativeType}
             </Text>
           </Pressable>
         </View>
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <View>
@@ -30,12 +47,22 @@ const ListCreatives = ({ pid, onChangePid, modalVisible, setModalVisible, select
       <View style={styleListCreatives.containerRow}>
         <View style={styleListCreatives.centered}>
           <Pressable
-            style={selectedCreative == CUSTOM ? styleListCreatives.button : styleListCreatives.buttonUnpressed}
+            style={
+              selectedCreative == CUSTOM
+                ? styleListCreatives.button
+                : styleListCreatives.buttonUnpressed
+            }
             onPress={() => {
-              setSelectedCreative(CUSTOM), setModalVisible(true)
+              setSelectedCreative(CUSTOM), setModalVisible(true);
             }}
           >
-            <Text style={selectedCreative == CUSTOM ? styleListCreatives.text : styleListCreatives.textUnpressed}>
+            <Text
+              style={
+                selectedCreative == CUSTOM
+                  ? styleListCreatives.text
+                  : styleListCreatives.textUnpressed
+              }
+            >
               {CUSTOM}
             </Text>
           </Pressable>
@@ -46,9 +73,9 @@ const ListCreatives = ({ pid, onChangePid, modalVisible, setModalVisible, select
         setModalVisible={setModalVisible}
         pid={pid}
         onChangePid={onChangePid}
-      ></ModalCustom>
+      />
     </View>
-  )
-}
+  );
+};
 
-export default ListCreatives
+export default ListCreatives;

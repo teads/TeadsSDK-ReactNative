@@ -1,21 +1,27 @@
-import { View, ScrollView, NativeModules, Button, Platform } from 'react-native'
-import React, { useState } from 'react'
-import ListFormats from '../components/ListFormats'
-import ListCreatives from '../components/ListCreatives'
-import ListIntegrations from '../components/ListIntegrations'
-import styleHomescreen from '../styles/styleHomescreen'
-import { DEFAULT_CREATIVE, DEFAULT_MODAL, TEST_PID } from '../constants'
+import {
+  View,
+  ScrollView,
+  NativeModules,
+  Button,
+  Platform,
+} from 'react-native';
+import React, { useState } from 'react';
+import ListFormats from '../components/ListFormats';
+import ListCreatives from '../components/ListCreatives';
+import ListIntegrations from '../components/ListIntegrations';
+import styleHomescreen from '../styles/styleHomescreen';
+import { DEFAULT_CREATIVE, DEFAULT_MODAL, TEST_PID } from '../constants';
 
 export default function HomeScreen({ navigation }) {
-  const [pid, onChangePid] = useState(TEST_PID)
-  const [modalVisible, setModalVisible] = useState(DEFAULT_MODAL)
-  const [selectedCreative, setSelectedCreative] = useState(DEFAULT_CREATIVE)
-  const OS = Platform.OS
+  const [pid, onChangePid] = useState(TEST_PID);
+  const [modalVisible, setModalVisible] = useState(DEFAULT_MODAL);
+  const [selectedCreative, setSelectedCreative] = useState(DEFAULT_CREATIVE);
+  const OS = Platform.OS;
 
-  const { InReadModule } = NativeModules
+  const { InReadModule } = NativeModules;
   const onPress = () => {
-    InReadModule.createInRead('testName', 'testLocation')
-  }
+    InReadModule.createInRead('testName', 'testLocation');
+  };
   // On press on the button you can see log on android studio or in the developper tools
 
   return (
@@ -25,7 +31,11 @@ export default function HomeScreen({ navigation }) {
         <ListFormats navigation={navigation} />
 
         {/* Just for testing, not going to stay after merge with native_modules */}
-        <Button title="Click to invoke your native module!" color="#841584" onPress={onPress} />
+        <Button
+          title="Click to invoke your native module!"
+          color="#841584"
+          onPress={onPress}
+        />
 
         {/* List Of choice for Creatives with selector using the State */}
         <ListCreatives
@@ -41,5 +51,5 @@ export default function HomeScreen({ navigation }) {
         <ListIntegrations navigation={navigation} />
       </View>
     </ScrollView>
-  )
+  );
 }

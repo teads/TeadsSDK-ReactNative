@@ -1,8 +1,8 @@
-import { Text, View, Button, Image } from 'react-native'
-import { Card } from 'react-native-elements'
-import styleInFeedItem from '../styles/styleInFeedItem'
-import { COVER_RESIZING, RADIUS_CARD } from '../constants'
-import * as React from 'react'
+import { Text, View, Button, Image } from 'react-native';
+import { Card } from 'react-native-elements';
+import styleInFeedItem from '../styles/styleInFeedItem';
+import { COVER_RESIZING, RADIUS_CARD } from '../constants';
+import * as React from 'react';
 
 const InFeedItem = ({ icon, text, title, media, time, source, textButton }) => {
   return (
@@ -13,7 +13,7 @@ const InFeedItem = ({ icon, text, title, media, time, source, textButton }) => {
             style={styleInFeedItem.imageLogoItem}
             resizeMode={COVER_RESIZING}
             source={{
-              uri: icon
+              uri: icon,
             }}
           />
         </View>
@@ -22,7 +22,10 @@ const InFeedItem = ({ icon, text, title, media, time, source, textButton }) => {
           <Text style={styleInFeedItem.lignDetails}>{time}min</Text>
         </View>
         <View style={styleInFeedItem.containerButtonNative}>
-          <Button buttonStyle={styleInFeedItem.buttonNative} title={textButton} />
+          <Button
+            buttonStyle={styleInFeedItem.buttonNative}
+            title={textButton}
+          />
         </View>
       </View>
       <Card.Title>{title}</Card.Title>
@@ -31,11 +34,11 @@ const InFeedItem = ({ icon, text, title, media, time, source, textButton }) => {
         style={styleInFeedItem.mainItemImage}
         resizeMode={COVER_RESIZING}
         source={{
-          uri: media
+          uri: media,
         }}
       />
     </Card>
-  )
-}
+  );
+};
 
-export default InFeedItem
+export default InFeedItem;

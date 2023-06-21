@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   listText: {
     fontSize: 20,
     fontWeight: 'bold',
-    padding: 10
+    padding: 10,
   },
   containerRow: {
     flexWrap: 'wrap',
@@ -13,7 +13,7 @@ export default StyleSheet.create({
     paddingRight: 10,
     justifyContent: 'space-between',
     paddingBottom: 10,
-    alignContent: 'space-around'
+    alignContent: 'space-around',
   },
   formatContainerRow: { flex: 0.48 },
   button: {
@@ -23,7 +23,7 @@ export default StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 18,
     elevation: 3,
-    backgroundColor: '#0818B3'
+    backgroundColor: '#0818B3',
   },
   buttonUnpressed: {
     alignItems: 'center',
@@ -34,20 +34,19 @@ export default StyleSheet.create({
     elevation: 3,
     backgroundColor: 'white',
     borderColor: '#0818B3',
-    borderWidth: 1
+    borderWidth: 1,
   },
   text: {
     fontSize: 16,
     lineHeight: 21,
     letterSpacing: 0.25,
     color: 'white',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   textUnpressed: {
     fontSize: 16,
     lineHeight: 21,
     letterSpacing: 0.25,
-    color: '#0818B3'
+    color: '#0818B3',
   },
-  formatContainerRow: { flex: 0.48 }
-})
+});

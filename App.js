@@ -1,16 +1,22 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import ActionBarImage from './components/ActionBarImage'
-import Article from './pages/Article'
-import { LinearGradient } from 'expo-linear-gradient'
-import ActionBarImageWhite from './components/ActionBarImageWhite'
-import styleApp from './styles/styleApp'
-import HomeScreen from './pages/Homescreen'
-import InFeed from './pages/InFeed'
-import { HOMESCREEN, DEMOSCREEN, TEADSPINK, TEADSBLUE, NATIVESCREEN } from './constants'
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ActionBarImage from './components/ActionBarImage';
+import Article from './pages/Article';
+import { LinearGradient } from 'expo-linear-gradient';
+import ActionBarImageWhite from './components/ActionBarImageWhite';
+import styleApp from './styles/styleApp';
+import HomeScreen from './pages/Homescreen';
+import InFeed from './pages/InFeed';
+import {
+  HOMESCREEN,
+  DEMOSCREEN,
+  TEADSPINK,
+  TEADSBLUE,
+  NATIVESCREEN,
+} from './constants';
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
@@ -20,7 +26,7 @@ export default function App() {
           name={HOMESCREEN}
           component={HomeScreen}
           options={{
-            headerTitle: () => <ActionBarImage />
+            headerTitle: () => <ActionBarImage />,
           }}
         />
         <Stack.Screen
@@ -37,7 +43,7 @@ export default function App() {
                 start={{ x: 0, y: 1 }}
                 end={{ x: 1, y: 1 }}
               />
-            )
+            ),
           }}
         />
         <Stack.Screen
@@ -54,10 +60,10 @@ export default function App() {
                 start={{ x: 0, y: 1 }}
                 end={{ x: 1, y: 1 }}
               />
-            )
+            ),
           }}
         />
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }
