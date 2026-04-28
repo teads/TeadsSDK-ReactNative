@@ -1,27 +1,48 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
+  "name": "TestProject",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "eject": "expo eject",
-    "test": "node ./node_modules/jest/bin/jest.js --watchAll"
-  },
-  "jest": {
-    "preset": "jest-expo"
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "lint": "eslint .",
+    "start": "react-native start",
+    "test": "jest"
   },
   "dependencies": {
-    "@expo/samples": "2.1.1",
-    "expo": "^46.0.14",
-    "expokit": "^32.0.7",
-    "react": "16.5.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
-    "react-navigation": "^3.0.9",
-    "prop-types": "latest"
+    "@react-native-picker/picker": "^2.11.4",
+    "@react-native/gradle-plugin": "0.78.2",
+    "react": "19.0.0",
+    "react-native": "0.78.2",
+    "react-native-gesture-handler": "^2.30.0",
+    "react-native-inappbrowser-reborn": "^3.7.0",
+    "react-native-safe-area-context": "^5.4.0",
+    "react-native-screens": "4.11.1",
+    "teads-react-native": "6.1.0-alpha.2",
+    "@react-navigation/native": "^7.1.6",
+    "@react-navigation/stack": "^7.2.10"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0",
-    "jest-expo": "^32.0.0"
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.3",
+    "@babel/runtime": "^7.25.0",
+    "@react-native-community/cli": "15.0.1",
+    "@react-native-community/cli-platform-android": "15.0.1",
+    "@react-native-community/cli-platform-ios": "15.0.1",
+    "@react-native/babel-preset": "0.78.2",
+    "@react-native/eslint-config": "0.78.2",
+    "@react-native/metro-config": "0.78.2",
+    "@react-native/typescript-config": "0.78.2",
+    "@types/jest": "^29.5.13",
+    "@types/react": "^19.0.0",
+    "@types/react-test-renderer": "^19.0.0",
+    "eslint": "^8.19.0",
+    "jest": "^29.6.3",
+    "prettier": "2.8.8",
+    "react-test-renderer": "19.0.0",
+    "typescript": "5.0.4"
   },
-  "private": true
+  "engines": {
+    "node": ">=18"
+  }
 }
