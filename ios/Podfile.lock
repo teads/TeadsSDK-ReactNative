@@ -1785,7 +1785,7 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  trunk:
+  https://cdn.cocoapods.org/:
     - SocketRocket
     - TeadsSDK
 
@@ -2012,6 +2012,6 @@ SPEC CHECKSUMS:
   TeadsSDK: 4c1c903c33c0d8b5e95bf5ac82fc34b5a6a224e7
   Yoga: e14bad835e12b6c7e2260fc320bd00e0f4b45add
 
-PODFILE CHECKSUM: a865929c4686efe8631a3e2b281eb3663c8a8cfd
+PODFILE CHECKSUM: 8f500a3f4ed434d85bb4aa37a8594a070c3b43d7
 
 COCOAPODS: 1.16.2
