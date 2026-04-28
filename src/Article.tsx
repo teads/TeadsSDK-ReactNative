@@ -76,6 +76,7 @@ const ArticleScreen = ({ navigation, route }: ArticlePageProps) => {
             key={`teads-media-${pid}-${url}`}
             pid={pid}
             url={url}
+            installationKey="NANOWDGT01"
           />
           <ArticleContent />
           <ArticleContent />

@@ -79,7 +79,7 @@ android {
 
     namespace "com.testproject"
     defaultConfig {
-        applicationId "com.testproject"
+        applicationId "tv.teads.testproject"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
